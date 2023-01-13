@@ -1,0 +1,4 @@
+/storage/framework/*
+/storage/logs/*
+/public/tmp/*
+/public/plugs/cache/*
