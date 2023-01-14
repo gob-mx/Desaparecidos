@@ -1161,7 +1161,7 @@ if($datos['cat_status_evaluacion'] == 42){
 
 										<!--Imprime los campos guardados para hijos-->
 										<?php
-										if(isset($obtener_reactivos[41]['campo_unico'])){
+										if(isset($obtener_reactivos[41]['campo_unico']) && $obtener_reactivos[41]['campo_unico'] != "null"){
 											$hijos = json_decode($obtener_reactivos[41]['campo_unico']);
 										?>
 										<div class="m-portlet__body">
