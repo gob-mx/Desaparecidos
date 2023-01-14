@@ -20,10 +20,29 @@ class Tamizaje extends Controller
 
   public function nuevo_tamizaje(Request $request)
   {
-    /*Aqui se valida $request->input(hijos)
-    y se envia en el json como error esta mal formado*/
 
     $store = $request->input();
+
+    if(isset($store[41])){
+      $error = 0; /*Sexo, Edad, guardia_custodia*/
+      foreach($store[41] as $unidad){
+        if(!isset($unidad['Sexo']) OR !isset($unidad['Edad']) OR !isset($unidad['guardia_custodia'])){
+          $error++;
+        }
+      }
+      if($error != 0){
+        $datos = [
+            'id_evaluacion' => $store['id_evaluacion'],
+            'resp' => 'false',
+            'stat' => $store['state'],
+            'mensaje' => 'Existen campos dentro del apartado "IV. SITUACIÓN DE HIJAS O HIJOS" que no se han llenado de forma correcta, verifíquelos'
+        ];
+        print json_encode($datos);
+        exit();
+      }
+    }else{
+      $store[41] = json_decode(base64_decode($store['store_hijos']));
+    }
 
     $options = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,42,43,44,45,46,47,53];
     $checkbox = [38,39,40,48,49];
@@ -76,7 +95,7 @@ class Tamizaje extends Controller
       if($_SESSION['id_rol'] == 2){
         $token = $_SESSION['url_token'];
       }else{
-        $token = 'tbVhM31cvn6ZJTHXaswQopmGkx0KfRBD';
+        $token = '8TNwSRfZbKgruoFevBIt7nXJM3hU9mYQ';
       }
 
 

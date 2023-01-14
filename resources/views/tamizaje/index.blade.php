@@ -173,6 +173,7 @@ if($datos['cat_status_evaluacion'] == 42){
 										<input type="hidden" name="id_remoteUser" value="<?=$datos['generales']->id_remoteUser?>">
 										<input type="hidden" name="id_examen" value="<?=$datos['quest'][1][0]['id_examen']?>">
 										<input type="hidden" name="id_evaluacion" value="<?=$datos['id_evaluacion']?>">
+										<input type="hidden" name="store_hijos" value="<?=isset($obtener_reactivos[41]['campo_unico'])?base64_encode($obtener_reactivos[41]['campo_unico']):null?>">
 
 										<div class="form-group m-form__group row">
 											<div class="col-lg-8 m-form__group-sub">
@@ -1157,6 +1158,53 @@ if($datos['cat_status_evaluacion'] == 42){
  											</h3>
  										</div>
 
+										<!--Imprime los campos guardados para hijos-->
+										<?php
+										if(isset($obtener_reactivos[41]['campo_unico'])){
+											$hijos = json_decode($obtener_reactivos[41]['campo_unico']);
+										?>
+										<div class="m-portlet__body">
+											<div class="m-section">
+												<span class="m-section__sub">
+													<b>Hijos registrados:</b>
+												</span>
+												<div class="m-section__content">
+													<table class="table table-sm m-table m-table--head-bg-brand">
+														<thead class="thead-inverse">
+															<tr>
+																<th>#</th>
+																<th>Sexo</th>
+																<th>Edad</th>
+																<th>Guardia y custodia</th>
+															</tr>
+														</thead>
+														<tbody>
+															<?php
+															$num = 1;
+															foreach($hijos as $hijo){
+															?>
+															<tr>
+																<th scope="row"><?=$num?></th>
+																<td><?=$hijo->Sexo?></td>
+																<td><?=$hijo->Edad?></td>
+																<td><?=$hijo->guardia_custodia?></td>
+															</tr>
+															<?php
+															$num++;
+															}
+															?>
+														</tbody>
+													</table>
+												</div>
+												<span class="m-section__sub">
+													Estos registros ya estan guardados en el tamizaje, para <b>REMPLAZARLOS</b> puede usar el boton <b><i>+ agregar</i></b>, los nuevos registros remplazarán los actuales,
+													para conservarlos no agregue nuevos registros.
+												</span>
+											</div>
+										</div>
+										<?php
+										}
+										?>
  										<div class="m-form__heading">
  											<h3 class="m-form__heading-title">
  												4. <?=$datos['quest'][41][0]['reactivo']?>
@@ -1164,7 +1212,7 @@ if($datos['cat_status_evaluacion'] == 42){
  										</div>
 										<div id="m_repeater_1">
 											<div class="form-group  m-form__group row" id="m_repeater_1">
-												<div id="repeater_hijos" data-repeater-list="<?=$datos['quest'][41][0]['react_id_reactivo']?>" data-comment="2" class="col-lg-11">
+												<div id="repeater_hijos" data-repeater-list="<?=$datos['quest'][41][0]['react_id_reactivo']?>" class="col-lg-11">
 													<div data-repeater-item class="form-group m-form__group row align-items-center">
 														<div class="col-md-2">
 															<div class="m-form__group m-form__group--inline">
@@ -1239,7 +1287,7 @@ if($datos['cat_status_evaluacion'] == 42){
 													6. <?=$datos['quest'][42][131]['reactivo']?>
 												</h3>
 											</div>
-											<div class="col-xl-6 col-lg-6">
+											<div class="col-xl-6 col-lg-6 row">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--Su pareja no le permite ver a sus hijas/hijos y no hay guardia y custodia dictada por algún juez de lo familiar-->
@@ -1278,7 +1326,7 @@ if($datos['cat_status_evaluacion'] == 42){
 													7. <?=$datos['quest'][43][134]['reactivo']?>
 												</h3>
 											</div>
-											<div class="col-xl-6 col-lg-6">
+											<div class="col-xl-6 col-lg-6 row">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--No-->
@@ -1301,23 +1349,23 @@ if($datos['cat_status_evaluacion'] == 42){
 												</h3>
 											</div>
 											<div class="col-xl-6 col-lg-6">
-												<div class="m-radio-inline">
-													<label class="m-radio m-radio--solid m-radio--brand">
+												<div class="m-radio-inline row">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--Es de su propiedad o de alguno de sus familiares de usted-->
 														<input tabindex="1" type="radio" name="<?=$datos['quest'][44][136]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][136]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][136]['opc_id_opcion']?>"> <?=$datos['quest'][44][136]['opc_nombre']?>
 														<span></span>
 													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--Es de su pareja o expareja-->
 														<input tabindex="2" type="radio" name="<?=$datos['quest'][44][137]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][137]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][137]['opc_id_opcion']?>"> <?=$datos['quest'][44][137]['opc_nombre']?>
 														<span></span>
 													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--Pertenece a la familia de su pareja o expareja-->
 														<input tabindex="2" type="radio" name="<?=$datos['quest'][44][138]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][138]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][138]['opc_id_opcion']?>"> <?=$datos['quest'][44][138]['opc_nombre']?>
 														<span></span>
 													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--La casa donde habita es rentada por usted o su pareja o expareja-->
 														<input tabindex="2" type="radio" name="<?=$datos['quest'][44][139]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][139]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][139]['opc_id_opcion']?>"> <?=$datos['quest'][44][139]['opc_nombre']?>
 														<span></span>
@@ -1332,7 +1380,7 @@ if($datos['cat_status_evaluacion'] == 42){
 													9. <?=$datos['quest'][45][140]['reactivo']?>
 												</h3>
 											</div>
-											<div class="col-xl-6 col-lg-6">
+											<div class="col-xl-6 col-lg-6 row">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--Vive en la misma colonia donde vive su pareja/expareja o familiares de él-->
@@ -1621,7 +1669,7 @@ if($datos['cat_status_evaluacion'] == 42){
 													15. <?=$datos['quest'][53][162]['reactivo']?>
 	 											</h3>
 	 										</div>
-											<div class="col-xl-7 col-lg-7">
+											<div class="col-xl-7 col-lg-7 row">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--Tiene familiares o amigas(os) que conocen de la situación de violencia en que se encuentra-->
@@ -1811,7 +1859,15 @@ var FormRepeater = {
             },
 						isFirstItemUndeletable: true
         })
-    }
+    },
+		list: function(){
+				$("#m_repeater_1").repeater({
+					setList: {
+					        'text-input': 'set-a',
+					        'inner-group': [{ 'inner-text-input': 'set-b' }]
+				 }
+				})
+		}
 };
 
 var BootstrapTouchspin = {
@@ -1848,6 +1904,7 @@ var BootstrapSpinRiesgo = {
 jQuery(document).ready(function() {
     WizardTamizaje.init()
 		FormRepeater.init()
+		FormRepeater.list()
 		BootstrapTouchspin.init()
 		BootstrapSpinRiesgo.init()
 });

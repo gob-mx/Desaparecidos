@@ -100,6 +100,9 @@ class Tamizaje extends Model
                                     "id_eva_react" => $valor->id_eva_react
                                   );
     }
+    $i = base64_encode($array[41]['campo_unico']);
+    //dd(base64_decode($i));
+    //dd($i);
     return $array;
   }
 

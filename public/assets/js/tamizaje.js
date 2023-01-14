@@ -18,7 +18,7 @@ $("body").on("click", "#tmz_js_fn_01", function() {
 				}else{
 					swal({
 							title: "Error",
-							text: "Ocurrió un error al guardar el avance.",
+							text: resp_success['mensaje'],
 							type: "error",
 							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
 					})
@@ -375,12 +375,12 @@ var WizardTamizaje = function() {
 												$('[data-wizard-action="submit"]').remove()
               				}else{
                         mApp.unprogress(n),
-                        swal({
-                            title: "Error",
-                            text: "Ocurrió un error al procesar el formulario.",
-                            type: "error",
-                            confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-                        })
+												swal({
+														title: "Error",
+														text: resp_success['mensaje'],
+														type: "error",
+														confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+												})
               				}
               			},
               			error: function(respuesta){ alerta('Alerta!','Error de conectividad de red TZJ-02');}
