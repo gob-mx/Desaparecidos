@@ -2,3 +2,4 @@
 /storage/logs/*
 /public/tmp/*
 /public/plugs/cache/*
+.env
