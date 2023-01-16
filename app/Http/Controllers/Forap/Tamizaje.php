@@ -47,7 +47,7 @@ class Tamizaje extends Controller
     $options = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,42,43,44,45,46,47,53];
     $checkbox = [38,39,40,48,49];
 
-    $reactivos = [1,2,3,4,5,6,7,8,9,41,50,51,52,54];
+    $reactivos = [1,2,3,4,5,6,7,8,9,41,50,51,52,54,55,56];
     $arreglos = [41];//identifica los arreglos para convertirlos a json
 
     $id_evaluacion = $store['id_evaluacion'];
@@ -92,12 +92,13 @@ class Tamizaje extends Controller
   public function index()
   {
 
-      if($_SESSION['id_rol'] == 2){
+      /*if($_SESSION['id_rol'] == 2){
         $token = $_SESSION['url_token'];
       }else{
         $token = '8TNwSRfZbKgruoFevBIt7nXJM3hU9mYQ';
-      }
+      }*/
 
+      $token = $_SESSION['url_token'];
 
       $datos = ModelTamizaje::data_tamizaje($token);
 
