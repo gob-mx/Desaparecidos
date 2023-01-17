@@ -10,7 +10,7 @@ $("body").on("click", "#tmz_js_fn_01", function() {
 			success: function(resp_success){
         if (resp_success['resp'] == 'true') {
 					swal({
-							title: "Correcto!!",
+							title: "¡Correcto!",
 							text: "Su avance se guardó",
 							type: "success",
 							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
@@ -341,7 +341,7 @@ var WizardTamizaje = function() {
                 invalidHandler: function(e, r) {
                     mUtil.scrollTop(),
                     swal({
-                        title: "Faltan campos!!",
+                        title: "¡Faltan campos!",
                         text: "Existen alunos errores en los campos requeridos, por favor revise.",
                         type: "error",
                         confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
