@@ -672,12 +672,12 @@ class Pdf extends Controller
 
     //SITUACIÓN DE HIJAS O HIJOS
     //4. Número de hijas o hijos menores de 18 años y rangos de edad:
-    if(isset($obtener_reactivos[41]) && ($obtener_reactivos[41] != null)){
+    if(isset($obtener_reactivos[41]) && ($obtener_reactivos[41]['campo_unico'] != 'null')){
         $fpdf->SetXY(8.5,13.9);
         $hijos_array = json_decode($obtener_reactivos[41]['campo_unico']);
         $hijos = count($hijos_array);
         $fpdf->MultiCell(3.8,.3,$hijos,0,'C',false);
-
+          dd($obtener_reactivos[41]);
         $rango1 = 0;    $rango2 = 0;    $rango3 = 0;    $rango4 = 0;
         foreach($hijos_array as $key => $value){
           switch($hijos_array[$key]->Edad){
