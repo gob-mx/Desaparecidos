@@ -342,7 +342,7 @@ var WizardTamizaje = function() {
                     mUtil.scrollTop(),
                     swal({
                         title: "¡Faltan campos!",
-                        text: "Existen alunos errores en los campos requeridos, por favor revise.",
+                        text: "Existen campos sin rellenar, por favor  revise sus respuestas",
                         type: "error",
                         confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
                     })
