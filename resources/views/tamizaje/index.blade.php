@@ -79,7 +79,7 @@ if($datos['cat_status_evaluacion'] == 42){
 											<span></span>
 										</div>
 										<div class="m-wizard__step-label">
-											<?=$datos['quest'][18][49]['grupo']?>
+											<?=$datos['quest'][19][55]['grupo']?>
 										</div>
 									</div>
 								</div>
@@ -185,8 +185,13 @@ if($datos['cat_status_evaluacion'] == 42){
 											</div>
 											<!--Fecha-->
 											<div class="col-lg-4 m-form__group-sub">
+												<?php
+												$i  = date("Y-m-d H:i:s");
+												$im = date("Y-m-d",strtotime($i."+ 2 days"));
+												$ia = date("Y-m-d",strtotime($i."- 2 days"));
+												?>
 											<label class="form-control-label"><?=$datos['quest'][2][0]['reactivo']?>:</label>
-												<input type="date" name="<?=$datos['quest'][2][0]['react_id_reactivo']?>" class="form-control m-input" value="<?=isset($obtener_reactivos[2]['campo_unico'])?$obtener_reactivos[2]['campo_unico']:''?>">
+												<input type="date" name="<?=$datos['quest'][2][0]['react_id_reactivo']?>" class="form-control m-input" value="<?=isset($obtener_reactivos[2]['campo_unico'])?$obtener_reactivos[2]['campo_unico']:''?>" min="<?=$ia?>" max="<?=$im?>">
 												<span class="m-form__help"><?=$datos['quest'][2][0]['react_ayuda']?></span>
 											</div>
 										</div>
@@ -1429,7 +1434,7 @@ if($datos['cat_status_evaluacion'] == 42){
 													10. <?=$datos['quest'][46][145]['reactivo']?>
 												</h3>
 											</div>
-											<div class="col-xl-6 col-lg-6">
+											<div class="col-xl-12 col-lg-12">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<input type="radio" name="<?=$datos['quest'][46][145]['react_id_reactivo']?>" <?=((isset($options[46]['id_opcion']))&&($options[46]['id_opcion'] == $datos['quest'][46][145]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][46][145]['opc_id_opcion']?>"> <?=$datos['quest'][46][145]['opc_nombre']?>

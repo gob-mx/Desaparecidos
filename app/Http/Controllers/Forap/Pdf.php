@@ -677,7 +677,6 @@ class Pdf extends Controller
         $hijos_array = json_decode($obtener_reactivos[41]['campo_unico']);
         $hijos = count($hijos_array);
         $fpdf->MultiCell(3.8,.3,$hijos,0,'C',false);
-          dd($obtener_reactivos[41]);
         $rango1 = 0;    $rango2 = 0;    $rango3 = 0;    $rango4 = 0;
         foreach($hijos_array as $key => $value){
           switch($hijos_array[$key]->Edad){
