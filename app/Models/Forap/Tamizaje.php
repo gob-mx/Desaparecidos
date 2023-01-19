@@ -8,16 +8,16 @@ use DB;
 
 class Tamizaje extends Model
 {
-  protected $table = 'fa_tamizaje';
-  protected $primaryKey = 'id_tamizaje';
+  protected $table = 'fa_evaluacion';
+  protected $primaryKey = 'id_evaluacion';
   public $timestamps = false;
 
-  /*static function obtenerTamizajes($id_expediente = 0){
+  static function violenciaMujeresGet(){
     $dataTable = new DT(
-      Tamizaje::['id_tamizaje', 'id_expediente']
+      Tamizaje::where('id_examen', '=', 1),['id_evaluacion', 'id_expediente']
     );
     return $dataTable->make();
-  }*/
+  }
 
 
   static function obtener_delito($id_delito){

@@ -92,16 +92,8 @@ class Tamizaje extends Controller
   public function index()
   {
 
-      /*if($_SESSION['id_rol'] == 2){
-        $token = $_SESSION['url_token'];
-      }else{
-        $token = '8TNwSRfZbKgruoFevBIt7nXJM3hU9mYQ';
-      }*/
-
       $token = $_SESSION['url_token'];
-
       $datos = ModelTamizaje::data_tamizaje($token);
-
       if($datos['cat_status_evaluacion'] != 40){
       $options = ModelTamizaje::obtener_options($datos['id_evaluacion']);
       $checkbox = ModelTamizaje::obtener_checkbox($datos['id_evaluacion']);
@@ -133,17 +125,13 @@ class Tamizaje extends Controller
     return ModelLogin::logearConToken($token);
   }
 
-
-
-
-  public function expediente()
+  public function violenciaMujeres()
   {
-    return view('tamizaje/listaTamizajes');
+    return view('tamizaje/violenciaMujeres');
   }
-
-  public function listaTamizajes($id_expediente)
+  public function violenciaMujeresGet()
   {
-    print json_encode(ModelTamizaje::obtenerTamizajes($id_expediente));
+    print json_encode(ModelTamizaje::violenciaMujeresGet());
   }
 
 }

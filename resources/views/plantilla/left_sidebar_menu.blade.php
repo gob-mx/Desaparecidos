@@ -50,19 +50,16 @@
 
 
 
-            <?php if(Helpme::tiene_permiso('Usuarios|perfil')){ ?>
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','tamizaje/expediente');" class="m-menu__link ">
-                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Mis&nbsp;Formularios</span></a>
-              </li>
-            <?php }
-
+            <?php
             if(Helpme::tiene_permiso('Controllers|index')){ ?>
               <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-user-ok"></i><span class="m-menu__link-text">Formuarios</span><i
-									 class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <i class="m-menu__link-icon flaticon-user-ok"></i><span class="m-menu__link-text">Tamizajes</span>
+									 <i class="m-menu__ver-arrow la la-angle-right"></i></a>
 								<div class="m-menu__submenu "><span class="m-menu__arrow"></span>
 									<ul class="m-menu__subnav">
-										<li class="m-menu__item " aria-haspopup="true"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','tamizaje');" class="m-menu__link m-menu__toggle"><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Tamizaje</span></a></li>
+										<li class="m-menu__item " aria-haspopup="true">
+                      <a href="javascript:;" onclick="carga_archivo('contenedor_principal','tamizaje/violenciaMujeres');" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Mujeres víctimas de violencia de pareja</span></a></li>
 									</ul>
 								</div>
 							</li>
@@ -140,8 +137,8 @@
 
 
               <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-user-ok"></i><span class="m-menu__link-text">Roles & Permisos</span><i
-									 class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <i class="m-menu__link-icon flaticon-user-ok"></i><span class="m-menu__link-text">Roles & Permisos</span>
+									 <i class="m-menu__ver-arrow la la-angle-right"></i></a>
 								<div class="m-menu__submenu "><span class="m-menu__arrow"></span>
 									<ul class="m-menu__subnav">
 										<li class="m-menu__item " aria-haspopup="true"><a href="javascript:;" id="rls_js_fn_02" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Roles</span></a></li>
