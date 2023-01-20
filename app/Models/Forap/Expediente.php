@@ -32,6 +32,39 @@ class Expediente extends Model
 
   }
 
+  static function actualizaTrazaUser($id_remoteUser, $id_unidad){
+    $trazabilidadUserID = DB::table('fa_trazabilidadUser')
+                ->select('id_trazabilidadUser')
+                ->where('id_remoteUser','=',$id_remoteUser)
+                ->where('id_unidad','=',$id_unidad)
+                ->where('cat_status_remoteUser','=',21)
+                ->get();
+    return (isset($trazabilidadUserID[0]))?$trazabilidadUserID[0]->id_trazabilidadUser:self::updateTrazabilidadUser($id_remoteUser, $id_unidad);
+  }
+
+  static function insertTrazabilidadUser($id_remoteUser, $id_unidad){
+    $id_trazabilidadUser = DB::table('fa_trazabilidadUser')->insertGetId(
+        [
+            'id_remoteUser' => $id_remoteUser,
+            'id_unidad' => $id_unidad,
+            'fecha_registro' => date("Y-m-d H:i:s"),
+            'cat_status_remoteUser' => 21,
+            'user_alta' => 1,
+            'fecha_alta' => date("Y-m-d H:i:s")
+        ]
+    );
+    return $id_trazabilidadUser;
+  }
+
+  static function updateTrazabilidadUser($id_remoteUser, $id_unidad){
+    DB::table('fa_trazabilidadUser')
+            ->where('id_remoteUser', $id_remoteUser)
+            ->update([
+                'cat_status_remoteUser' => 22
+            ]);
+    return self::insertTrazabilidadUser($id_remoteUser, $id_unidad);
+  }
+
   static function insertar_usuario($numEmpleado){
     $id_usuario = DB::table('fw_usuarios')->insertGetId(
         [
@@ -85,42 +118,8 @@ class Expediente extends Model
     return $id_remoteUser;
   }
 
-  static function actualizaTrazaUser($id_remoteUser, $id_unidad){
-    $trazabilidadUserID = DB::table('fa_trazabilidadUser')
-                ->select('id_trazabilidadUser')
-                ->where('id_remoteUser','=',$id_remoteUser)
-                ->where('id_unidad','=',$id_unidad)
-                ->where('cat_status_remoteUser','=',21)
-                ->get();
-    return (isset($trazabilidadUserID[0]))?$trazabilidadUserID[0]->id_trazabilidadUser:self::updateTrazabilidadUser($id_remoteUser, $id_unidad);
-  }
-
-  static function insertTrazabilidadUser($id_remoteUser, $id_unidad){
-    $id_trazabilidadUser = DB::table('fa_trazabilidadUser')->insertGetId(
-        [
-            'id_remoteUser' => $id_remoteUser,
-            'id_unidad' => $id_unidad,
-            'fecha_registro' => date("Y-m-d H:i:s"),
-            'cat_status_remoteUser' => 21,
-            'user_alta' => 1,
-            'fecha_alta' => date("Y-m-d H:i:s")
-        ]
-    );
-    return $id_trazabilidadUser;
-  }
-
-  static function updateTrazabilidadUser($id_remoteUser, $id_unidad){
-    return DB::table('fa_trazabilidadUser')
-            ->where('id_remoteUser', $id_remoteUser)
-            ->update([
-                'cat_status_remoteUser' => 22
-            ]);
-    $id_trazabilidadUser = self::insertTrazabilidadUser($id_remoteUser, $id_unidad);
-    return $id_trazabilidadUser;
-  }
-
   static function caducarTokens($id_expediente, $id_victima){
-    return DB::table('fa_tokens')
+    DB::table('fa_tokens')
             ->where('id_expediente', $id_expediente)
             ->where('id_victima', $id_victima)
             ->update([
@@ -160,13 +159,12 @@ class Expediente extends Model
   }
 
   static function updateTrazabilidad($id_expediente, $id_unidad){
-    return DB::table('fa_trazabilidad')
+    DB::table('fa_trazabilidad')
             ->where('id_expediente', $id_expediente)
             ->update([
                 'cat_status_expediente' => 24
             ]);
-    $id_trazabilidad = self::insertTrazabilidad($id_expediente, $id_unidad);
-    return $id_trazabilidad;
+    return self::insertTrazabilidad($id_expediente, $id_unidad);
   }
 
   static function insertTrazabilidad($id_expediente, $id_unidad){
@@ -371,7 +369,7 @@ class Expediente extends Model
   }
 
   static function updateDelito($id_expediente, $expediente, $id_delito){
-    return DB::table('fa_delitos')
+    DB::table('fa_delitos')
             ->where('id_delito', $id_delito)
             ->update([
                 'cat_status_delito' => 28
