@@ -44,8 +44,8 @@ class Tamizaje extends Controller
       $store[41] = json_decode(base64_decode($store['store_hijos']));
     }
 
-    $options = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,42,43,44,45,46,47,53];
-    $checkbox = [38,39,40,48,49];
+    $options = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,42,43,44,46,47,53];
+    $checkbox = [38,39,40,45,48,49];
 
     $reactivos = [1,2,3,4,5,6,7,8,9,41,50,51,52,54,55,56];
     $arreglos = [41];//identifica los arreglos para convertirlos a json

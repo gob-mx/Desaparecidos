@@ -430,23 +430,23 @@ if($datos['cat_status_evaluacion'] == 42){
 											<label class="col-xl-6 col-lg-6 col-form-label">2. <?=$datos['quest'][20][57]['reactivo']?></label>
 											<div class="col-xl-6 col-lg-6">
 												<div class="m-radio-inline row">
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--No-->
 														<input class="counter3" data-opc_valor="<?=$datos['quest'][20][57]['opc_valor']?>" type="radio" name="<?=$datos['quest'][20][57]['react_id_reactivo']?>" <?=((isset($options[20]['id_opcion']))&&($options[20]['id_opcion'] == $datos['quest'][20][57]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][20][57]['opc_id_opcion']?>"> (<?=$datos['quest'][20][57]['opc_valor']?>) <?=$datos['quest'][20][57]['opc_nombre']?>
 														<span></span>
 													</label>
 													<!--En ocasiones-->
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input class="counter3" data-opc_valor="<?=$datos['quest'][20][58]['opc_valor']?>" type="radio" name="<?=$datos['quest'][20][58]['react_id_reactivo']?>" <?=((isset($options[20]['id_opcion']))&&($options[20]['id_opcion'] == $datos['quest'][20][58]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][20][58]['opc_id_opcion']?>"> (<?=$datos['quest'][20][58]['opc_valor']?>) <?=$datos['quest'][20][58]['opc_nombre']?>
 														<span></span>
 													</label>
 													<!--Mensual-->
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input class="counter3" data-opc_valor="<?=$datos['quest'][20][59]['opc_valor']?>" type="radio" name="<?=$datos['quest'][20][59]['react_id_reactivo']?>" <?=((isset($options[20]['id_opcion']))&&($options[20]['id_opcion'] == $datos['quest'][20][59]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][20][59]['opc_id_opcion']?>"> (<?=$datos['quest'][20][59]['opc_valor']?>) <?=$datos['quest'][20][59]['opc_nombre']?>
 														<span></span>
 													</label>
 													<!--Diario Semanal-->
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input class="counter3" data-opc_valor="<?=$datos['quest'][20][60]['opc_valor']?>" type="radio" name="<?=$datos['quest'][20][60]['react_id_reactivo']?>" <?=((isset($options[20]['id_opcion']))&&($options[20]['id_opcion'] == $datos['quest'][20][60]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][20][60]['opc_id_opcion']?>"> (<?=$datos['quest'][20][60]['opc_valor']?>) <?=$datos['quest'][20][60]['opc_nombre']?>
 														<span></span>
 													</label>
@@ -1228,8 +1228,8 @@ if($datos['cat_status_evaluacion'] == 42){
 																<div class="m-form__control">
 																	<select name="Sexo" class="form-control m-input m-input--square">
 																		<option value="" selected disabled>Sexo</option>
-																		<option value="Hombre">Hombre</option>
-																		<option value="Mujer">Mujer</option>
+																		<option value="Masculino">Masculino</option>
+																		<option value="Femenino">Femenino</option>
 																  </select>
 																</div>
 															</div>
@@ -1358,61 +1358,92 @@ if($datos['cat_status_evaluacion'] == 42){
 												<div class="m-radio-inline row">
 													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--Es de su propiedad o de alguno de sus familiares de usted-->
-														<input type="radio" name="<?=$datos['quest'][44][136]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][136]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][136]['opc_id_opcion']?>"> <?=$datos['quest'][44][136]['opc_nombre']?>
+														<input type="checkbox" name="<?=$datos['quest'][44][136]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][136]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][136]['opc_id_opcion']?>"> <?=$datos['quest'][44][136]['opc_nombre']?>
 														<span></span>
 													</label>
 													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--Es de su pareja o expareja-->
-														<input type="radio" name="<?=$datos['quest'][44][137]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][137]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][137]['opc_id_opcion']?>"> <?=$datos['quest'][44][137]['opc_nombre']?>
+														<input type="checkbox" name="<?=$datos['quest'][44][137]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][137]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][137]['opc_id_opcion']?>"> <?=$datos['quest'][44][137]['opc_nombre']?>
 														<span></span>
 													</label>
 													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--Pertenece a la familia de su pareja o expareja-->
-														<input type="radio" name="<?=$datos['quest'][44][138]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][138]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][138]['opc_id_opcion']?>"> <?=$datos['quest'][44][138]['opc_nombre']?>
+														<input type="checkbox" name="<?=$datos['quest'][44][138]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][138]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][138]['opc_id_opcion']?>"> <?=$datos['quest'][44][138]['opc_nombre']?>
 														<span></span>
 													</label>
 													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<!--La casa donde habita es rentada por usted o su pareja o expareja-->
-														<input type="radio" name="<?=$datos['quest'][44][139]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][139]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][139]['opc_id_opcion']?>"> <?=$datos['quest'][44][139]['opc_nombre']?>
+														<input type="checkbox" name="<?=$datos['quest'][44][139]['react_id_reactivo']?>" <?=((isset($options[44]['id_opcion']))&&($options[44]['id_opcion'] == $datos['quest'][44][139]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][44][139]['opc_id_opcion']?>"> <?=$datos['quest'][44][139]['opc_nombre']?>
 														<span></span>
 													</label>
 												</div>
 											</div>
 										</div>
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-6 col-lg-6">
+											<div class="m-form__heading col-xl-12 col-lg-12">
 												<h3 class="m-form__heading-title pad_fix">
 													<!--9. Seleccione los espacios que su pareja o expareja comparte con usted-->
 													9. <?=$datos['quest'][45][140]['reactivo']?>
 												</h3>
 											</div>
-											<div class="col-xl-6 col-lg-6 row">
-												<div class="m-radio-inline">
-													<label class="m-radio m-radio--solid m-radio--brand">
-														<!--Vive en la misma colonia donde vive su pareja/expareja o familiares de él-->
-														<input type="radio" name="<?=$datos['quest'][45][140]['react_id_reactivo']?>" <?=((isset($options[45]['id_opcion']))&&($options[45]['id_opcion'] == $datos['quest'][45][140]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][140]['opc_id_opcion']?>"> <?=$datos['quest'][45][140]['opc_nombre']?>
-														<span></span>
-													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
-														<!--Trabaja en el mismo espacio laboral que su pareja/expareja-->
-														<input type="radio" name="<?=$datos['quest'][45][141]['react_id_reactivo']?>" <?=((isset($options[45]['id_opcion']))&&($options[45]['id_opcion'] == $datos['quest'][45][141]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][141]['opc_id_opcion']?>"> <?=$datos['quest'][45][141]['opc_nombre']?>
-														<span></span>
-													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
-														<!--Acude a la misma escuela que su pareja/expareja-->
-														<input type="radio" name="<?=$datos['quest'][45][142]['react_id_reactivo']?>" <?=((isset($options[45]['id_opcion']))&&($options[45]['id_opcion'] == $datos['quest'][45][142]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][142]['opc_id_opcion']?>"> <?=$datos['quest'][45][142]['opc_nombre']?>
-														<span></span>
-													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
-														<!--Su pareja/expareja frecuenta la colonia donde usted vive, trabaja o estudia-->
-														<input type="radio" name="<?=$datos['quest'][45][143]['react_id_reactivo']?>" <?=((isset($options[45]['id_opcion']))&&($options[45]['id_opcion'] == $datos['quest'][45][143]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][143]['opc_id_opcion']?>"> <?=$datos['quest'][45][143]['opc_nombre']?>
-														<span></span>
-													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
-														<!--Ninguna de las anteriores-->
-														<input type="radio" name="<?=$datos['quest'][45][144]['react_id_reactivo']?>" <?=((isset($options[45]['id_opcion']))&&($options[45]['id_opcion'] == $datos['quest'][45][144]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][144]['opc_id_opcion']?>"> <?=$datos['quest'][45][144]['opc_nombre']?>
-														<span></span>
-													</label>
+											<div class="col-xl-12 col-lg-12 row">
+												<div class="col-xl-12 col-lg-12 row m-radio-inline" style="padding-left:30px;">
+
+													<div class="col-xl-1 col-lg-1">
+														<span class="m-switch m-switch--outline m-switch--brand">
+															<label>
+																<!--Vive en la misma colonia donde vive su pareja/expareja o familiares de él-->
+																<input class="checkbox_convivencia" type="checkbox" name="<?=$datos['quest'][45][140]['react_id_reactivo']?>[]" <?=((isset($checkbox[45][140]['id_opcion']))&&($checkbox[45][140]['id_opcion'] == $datos['quest'][45][140]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][140]['opc_id_opcion']?>">
+																<span></span>
+															</label>
+														</span>
+													</div>
+													<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][45][140]['opc_nombre']?></label>
+
+													<div class="col-xl-1 col-lg-1">
+														<span class="m-switch m-switch--outline m-switch--brand">
+															<label>
+																<!--Trabaja en el mismo espacio laboral que su pareja/expareja-->
+																<input class="checkbox_convivencia" type="checkbox" name="<?=$datos['quest'][45][141]['react_id_reactivo']?>[]" <?=((isset($checkbox[45][141]['id_opcion']))&&($checkbox[45][141]['id_opcion'] == $datos['quest'][45][141]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][141]['opc_id_opcion']?>">
+																<span></span>
+															</label>
+														</span>
+													</div>
+													<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][45][141]['opc_nombre']?></label>
+
+													<div class="col-xl-1 col-lg-1">
+														<span class="m-switch m-switch--outline m-switch--brand">
+															<label>
+																<!--Acude a la misma escuela que su pareja/expareja-->
+																<input class="checkbox_convivencia" type="checkbox" name="<?=$datos['quest'][45][142]['react_id_reactivo']?>[]" <?=((isset($checkbox[45][142]['id_opcion']))&&($checkbox[45][142]['id_opcion'] == $datos['quest'][45][142]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][142]['opc_id_opcion']?>">
+																<span></span>
+															</label>
+														</span>
+													</div>
+													<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][45][142]['opc_nombre']?></label>
+
+													<div class="col-xl-1 col-lg-1">
+														<span class="m-switch m-switch--outline m-switch--brand">
+															<label>
+																<!--Su pareja/expareja frecuenta la colonia donde usted vive, trabaja o estudia-->
+																<input class="checkbox_convivencia" type="checkbox" name="<?=$datos['quest'][45][143]['react_id_reactivo']?>[]" <?=((isset($checkbox[45][143]['id_opcion']))&&($checkbox[45][143]['id_opcion'] == $datos['quest'][45][143]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][143]['opc_id_opcion']?>">
+																<span></span>
+															</label>
+														</span>
+													</div>
+													<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][45][143]['opc_nombre']?></label>
+
+													<div class="col-xl-1 col-lg-1">
+														<span class="m-switch m-switch--outline m-switch--brand">
+															<label>
+																<!--Ninguna de las anteriores-->
+																<input id="selectallocurrencies" type="checkbox" name="<?=$datos['quest'][45][144]['react_id_reactivo']?>[]" <?=((isset($checkbox[45][144]['id_opcion']))&&($checkbox[45][144]['id_opcion'] == $datos['quest'][45][144]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][45][144]['opc_id_opcion']?>">
+																<span></span>
+															</label>
+														</span>
+													</div>
+													<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][45][144]['opc_nombre']?></label>
+
 												</div>
 											</div>
 										</div>
@@ -1434,21 +1465,21 @@ if($datos['cat_status_evaluacion'] == 42){
 													10. <?=$datos['quest'][46][145]['reactivo']?>
 												</h3>
 											</div>
-											<div class="col-xl-12 col-lg-12">
-												<div class="m-radio-inline">
-													<label class="m-radio m-radio--solid m-radio--brand">
+											<div class="col-xl-12 col-lg-12 row">
+												<div class="m-radio-inline" style="padding-left:15px;">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input type="radio" name="<?=$datos['quest'][46][145]['react_id_reactivo']?>" <?=((isset($options[46]['id_opcion']))&&($options[46]['id_opcion'] == $datos['quest'][46][145]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][46][145]['opc_id_opcion']?>"> <?=$datos['quest'][46][145]['opc_nombre']?>
 														<span></span>
 													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input type="radio" name="<?=$datos['quest'][46][146]['react_id_reactivo']?>" <?=((isset($options[46]['id_opcion']))&&($options[46]['id_opcion'] == $datos['quest'][46][146]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][46][146]['opc_id_opcion']?>"> <?=$datos['quest'][46][146]['opc_nombre']?>
 														<span></span>
 													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input type="radio" name="<?=$datos['quest'][46][147]['react_id_reactivo']?>" <?=((isset($options[46]['id_opcion']))&&($options[46]['id_opcion'] == $datos['quest'][46][147]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][46][147]['opc_id_opcion']?>"> <?=$datos['quest'][46][147]['opc_nombre']?>
 														<span></span>
 													</label>
-													<label class="m-radio m-radio--solid m-radio--brand">
+													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input type="radio" name="<?=$datos['quest'][46][148]['react_id_reactivo']?>" <?=((isset($options[46]['id_opcion']))&&($options[46]['id_opcion'] == $datos['quest'][46][148]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][46][148]['opc_id_opcion']?>"> <?=$datos['quest'][46][148]['opc_nombre']?>
 														<span></span>
 													</label>
@@ -1783,6 +1814,14 @@ if($datos['cat_status_evaluacion'] == 42){
 </div>
 </div>
 <script>
+
+/*Validacionpara ANEXO COMPLEMENTARIO >> Espacios compartidos*/
+$("#selectallocurrencies").on("click", function() {
+	$(".checkbox_convivencia").prop("checked", false);
+});
+$(".checkbox_convivencia").on("click", function() {
+	$("#selectallocurrencies").prop("checked", false);
+});
 
 /*Validacionpara VIOLENCIA EXTREMA*/
 $('.violencia_extrema1').on('change', function () {$("#sin_violencia").prop("checked", false);});

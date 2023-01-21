@@ -839,41 +839,41 @@ class Pdf extends Controller
 
     //CONTEXTO DE CONVIVENCIA CON PAREJA O EXPAREJA
     //9. Seleccione los espacios que su pareja o expareja comparte con usted
-    if(isset($options[45])){
+
       $fpdf->SetFontSize(7);
       //Vive en la misma colonia donde vive su pareja/expareja o familiares de él
-      if($options[45]['id_opcion'] == 140){
+      if(isset($checkbox[45][140])){
           $fpdf->Rect(10.88, 23.79, 9.48, .6, 'F');
           $fpdf->SetXY(10.9,23.8);
-          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($options[45]['nombre'])),0,'L',false);
+          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][140]['nombre'])),0,'L',false);
       }
       //Trabaja en el mismo espacio laboral que su pareja/expareja
-      if($options[45]['id_opcion'] == 141){
+      if(isset($checkbox[45][141])){
           $fpdf->Rect(10.88, 24.43, 9.48, .52, 'F');
           $fpdf->SetXY(10.9,24.4);
-          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($options[45]['nombre'])),0,'L',false);
+          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][141]['nombre'])),0,'L',false);
       }
       //Acude a la misma escuela que su pareja/expareja
-      if($options[45]['id_opcion'] == 142){
+      if(isset($checkbox[45][142])){
           $fpdf->Rect(10.88, 25.02, 9.48, .53, 'F');
           $fpdf->SetXY(10.9,25);
-          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($options[45]['nombre'])),0,'L',false);
+          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][142]['nombre'])),0,'L',false);
       }
       //Su pareja/expareja frecuenta la colonia donde usted vive, trabaja o estudia.
-      if($options[45]['id_opcion'] == 143){
+      if(isset($checkbox[45][143])){
           $fpdf->Rect(10.88, 25.6, 9.48, .6, 'F');
           $fpdf->SetXY(10.9,25.6);
-          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($options[45]['nombre'])),0,'L',false);
+          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][143]['nombre'])),0,'L',false);
       }
       $fpdf->SetAutoPageBreak(false);// para imprimir la ultima opcion que quedo fuera de margen
       //Ninguna de las anteriores
-      if($options[45]['id_opcion'] == 144){
+      if(isset($checkbox[45][144])){
           $fpdf->Rect(10.88, 26.25, 9.48, .6, 'F');
           $fpdf->SetXY(10.9,26.3);
-          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($options[45]['nombre'])),0,'L',false);
+          $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][144]['nombre'])),0,'L',false);
       }
       $fpdf->SetFontSize(8);
-    }
+
 
     $fpdf->AddPage();
     $tplId4 = $fpdf->importPage(4);
@@ -923,12 +923,13 @@ class Pdf extends Controller
           $fpdf->SetXY(11,7.4);
           $fpdf->MultiCell(9,.3,utf8_decode(strip_tags($options[47]['nombre'])),0,'L',false);
       }
-      //Cuales? no se muestra por que no lo contemple en el formulario
-      //if($options[47]['id_opcion'] == 148){<=======NO existe ID
-      //    $fpdf->Rect(10.93, 8.05, 9.48, .63, 'F');
-      //    $fpdf->SetXY(11,8.1);
-      //    $fpdf->MultiCell(9,.3,utf8_decode(strip_tags($options[47]['nombre'])),0,'L',false);
-      //}
+      //Cuales?
+      $cuales_oject = (isset($obtener_reactivos[56])&&($obtener_reactivos[56]['campo_unico'] != null))?'¿Cuales?: '.$obtener_reactivos[56]['campo_unico']:'';
+      if(isset($obtener_reactivos[56])&&($obtener_reactivos[56]['campo_unico'] != null)){
+          $fpdf->Rect(10.93, 8.05, 9.48, .63, 'F');
+          $fpdf->SetXY(11,8.1);
+          $fpdf->MultiCell(9,.3,utf8_decode(strip_tags($cuales_oject)),0,'L',false);
+      }
     }
 
     //OTROS FACTORES DE RIESGO
@@ -958,10 +959,11 @@ class Pdf extends Controller
         $fpdf->MultiCell(9.2,.4,utf8_decode(strip_tags($checkbox[48][154]['nombre'])),0,'L',false);
     }
     //Otro. ¿Cuál?
+    $otro_juicio = (isset($obtener_reactivos[55])&&($obtener_reactivos[55]['campo_unico'] != null))?': '.$obtener_reactivos[55]['campo_unico']:'';
     if(isset($checkbox[48][155])){
         $fpdf->Rect(10.95, 12.51, 9.49, .6, 'F');
         $fpdf->SetXY(11,12.6);
-        $fpdf->MultiCell(9.2,.4,utf8_decode(strip_tags($checkbox[48][155]['nombre'])),0,'L',false);
+        $fpdf->MultiCell(9.2,.4,utf8_decode(strip_tags($checkbox[48][155]['nombre']. ' ' .$otro_juicio)),0,'L',false);
     }
 
     //13. ¿Su pareja o expareja cuenta con alguna de las siguientes características?
@@ -972,8 +974,8 @@ class Pdf extends Controller
     }
     if(isset($checkbox[49][158])){
         $fpdf->Rect(10.95, 13.99, 9.49, .68, 'F');
-        $fpdf->SetXY(11,14.2);
-        $fpdf->MultiCell(9.2,.4,utf8_decode(strip_tags($checkbox[49][158]['nombre'])),0,'L',false);
+        $fpdf->SetXY(11,14.05);
+        $fpdf->MultiCell(9.2,.3,utf8_decode(strip_tags($checkbox[49][158]['nombre'])),0,'L',false);
     }
     if(isset($checkbox[49][159])){
         $fpdf->Rect(10.95, 14.72, 9.49, .7, 'F');

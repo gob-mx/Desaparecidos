@@ -319,7 +319,7 @@ var WizardTamizaje = function() {
                     42: {required: !0},
                     43: {required: !0},
                     44: {required: !0},
-                    45: {required: !0},
+                    "45[]": {required: !0},
                     46: {required: !0},
                     47: {required: !0},
                     48: {required: !0},
