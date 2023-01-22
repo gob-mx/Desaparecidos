@@ -674,8 +674,11 @@ if($datos['cat_status_evaluacion'] == 42){
 										</div>
 									</div>
 									<div class="form-group m-form__group row" id="counter13" data-value="<?=isset($options[30]['val_opc'])?$options[30]['val_opc']:0?>">
-										<!--12. ¿Su pareja o ex pareja la controla? ¿De qué forma lo hace?-->
-										<label class="col-xl-6 col-lg-6 col-form-label">12. <?=$datos['quest'][30][85]['reactivo']?></label>
+										<!--12. ¿Su pareja o ex pareja hace alguna de estas acciones para controla?-->
+										<label class="col-xl-6 col-lg-6 col-form-label">
+												12. <?=$datos['quest'][30][85]['reactivo']?> <br>
+											<span><?=$datos['quest'][30][85]['react_ayuda']?></span>
+										</label>
 										<div class="col-xl-6 col-lg-6">
 											<div class="m-radio-inline row">
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
@@ -703,7 +706,10 @@ if($datos['cat_status_evaluacion'] == 42){
 									</div>
 									<div class="form-group m-form__group row" id="counter14" data-value="<?=isset($options[31]['val_opc'])?$options[31]['val_opc']:0?>">
 										<!--13. ¿Su pareja o ex pareja desconfía de usted o la acosa? ¿Cómo le muestra su desconfianza o acoso?-->
-										<label class="col-xl-6 col-lg-6 col-form-label">13. <?=$datos['quest'][31][89]['reactivo']?></label>
+										<label class="col-xl-6 col-lg-6 col-form-label">
+													13. <?=$datos['quest'][31][89]['reactivo']?> <br>
+											<span><?=$datos['quest'][31][89]['react_ayuda']?></span>
+										</label>
 										<div class="col-xl-6 col-lg-6">
 											<div class="m-radio-inline row">
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
@@ -758,7 +764,10 @@ if($datos['cat_status_evaluacion'] == 42){
 
 									<div class="form-group m-form__group row" id="counter16" data-value="<?=isset($options[33]['val_opc'])?$options[33]['val_opc']:0?>">
 										<!--15. ¿Le ha dicho a su pareja que quiere separse de él? En caso de que haberlo hecho, ¿cómo reaccionó él?-->
-										<label class="col-xl-6 col-lg-6 col-form-label">15. <?=$datos['quest'][33][95]['reactivo']?></label>
+										<label class="col-xl-6 col-lg-6 col-form-label">
+														15. <?=$datos['quest'][33][95]['reactivo']?> <br>
+											<span><?=$datos['quest'][33][95]['react_ayuda']?></span>
+										</label>
 										<div class="col-xl-6 col-lg-6">
 											<div class="m-radio-inline row">
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
@@ -1105,7 +1114,7 @@ if($datos['cat_status_evaluacion'] == 42){
  										<div class="m-form__heading">
  											<h3 class="m-form__heading-title">
 												<!--3. ¿Su pareja o expareja la agredió de alguna de las siguientes formas mientras está embarazada?-->
- 												3. <?=$datos['quest'][40][127]['reactivo']?>
+ 												3. <?=$datos['quest'][40][127]['reactivo']?> <?=$datos['quest'][40][127]['react_ayuda']?>
  											</h3>
  										</div>
 										<div class="form-group m-form__group row">
@@ -1383,7 +1392,7 @@ if($datos['cat_status_evaluacion'] == 42){
 											<div class="m-form__heading col-xl-12 col-lg-12">
 												<h3 class="m-form__heading-title pad_fix">
 													<!--9. Seleccione los espacios que su pareja o expareja comparte con usted-->
-													9. <?=$datos['quest'][45][140]['reactivo']?>
+													9. <?=$datos['quest'][45][140]['reactivo']?> <?=$datos['quest'][45][140]['react_ayuda']?>
 												</h3>
 											</div>
 											<div class="col-xl-12 col-lg-12 row">
