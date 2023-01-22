@@ -57,27 +57,23 @@ class Pdf extends Controller
     if(isset($options[10]) && $options[10]['val_opc'] != 0){
         $fpdf->Rect(1.4, 12.94, 7.1, .781, 'F');
         $fpdf->SetXY(1.6,13);
-        $fpdf->SetMargins(1.8, .5 , 13);
-        $fpdf->Write(.3, utf8_decode('1. '.strip_tags($options[10]['reactivo'])));
+        $fpdf->MultiCell(7,.3,utf8_decode('1. '.strip_tags($options[10]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(8.54, 12.94, 2.34, .781, 'F');
         $fpdf->SetXY(8.5,13);
-        $fpdf->SetMargins(8.5, .5 , 10.5);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[10]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[10]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[10]['val_opc'];
     }
 
     //6. Amordazar o privar de la libertad
     if(isset($options[11]) && $options[11]['val_opc'] != 0){
         $fpdf->Rect(10.91, 12.94, 7.09, .781, 'F');
-        $fpdf->SetXY(11.5,13.2);
-        $fpdf->SetMargins(11, .5 , 3);
-        $fpdf->Write(.3, utf8_decode('6. '.strip_tags($options[11]['reactivo'])));
+        $fpdf->SetXY(11,13.2);
+        $fpdf->MultiCell(7,.3,utf8_decode('6. '.strip_tags($options[11]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(18.04, 12.94, 2.35, .781, 'F');
         $fpdf->SetXY(18,13);
-        $fpdf->SetMargins(18, .5 , 1);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[11]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[11]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[11]['val_opc'];
     }
 
@@ -85,27 +81,23 @@ class Pdf extends Controller
     if(isset($options[12]) && $options[12]['val_opc'] != 0){
         $fpdf->Rect(1.4, 13.753, 7.1, .781, 'F');
         $fpdf->SetXY(1.6,14);
-        $fpdf->SetMargins(1.8, .5 , 13);
-        $fpdf->Write(.3, utf8_decode('2. '.strip_tags($options[12]['reactivo'])));
+        $fpdf->MultiCell(7,.3,utf8_decode('2. '.strip_tags($options[12]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(8.54, 13.753, 2.34, .781, 'F');
         $fpdf->SetXY(8.5,13.85);
-        $fpdf->SetMargins(8.5, .5 , 10.5);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[12]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[12]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[12]['val_opc'];
     }
 
     //7. Violacion
     if(isset($options[13]) && $options[13]['val_opc'] != 0){
         $fpdf->Rect(10.91, 13.753, 7.09, .781, 'F');
-        $fpdf->SetXY(11.5,14);
-        $fpdf->SetMargins(11, .5 , 3);
-        $fpdf->Write(.3, utf8_decode('7. '.strip_tags($options[13]['reactivo'])));
+        $fpdf->SetXY(11,14);
+        $fpdf->MultiCell(7,.3,utf8_decode('7. '.strip_tags($options[13]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(18.04, 13.753, 2.35, .781, 'F');
         $fpdf->SetXY(18,13.9);
-        $fpdf->SetMargins(18, .5 , 1);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[13]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[13]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[13]['val_opc'];
     }
 
@@ -113,27 +105,23 @@ class Pdf extends Controller
     if(isset($options[14]) && $options[14]['val_opc'] != 0){
         $fpdf->Rect(1.4, 14.572, 7.1, .781, 'F');
         $fpdf->SetXY(1.6,14.8);
-        $fpdf->SetMargins(1.8, .5 , 13);
-        $fpdf->Write(.3, utf8_decode('3. '.strip_tags($options[14]['reactivo'])));
+        $fpdf->MultiCell(7,.3,utf8_decode('3. '.strip_tags($options[14]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(8.54, 14.572, 2.34, .781, 'F');
         $fpdf->SetXY(8.5,14.67);
-        $fpdf->SetMargins(8.5, .5 , 10.5);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[14]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[14]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[14]['val_opc'];
     }
 
     //8.   Aborto prematuro
     if(isset($options[15]) && $options[15]['val_opc'] != 0){
         $fpdf->Rect(10.91, 14.572, 7.09, .781, 'F');
-        $fpdf->SetXY(11.5,14.8);
-        $fpdf->SetMargins(11, .5 , 3);
-        $fpdf->Write(.3, utf8_decode('8. '.strip_tags($options[15]['reactivo'])));
+        $fpdf->SetXY(11,14.7);
+        $fpdf->MultiCell(7,.3,utf8_decode('8. '.strip_tags($options[15]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(18.04, 14.572, 2.35, .781, 'F');
         $fpdf->SetXY(18,14.7);
-        $fpdf->SetMargins(18, .5 , 1);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[15]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[15]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[15]['val_opc'];
     }
 
@@ -141,27 +129,23 @@ class Pdf extends Controller
     if(isset($options[16]) && $options[16]['val_opc'] != 0){
         $fpdf->Rect(1.4, 15.390, 7.1, .781, 'F');
         $fpdf->SetXY(1.6,15.6);
-        $fpdf->SetMargins(1.8, .5 , 13);
-        $fpdf->Write(.3, utf8_decode('4. '.strip_tags($options[16]['reactivo'])));
+        $fpdf->MultiCell(7,.3,utf8_decode('4. '.strip_tags($options[16]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(8.54, 15.390, 2.34, .781, 'F');
         $fpdf->SetXY(8.5,15.47);
-        $fpdf->SetMargins(8.5, .5 , 10.5);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[16]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[16]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[16]['val_opc'];
     }
 
     // 9. Intento de asfixia o estrangulamiento
     if(isset($options[17]) && $options[17]['val_opc'] != 0){
         $fpdf->Rect(10.91, 15.390, 7.09, .781, 'F');
-        $fpdf->SetXY(11.5,15.6);
-        $fpdf->SetMargins(11, .5 , 3);
-        $fpdf->Write(.3, utf8_decode('9. '.strip_tags($options[17]['reactivo'])));
+        $fpdf->SetXY(11,15.6);
+        $fpdf->MultiCell(7,.3,utf8_decode('9. '.strip_tags($options[17]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(18.04, 15.390, 2.35, .781, 'F');
         $fpdf->SetXY(18,15.5);
-        $fpdf->SetMargins(18, .5 , 1);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[17]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[17]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[17]['val_opc'];
     }
 
@@ -169,13 +153,11 @@ class Pdf extends Controller
     if(isset($options[18]) && $options[18]['val_opc'] != 0){
         $fpdf->Rect(1.4, 16.208, 7.1, .781, 'F');
         $fpdf->SetXY(1.6,16.4);
-        $fpdf->SetMargins(1.8, .5 , 13);
-        $fpdf->Write(.3, utf8_decode('5. '.strip_tags($options[18]['reactivo'])));
+        $fpdf->MultiCell(7,.3,utf8_decode('5. '.strip_tags($options[18]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(8.54, 16.208, 2.34, .781, 'F');
         $fpdf->SetXY(8.5,16.27);
-        $fpdf->SetMargins(8.5, .5 , 10.5);
-        $fpdf->Write(.3, utf8_decode(strip_tags($options[18]['nombre'])));
+        $fpdf->MultiCell(2.9,.3,utf8_decode(strip_tags($options[18]['nombre'])),0,'L',false);
         $riesgo = $riesgo + $options[18]['val_opc'];
     }
 
@@ -192,16 +174,15 @@ class Pdf extends Controller
     if(isset($options[19]) && $options[19]['val_opc'] != 0){
         $fpdf->Rect(1.37, 18.53, 8.17, .878, 'F');
         $fpdf->SetXY(1.6,18.7);
-        $fpdf->SetMargins(1.8, .5 , 12);
-        $fpdf->Write(.3, utf8_decode('1. '.strip_tags($options[19]['reactivo'])));
+        $fpdf->MultiCell(8,.3,utf8_decode('1. '.strip_tags($options[19]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(9.58, 18.53, 8.31, .878, 'F');
-        $fpdf->SetXY(9.6,18.5);
-        $fpdf->Cell(8.3, .9, utf8_decode(strip_tags($options[19]['nombre'])), 0, 1, 'C');
+        $fpdf->SetXY(9.6,18.8);
+        $fpdf->MultiCell(8.3,.3,utf8_decode(strip_tags($options[19]['nombre'])),0,'C',false);
 
         $fpdf->Rect(17.95, 18.53, 2.45, .878, 'F');
-        $fpdf->SetXY(17.95,18.5);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[19]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,18.8);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[19]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[19]['val_opc'];
     }
 
@@ -209,16 +190,15 @@ class Pdf extends Controller
     if(isset($options[20]) && $options[20]['val_opc'] != 0){
         $fpdf->Rect(1.37, 19.44, 8.17, .878, 'F');
         $fpdf->SetXY(1.6,19.6);
-        $fpdf->SetMargins(1.8, .5 , 12);
-        $fpdf->Write(.3, utf8_decode('2. '.strip_tags($options[20]['reactivo'])));
+        $fpdf->MultiCell(8,.3,utf8_decode('2. '.strip_tags($options[20]['reactivo'])),0,'C',false);
 
         $fpdf->Rect(9.58, 19.44, 8.31, .878, 'F');
-        $fpdf->SetXY(9.6,19.43);
-        $fpdf->Cell(8.3, .9, utf8_decode(strip_tags($options[20]['nombre'])), 0, 1, 'C');
+        $fpdf->SetXY(9.6,19.73);
+        $fpdf->MultiCell(8.3,.3,utf8_decode(strip_tags($options[20]['nombre'])),0,'C',false);
 
         $fpdf->Rect(17.95, 19.44, 2.45, .878, 'F');
-        $fpdf->SetXY(17.95,19.43);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[20]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,19.73);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[20]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[20]['val_opc'];
     }
 
@@ -227,16 +207,15 @@ class Pdf extends Controller
     if(isset($options[21]) && $options[21]['val_opc'] != 0){
         $fpdf->Rect(1.37, 20.35, 8.17, .878, 'F');
         $fpdf->SetXY(1.6,20.55);
-        $fpdf->SetMargins(1.8, .5 , 12);
-        $fpdf->Write(.3, utf8_decode('3. '.strip_tags($options[21]['reactivo'])));
+        $fpdf->MultiCell(8,.3,utf8_decode('3. '.strip_tags($options[21]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(9.58, 20.35, 8.31, .878, 'F');
-        $fpdf->SetXY(9.6,20.4);
-        $fpdf->Cell(8.3, .9, utf8_decode(strip_tags($options[21]['nombre'])), 0, 1, 'C');
+        $fpdf->SetXY(9.6,20.7);
+        $fpdf->MultiCell(8.3,.3, utf8_decode(strip_tags($options[21]['nombre'])),0,'C',false);
 
         $fpdf->Rect(17.95, 20.35, 2.45, .878, 'F');
-        $fpdf->SetXY(17.95,20.4);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[21]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,20.7);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[21]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[21]['val_opc'];
 
     }
@@ -245,16 +224,15 @@ class Pdf extends Controller
     if(isset($options[22]) && $options[22]['val_opc'] != 0){
         $fpdf->Rect(1.37, 21.27, 8.17, .878, 'F');
         $fpdf->SetXY(1.6,21.4);
-        $fpdf->SetMargins(1.8, .5 , 12);
-        $fpdf->Write(.3, utf8_decode('4. '.strip_tags($options[22]['reactivo'])));
+        $fpdf->MultiCell(8,.3,utf8_decode('4. '.strip_tags($options[22]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(9.58, 21.27, 8.31, .878, 'F');
         $fpdf->SetXY(9.6,21.3);
         $fpdf->MultiCell(8.3,.4,utf8_decode(strip_tags($options[22]['nombre'])),0,'C',false);
 
         $fpdf->Rect(17.95, 21.27, 2.45, .878, 'F');
-        $fpdf->SetXY(17.95,21.25);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[22]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,21.6);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[22]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[22]['val_opc'];
     }
 
@@ -262,9 +240,7 @@ class Pdf extends Controller
     if(isset($options[23]) && $options[23]['val_opc'] != 0){
         $fpdf->Rect(1.37, 22.181, 8.17, .878, 'F');
         $fpdf->SetXY(1.6,22.2);
-        $fpdf->SetFontSize(7);
-        $fpdf->MultiCell(7.9,.4,'5. '.utf8_decode(strip_tags($options[23]['reactivo'])),0,'L',false);
-        $fpdf->SetFontSize(8);
+        $fpdf->MultiCell(8,.3,utf8_decode('5. '.strip_tags($options[23]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(9.58, 22.181, 8.31, .878, 'F');
         $fpdf->SetXY(9.6,22.5);
@@ -272,24 +248,24 @@ class Pdf extends Controller
 
 
         $fpdf->Rect(17.95, 22.181, 2.45, .878, 'F');
-        $fpdf->SetXY(17.95,22.25);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[23]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,22.55);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[23]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[23]['val_opc'];
     }
 
     // 6. ¿Su pareja o expareja ejerce violencia contra sus hijos/as, familiares u otras personas?
     if(isset($options[24]) && $options[24]['val_opc'] != 0){
         $fpdf->Rect(1.37, 23.1, 8.17, .878, 'F');
-        $fpdf->SetXY(1.6,23.1);
-        $fpdf->MultiCell(7.9,.4,'6. '.utf8_decode(strip_tags($options[24]['reactivo'])),0,'L',false);
+        $fpdf->SetXY(1.6,23.3);
+        $fpdf->MultiCell(8,.3,utf8_decode('6. '.strip_tags($options[24]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(9.58, 23.1, 8.31, .878, 'F');
         $fpdf->SetXY(9.6,23.4);
         $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[24]['nombre'])),0,'C',false);
 
         $fpdf->Rect(17.95, 23.1, 2.45, .878, 'F');
-        $fpdf->SetXY(17.95,23.15);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[24]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,23.45);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[24]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[24]['val_opc'];
     }
 
@@ -297,15 +273,15 @@ class Pdf extends Controller
     if(isset($options[25]) && $options[25]['val_opc'] != 0){
         $fpdf->Rect(1.37, 24.025, 8.17, .868, 'F');
         $fpdf->SetXY(1.6,24.1);
-        $fpdf->MultiCell(7.9,.4,'7. '.utf8_decode(strip_tags($options[25]['reactivo'])),0,'L',false);
+        $fpdf->MultiCell(8,.3,utf8_decode('7. '.strip_tags($options[25]['reactivo'])),0,'L',false);
 
         $fpdf->Rect(9.58, 24.025, 8.31, .868, 'F');
         $fpdf->SetXY(9.6,24.4);
         $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[25]['nombre'])),0,'C',false);
 
         $fpdf->Rect(17.95, 24.025, 2.45, .868, 'F');
-        $fpdf->SetXY(17.95,24.15);
-        $fpdf->Cell(2.4, .9, utf8_decode(strip_tags($options[25]['val_opc'])), 0, 1, 'C');
+        $fpdf->SetXY(17.95,24.35);
+        $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[25]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[25]['val_opc'];
     }
 
@@ -768,26 +744,26 @@ class Pdf extends Controller
 
     //6. ¿Su pareja o expareja le imposibilita poder convivir o ver a sus hijas/hijos?
     if(isset($options[42])){
-       $fpdf->SetFontSize(7);
+
        //Su pareja no le permite ver a sus hijas/hijos y no hay guardia y custodia dictada por algún juez de lo familiar
        if($options[42]['id_opcion'] == 131){
             $fpdf->Rect(10.90, 17.60, 9.48, .8, 'F');
-            $fpdf->SetXY(11.35,17.6);
-            $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[42]['nombre'])),0,'L',false);
+            $fpdf->SetXY(10.9,17.7);
+            $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[42]['nombre'])),0,'L',false);
         }
         //La guardia y custodia es a favor del padre u otro familiar paterno, pero le imposibilita las convivencias con sus hijos o hijas
         if($options[42]['id_opcion'] == 132){
             $fpdf->Rect(10.90, 18.46, 9.48, .73, 'F');
-            $fpdf->SetXY(11.35,18.45);
-            $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[42]['nombre'])),0,'L',false);
+            $fpdf->SetXY(10.9,18.50);
+            $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[42]['nombre'])),0,'L',false);
         }
        //No hay problemas para la convivencia con sus hijas/hijos
        if($options[42]['id_opcion'] == 133){
             $fpdf->Rect(10.90, 19.24, 9.48, .74, 'F');
-            $fpdf->SetXY(11.35,19.2);
-            $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[42]['nombre'])),0,'L',false);
+            $fpdf->SetXY(10.9,19.5);
+            $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[42]['nombre'])),0,'L',false);
        }
-       $fpdf->SetFontSize(8);
+
     }
 
     //CONTEXTO DE CONVIVENCIA CON PAREJA O EXPAREJA
@@ -809,38 +785,38 @@ class Pdf extends Controller
 
     //8. ¿De quién es propiedad la casa donde habita con su pareja o expareja?
     if(isset($options[44])){
-      $fpdf->SetFontSize(7);
+
       //Es de su propiedad o de alguno de sus familiares de usted
       if($options[44]['id_opcion'] == 136){
           $fpdf->Rect(10.88, 21.3, 9.48, .596, 'F');
-          $fpdf->SetXY(11.35,21.4);
-          $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
+          $fpdf->SetXY(10.9,21.5);
+          $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
       }
       //Es de su pareja o expareja
       if($options[44]['id_opcion'] == 137){
           $fpdf->Rect(10.88, 21.949, 9.48, .53, 'F');
-          $fpdf->SetXY(11.35,22);
-          $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
+          $fpdf->SetXY(10.9,22.1);
+          $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
       }
       //Pertenece a la familia de su pareja o expareja
       if($options[44]['id_opcion'] == 138){
           $fpdf->Rect(10.88, 22.54, 9.48, .53, 'F');
-          $fpdf->SetXY(11.35,22.6);
-          $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
+          $fpdf->SetXY(10.9,22.7);
+          $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
       }
       //La casa donde habita es rentada por usted o su pareja o expareja
       if($options[44]['id_opcion'] == 139){
           $fpdf->Rect(10.88, 23.12, 9.48, .6, 'F');
-          $fpdf->SetXY(11.35,23.2);
-          $fpdf->MultiCell(9.,.4,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
+          $fpdf->SetXY(10.9,23.3);
+          $fpdf->MultiCell(9.6,.3,utf8_decode(strip_tags($options[44]['nombre'])),0,'L',false);
       }
-      $fpdf->SetFontSize(8);
+
     }
 
     //CONTEXTO DE CONVIVENCIA CON PAREJA O EXPAREJA
     //9. Seleccione los espacios que su pareja o expareja comparte con usted
 
-      $fpdf->SetFontSize(7);
+
       //Vive en la misma colonia donde vive su pareja/expareja o familiares de él
       if(isset($checkbox[45][140])){
           $fpdf->Rect(10.88, 23.79, 9.48, .6, 'F');
@@ -850,15 +826,16 @@ class Pdf extends Controller
       //Trabaja en el mismo espacio laboral que su pareja/expareja
       if(isset($checkbox[45][141])){
           $fpdf->Rect(10.88, 24.43, 9.48, .52, 'F');
-          $fpdf->SetXY(10.9,24.4);
+          $fpdf->SetXY(10.9,24.55);
           $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][141]['nombre'])),0,'L',false);
       }
       //Acude a la misma escuela que su pareja/expareja
       if(isset($checkbox[45][142])){
           $fpdf->Rect(10.88, 25.02, 9.48, .53, 'F');
-          $fpdf->SetXY(10.9,25);
+          $fpdf->SetXY(10.9,25.1);
           $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][142]['nombre'])),0,'L',false);
       }
+      $fpdf->SetAutoPageBreak(false);// para imprimir la ultima opcion que quedo fuera de margen
       //Su pareja/expareja frecuenta la colonia donde usted vive, trabaja o estudia.
       if(isset($checkbox[45][143])){
           $fpdf->Rect(10.88, 25.6, 9.48, .6, 'F');
@@ -869,10 +846,10 @@ class Pdf extends Controller
       //Ninguna de las anteriores
       if(isset($checkbox[45][144])){
           $fpdf->Rect(10.88, 26.25, 9.48, .6, 'F');
-          $fpdf->SetXY(10.9,26.3);
+          $fpdf->SetXY(10.9,26.4);
           $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($checkbox[45][144]['nombre'])),0,'L',false);
       }
-      $fpdf->SetFontSize(8);
+
 
 
     $fpdf->AddPage();
@@ -903,7 +880,7 @@ class Pdf extends Controller
         //Cuenta con ingresos propios y los maneja de manera autónoma
         if($options[46]['id_opcion'] == 148){
             $fpdf->Rect(10.93, 5.74, 9.48, .70, 'F');
-            $fpdf->SetXY(10.9,5.8);
+            $fpdf->SetXY(10.9,5.9);
             $fpdf->MultiCell(9.5,.3,utf8_decode(strip_tags($options[46]['nombre'])),0,'L',false);
         }
     }
@@ -914,20 +891,20 @@ class Pdf extends Controller
     if(isset($options[47])){
       if($options[47]['id_opcion'] == 149){
           $fpdf->Rect(10.93, 6.5, 9.48, .72, 'F');
-          $fpdf->SetXY(11,6.6);
+          $fpdf->SetXY(11,6.7);
           $fpdf->MultiCell(9,.3,utf8_decode(strip_tags($options[47]['nombre'])),0,'L',false);
       }
       //no
       if($options[47]['id_opcion'] == 150){
           $fpdf->Rect(10.93, 7.28, 9.48, .72, 'F');
-          $fpdf->SetXY(11,7.4);
+          $fpdf->SetXY(11,7.5);
           $fpdf->MultiCell(9,.3,utf8_decode(strip_tags($options[47]['nombre'])),0,'L',false);
       }
       //Cuales?
       $cuales_oject = (isset($obtener_reactivos[56])&&($obtener_reactivos[56]['campo_unico'] != null))?'¿Cuales?: '.$obtener_reactivos[56]['campo_unico']:'';
       if(isset($obtener_reactivos[56])&&($obtener_reactivos[56]['campo_unico'] != null)){
           $fpdf->Rect(10.93, 8.05, 9.48, .63, 'F');
-          $fpdf->SetXY(11,8.1);
+          $fpdf->SetXY(11,8.2);
           $fpdf->MultiCell(9,.3,utf8_decode(strip_tags($cuales_oject)),0,'L',false);
       }
     }
@@ -1004,7 +981,7 @@ class Pdf extends Controller
     //¿Cuántas familias viven en el mismo predio/casa?:
     if(isset($obtener_reactivos[52])){
         $fpdf->Rect(10.95, 17.77, 9.49, .7, 'F');
-        $fpdf->SetXY(11,18);
+        $fpdf->SetXY(11,17.9);
         $fpdf->MultiCell(9.2,.4,utf8_decode(strip_tags($obtener_reactivos[52]['reactivo'])).":    " .$obtener_reactivos[52]['campo_unico'].' Familia(s)',0,'L',false);
     }
 
@@ -1013,19 +990,19 @@ class Pdf extends Controller
         //Tiene familiares o amigas(os) que conocen de la situación de violencia en que se encuentra
         if($options[53]['id_opcion'] == 162){
           $fpdf->Rect(10.92, 19.36, 9.51, .77, 'F');
-          $fpdf->SetXY(11,19.4);
+          $fpdf->SetXY(11,19.5);
           $fpdf->MultiCell(9.2,.3,utf8_decode(strip_tags($options[53]['nombre'])),0,'L',false);
         }
         //Cuenta con familiares o amigas(os) que conocen y le apoyan durante la situación de violencia
         if($options[53]['id_opcion'] == 163){
           $fpdf->Rect(10.92, 20.18, 9.51, .69, 'F');
-          $fpdf->SetXY(11,20.2);
+          $fpdf->SetXY(11,20.23);
           $fpdf->MultiCell(9.2,.3,utf8_decode(strip_tags($options[53]['nombre'])),0,'L',false);
         }
         //No cuenta con familiares o amigas(os) que le brinden apoyo o conozcan de su situación de violencia
         if($options[53]['id_opcion'] == 164){
           $fpdf->Rect(10.92, 20.92, 9.51, .7, 'F');
-          $fpdf->SetXY(11,21);
+          $fpdf->SetXY(11,20.95);
           $fpdf->MultiCell(9.2,.3,utf8_decode(strip_tags($options[53]['nombre'])),0,'L',false);
         }
     }
