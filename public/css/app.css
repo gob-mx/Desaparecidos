@@ -665,6 +665,12 @@ padding-top: 5px;
  }
 .pad_fix{
   padding-left:15px;
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+.pad_fix2{
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 #counter{
 

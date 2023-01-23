@@ -270,20 +270,20 @@ if($datos['cat_status_evaluacion'] == 42){
 
 										<div class="form-group m-form__group row">
 											<!--1. Agresión con químicos, armas blancas u otros objetos-->
-											<label class="col-xl-3 col-lg-3 col-form-label">1. <?=$datos['quest'][10][1]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
-												<select name="<?=$datos['quest'][10][1]['react_id_reactivo']?>" data-value="<?=isset($options[10]['val_opc'])?$options[10]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema1">
-													<option value="" selected disabled><?=$datos['quest'][10][1]['opc_nombre']?></option>
-													<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][2]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][2]['opc_valor']?>" value="<?=$datos['quest'][10][2]['opc_id_opcion']?>"><?=$datos['quest'][10][2]['opc_nombre']?> (<?=$datos['quest'][10][2]['opc_valor']?>)</option>
-													<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][3]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][3]['opc_valor']?>" value="<?=$datos['quest'][10][3]['opc_id_opcion']?>"><?=$datos['quest'][10][3]['opc_nombre']?> (<?=$datos['quest'][10][3]['opc_valor']?>)</option>
-													<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][4]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][4]['opc_valor']?>" value="<?=$datos['quest'][10][4]['opc_id_opcion']?>"><?=$datos['quest'][10][4]['opc_nombre']?> (<?=$datos['quest'][10][4]['opc_valor']?>)</option>
-													<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][5]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][5]['opc_valor']?>" value="<?=$datos['quest'][10][5]['opc_id_opcion']?>"><?=$datos['quest'][10][5]['opc_nombre']?> (<?=$datos['quest'][10][5]['opc_valor']?>)</option>
-													<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][6]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][6]['opc_valor']?>" value="<?=$datos['quest'][10][6]['opc_id_opcion']?>"><?=$datos['quest'][10][6]['opc_nombre']?> (<?=$datos['quest'][10][6]['opc_valor']?>)</option>
-												</select>
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+													<label>1. <?=$datos['quest'][10][1]['reactivo']?></label>
+													<select name="<?=$datos['quest'][10][1]['react_id_reactivo']?>" data-value="<?=isset($options[10]['val_opc'])?$options[10]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema1">
+														<option value="" selected disabled><?=$datos['quest'][10][1]['opc_nombre']?></option>
+														<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][2]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][2]['opc_valor']?>" value="<?=$datos['quest'][10][2]['opc_id_opcion']?>"><?=$datos['quest'][10][2]['opc_nombre']?> (<?=$datos['quest'][10][2]['opc_valor']?>)</option>
+														<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][3]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][3]['opc_valor']?>" value="<?=$datos['quest'][10][3]['opc_id_opcion']?>"><?=$datos['quest'][10][3]['opc_nombre']?> (<?=$datos['quest'][10][3]['opc_valor']?>)</option>
+														<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][4]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][4]['opc_valor']?>" value="<?=$datos['quest'][10][4]['opc_id_opcion']?>"><?=$datos['quest'][10][4]['opc_nombre']?> (<?=$datos['quest'][10][4]['opc_valor']?>)</option>
+														<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][5]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][5]['opc_valor']?>" value="<?=$datos['quest'][10][5]['opc_id_opcion']?>"><?=$datos['quest'][10][5]['opc_nombre']?> (<?=$datos['quest'][10][5]['opc_valor']?>)</option>
+														<option <?=(isset($options[10]['id_opcion'])&&($options[10]['id_opcion'] == $datos['quest'][10][6]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][10][6]['opc_valor']?>" value="<?=$datos['quest'][10][6]['opc_id_opcion']?>"><?=$datos['quest'][10][6]['opc_nombre']?> (<?=$datos['quest'][10][6]['opc_valor']?>)</option>
+													</select>
 											</div>
 											<!--6. Amordazar o privar de la libertad-->
-											<label class="col-xl-3 col-lg-3 col-form-label">6. <?=$datos['quest'][11][7]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>6. <?=$datos['quest'][11][7]['reactivo']?></label>
 												<select name="<?=$datos['quest'][11][7]['react_id_reactivo']?>" data-value="<?=isset($options[11]['val_opc'])?$options[11]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema2">
 													<option value="" selected disabled><?=$datos['quest'][11][7]['opc_nombre']?></option>
 													<option <?=(isset($options[11]['id_opcion'])&&($options[11]['id_opcion'] == $datos['quest'][11][8]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][11][8]['opc_valor']?>" value="<?=$datos['quest'][11][8]['opc_id_opcion']?>"><?=$datos['quest'][11][8]['opc_nombre']?> (<?=$datos['quest'][11][8]['opc_valor']?>)</option>
@@ -294,10 +294,11 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 										</div>
+
 										<div class="form-group m-form__group row">
 											<!--2. Apuñalar zonas vitales-->
-											<label class="col-xl-3 col-lg-3 col-form-label">2. <?=$datos['quest'][12][13]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>2. <?=$datos['quest'][12][13]['reactivo']?></label>
 												<select name="<?=$datos['quest'][12][13]['react_id_reactivo']?>" data-value="<?=isset($options[12]['val_opc'])?$options[12]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema3">
 													<option value="" selected disabled><?=$datos['quest'][12][13]['opc_nombre']?></option>
 													<option <?=(isset($options[12]['id_opcion'])&&($options[12]['id_opcion'] == $datos['quest'][12][14]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][12][14]['opc_valor']?>" value="<?=$datos['quest'][12][14]['opc_id_opcion']?>"><?=$datos['quest'][12][14]['opc_nombre']?> (<?=$datos['quest'][12][14]['opc_valor']?>)</option>
@@ -308,8 +309,8 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 											<!--7. Violación-->
-											<label class="col-xl-3 col-lg-3 col-form-label">7. <?=$datos['quest'][13][19]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>7. <?=$datos['quest'][13][19]['reactivo']?></label>
 												<select name="<?=$datos['quest'][13][19]['react_id_reactivo']?>" data-value="<?=isset($options[13]['val_opc'])?$options[13]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema4">
 													<option value="" selected disabled><?=$datos['quest'][13][19]['opc_nombre']?></option>
 													<option <?=(isset($options[13]['id_opcion'])&&($options[13]['id_opcion'] == $datos['quest'][13][20]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][13][20]['opc_valor']?>" value="<?=$datos['quest'][13][20]['opc_id_opcion']?>"><?=$datos['quest'][13][20]['opc_nombre']?> (<?=$datos['quest'][13][20]['opc_valor']?>)</option>
@@ -320,10 +321,11 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 										</div>
+
 										<div class="form-group m-form__group row">
 											<!--3. Quemaduras de segundo o tercer grado-->
-											<label class="col-xl-3 col-lg-3 col-form-label">3. <?=$datos['quest'][14][25]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>3. <?=$datos['quest'][14][25]['reactivo']?></label>
 												<select name="<?=$datos['quest'][14][25]['react_id_reactivo']?>" data-value="<?=isset($options[14]['val_opc'])?$options[14]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema5">
 													<option value="" selected disabled><?=$datos['quest'][14][25]['opc_nombre']?></option>
 													<option <?=(isset($options[14]['id_opcion'])&&($options[14]['id_opcion'] == $datos['quest'][14][26]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][14][26]['opc_valor']?>" value="<?=$datos['quest'][14][26]['opc_id_opcion']?>"><?=$datos['quest'][14][26]['opc_nombre']?> (<?=$datos['quest'][14][26]['opc_valor']?>)</option>
@@ -334,8 +336,8 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 											<!--8. Aborto prematuro-->
-											<label class="col-xl-3 col-lg-3 col-form-label">8. <?=$datos['quest'][15][31]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>8. <?=$datos['quest'][15][31]['reactivo']?></label>
 												<select name="<?=$datos['quest'][15][31]['react_id_reactivo']?>" data-value="<?=isset($options[15]['val_opc'])?$options[15]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema6">
 													<option value="" selected disabled><?=$datos['quest'][15][31]['opc_nombre']?></option>
 													<option <?=(isset($options[15]['id_opcion'])&&($options[15]['id_opcion'] == $datos['quest'][15][32]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][15][32]['opc_valor']?>" value="<?=$datos['quest'][15][32]['opc_id_opcion']?>"><?=$datos['quest'][15][32]['opc_nombre']?> (<?=$datos['quest'][15][32]['opc_valor']?>)</option>
@@ -346,10 +348,11 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 										</div>
+
 										<div class="form-group m-form__group row">
 											<!--4. Lesiones con armas de fuego-->
-											<label class="col-xl-3 col-lg-3 col-form-label">4. <?=$datos['quest'][16][37]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>4. <?=$datos['quest'][16][37]['reactivo']?></label>
 												<select name="<?=$datos['quest'][16][37]['react_id_reactivo']?>" data-value="<?=isset($options[16]['val_opc'])?$options[16]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema7">
 													<option value="" selected disabled><?=$datos['quest'][16][37]['opc_nombre']?></option>
 													<option <?=(isset($options[16]['id_opcion'])&&($options[16]['id_opcion'] == $datos['quest'][16][38]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][16][38]['opc_valor']?>" value="<?=$datos['quest'][16][38]['opc_id_opcion']?>"><?=$datos['quest'][16][38]['opc_nombre']?> (<?=$datos['quest'][16][38]['opc_valor']?>)</option>
@@ -360,8 +363,8 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 											<!--9. Intento de asfixia o estrangulamiento-->
-											<label class="col-xl-3 col-lg-3 col-form-label">9. <?=$datos['quest'][17][43]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>9. <?=$datos['quest'][17][43]['reactivo']?></label>
 												<select name="<?=$datos['quest'][17][43]['react_id_reactivo']?>" data-value="<?=isset($options[17]['val_opc'])?$options[17]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema8">
 													<option value="" selected disabled><?=$datos['quest'][17][43]['opc_nombre']?></option>
 													<option <?=(isset($options[17]['id_opcion'])&&($options[17]['id_opcion'] == $datos['quest'][17][44]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][17][44]['opc_valor']?>" value="<?=$datos['quest'][17][44]['opc_id_opcion']?>"><?=$datos['quest'][17][44]['opc_nombre']?> (<?=$datos['quest'][17][44]['opc_valor']?>)</option>
@@ -372,10 +375,11 @@ if($datos['cat_status_evaluacion'] == 42){
 												</select>
 											</div>
 										</div>
+
 										<div class="form-group m-form__group row">
 											<!--5. Otras lesiones que pusieron en riesgo su vida-->
-											<label class="col-xl-3 col-lg-3 col-form-label">5. <?=$datos['quest'][18][49]['reactivo']?></label>
-											<div class="col-xl-3 col-lg-3">
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>5. <?=$datos['quest'][18][49]['reactivo']?></label>
 												<select name="<?=$datos['quest'][18][49]['react_id_reactivo']?>" data-value="<?=isset($options[18]['val_opc'])?$options[18]['val_opc']:0?>" class="counter form-control m-input m-input--square violencia_extrema9">
 													<option value="" selected disabled><?=$datos['quest'][18][49]['opc_nombre']?></option>
 													<option <?=(isset($options[18]['id_opcion'])&&($options[18]['id_opcion'] == $datos['quest'][18][50]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][18][50]['opc_valor']?>" value="<?=$datos['quest'][18][50]['opc_id_opcion']?>"><?=$datos['quest'][18][50]['opc_nombre']?> (<?=$datos['quest'][18][50]['opc_valor']?>)</option>
@@ -385,17 +389,20 @@ if($datos['cat_status_evaluacion'] == 42){
 													<option <?=(isset($options[18]['id_opcion'])&&($options[18]['id_opcion'] == $datos['quest'][18][54]['opc_id_opcion']))?'selected':''?> data-opc_valor="<?=$datos['quest'][18][54]['opc_valor']?>" value="<?=$datos['quest'][18][54]['opc_id_opcion']?>"><?=$datos['quest'][18][54]['opc_nombre']?> (<?=$datos['quest'][18][54]['opc_valor']?>)</option>
 												</select>
 											</div>
-
-											<label class="col-xl-3 col-lg-3 col-form-label">10. Ninguna opción</label>
-											<div class="col-xl-3 col-lg-3">
+											<!--10. Ninguna opcion-->
+											<div class="col-xl-6 col-lg-6 m-form__group-sub">
+												<label>10. Ninguna opción</label>
+												<div>
 													<span class="m-switch m-switch--outline m-switch--brand">
 														<label>
 															<input type="checkbox" id="sin_violencia">
 															<span></span>
 														</label>
 													</span>
+												</div>
 											</div>
 										</div>
+
 									</div>
 								</div>
 <!--ANTECEDENTES-->
@@ -901,14 +908,9 @@ if($datos['cat_status_evaluacion'] == 42){
 												I. <?=$datos['quest'][38][111]['subgrupo']?>
 											</h3>
 										</div>
-
-										<div class="m-form__heading">
-											<h3 class="m-form__heading-title">
-												<!--1. ¿Pertenece a alguno de los siguientes grupos prioritarios?-->
-												1. <?=$datos['quest'][38][111]['reactivo']?>
-											</h3>
-										</div>
-											<div class="form-group m-form__group">
+											<div class="form-group m-form__group" style="padding-left:20px;">
+										  <!--1. ¿Pertenece a alguno de los siguientes grupos prioritarios?-->
+										  <label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">1. <?=$datos['quest'][38][111]['reactivo']?></h3></label>
 													<div class="row">
 														<!--Está embarazada-->
 														<div class="col-xl-1 col-lg-1">
@@ -1038,15 +1040,9 @@ if($datos['cat_status_evaluacion'] == 42){
  												II. <?=$datos['quest'][39][122]['subgrupo']?>
  											</h3>
  										</div>
-
- 										<div class="m-form__heading">
- 											<h3 class="m-form__heading-title">
-												<!--2. Seleccione el tipo de discapacidad que tiene (puede seleccionar más de una opción)-->
- 												2. <?=$datos['quest'][39][122]['reactivo']?> <?=$datos['quest'][39][122]['react_ayuda']?>
- 											</h3>
- 										</div>
-
- 										<div class="form-group m-form__group row">
+ 										<div class="form-group m-form__group row" style="padding-left:20px;">
+										<!--2. Seleccione el tipo de discapacidad que tiene (puede seleccionar más de una opción)-->
+										<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">2. <?=$datos['quest'][39][122]['reactivo']?> <?=$datos['quest'][39][122]['react_ayuda']?></h3></label>
 											<!--Física-->
  											<div class="col-xl-1 col-lg-1">
  												<span class="m-switch m-switch--outline m-switch--brand">
@@ -1110,14 +1106,9 @@ if($datos['cat_status_evaluacion'] == 42){
  												III. <?=$datos['quest'][40][127]['subgrupo']?>
  											</h3>
  										</div>
-
- 										<div class="m-form__heading">
- 											<h3 class="m-form__heading-title">
-												<!--3. ¿Su pareja o expareja la agredió de alguna de las siguientes formas mientras está embarazada?-->
- 												3. <?=$datos['quest'][40][127]['reactivo']?> <?=$datos['quest'][40][127]['react_ayuda']?>
- 											</h3>
- 										</div>
-										<div class="form-group m-form__group row">
+										<div class="form-group m-form__group row" style="padding-left:20px;">
+										<!--3. ¿Su pareja o expareja la agredió de alguna de las siguientes formas mientras está embarazada?-->
+										<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">3. <?=$datos['quest'][40][127]['reactivo']?> <?=$datos['quest'][40][127]['react_ayuda']?></h3></label>
  											<div class="col-xl-1 col-lg-1">
  												<span class="m-switch m-switch--outline m-switch--brand">
  													<label>
@@ -1172,7 +1163,6 @@ if($datos['cat_status_evaluacion'] == 42){
  												IV. <?=$datos['quest'][41][0]['subgrupo']?>
  											</h3>
  										</div>
-
 										<!--Imprime los campos guardados para hijos-->
 										<?php
 										if(isset($obtener_reactivos[41]['campo_unico']) && $obtener_reactivos[41]['campo_unico'] != "null"){
@@ -1220,11 +1210,8 @@ if($datos['cat_status_evaluacion'] == 42){
 										<?php
 										}
 										?>
- 										<div class="m-form__heading">
- 											<h3 class="m-form__heading-title">
- 												4. <?=$datos['quest'][41][0]['reactivo']?>
- 											</h3>
- 										</div>
+
+										<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">4. <?=$datos['quest'][41][0]['reactivo']?></h3></label>
 										<div id="m_repeater_1">
 											<div class="form-group  m-form__group row" id="m_repeater_1">
 												<div id="repeater_hijos" data-repeater-list="<?=$datos['quest'][41][0]['react_id_reactivo']?>" class="col-lg-11">
@@ -1296,12 +1283,8 @@ if($datos['cat_status_evaluacion'] == 42){
 										<div class="m-separator m-separator--dashed m-separator--lg"></div>
 
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-6 col-lg-6">
-												<h3 class="m-form__heading-title pad_fix">
-													<!--6. ¿Su pareja o expareja le imposibilita poder convivir o ver a sus hijas/hijos?-->
-													6. <?=$datos['quest'][42][131]['reactivo']?>
-												</h3>
-											</div>
+											<!--6. ¿Su pareja o expareja le imposibilita poder convivir o ver a sus hijas/hijos?-->
+											<label class="col-xl-6 col-lg-6 col-form-label"><h3 class="pad_fix">6. <?=$datos['quest'][42][131]['reactivo']?></h3></label>
 											<div class="col-xl-6 col-lg-6 row">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
@@ -1335,12 +1318,8 @@ if($datos['cat_status_evaluacion'] == 42){
 										</div>
 
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-6 col-lg-6">
-												<h3 class="m-form__heading-title pad_fix">
-													<!--7. ¿Actualmente vive con su pareja o expareja?-->
-													7. <?=$datos['quest'][43][134]['reactivo']?>
-												</h3>
-											</div>
+											<!--7. ¿Actualmente vive con su pareja o expareja?-->
+											<label class="col-xl-6 col-lg-6 col-form-label"><h3 class="pad_fix">7. <?=$datos['quest'][43][134]['reactivo']?></h3></label>
 											<div class="col-xl-6 col-lg-6 row">
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
@@ -1357,12 +1336,8 @@ if($datos['cat_status_evaluacion'] == 42){
 											</div>
 										</div>
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-6 col-lg-6">
-												<h3 class="m-form__heading-title pad_fix">
-													<!--8. ¿De quién es propiedad la casa donde habita con su pareja o expareja?-->
-													8. <?=$datos['quest'][44][136]['reactivo']?>
-												</h3>
-											</div>
+											<!--8. ¿De quién es propiedad la casa donde habita con su pareja o expareja?-->
+											<label class="col-xl-6 col-lg-6 col-form-label"><h3 class="pad_fix">8. <?=$datos['quest'][44][136]['reactivo']?></h3></label>
 											<div class="col-xl-6 col-lg-6">
 												<div class="m-radio-inline row">
 													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
@@ -1389,12 +1364,8 @@ if($datos['cat_status_evaluacion'] == 42){
 											</div>
 										</div>
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-12 col-lg-12">
-												<h3 class="m-form__heading-title pad_fix">
-													<!--9. Seleccione los espacios que su pareja o expareja comparte con usted-->
-													9. <?=$datos['quest'][45][140]['reactivo']?> <?=$datos['quest'][45][140]['react_ayuda']?>
-												</h3>
-											</div>
+											<!--9. Seleccione los espacios que su pareja o expareja comparte con usted-->
+											<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix">9. <?=$datos['quest'][45][140]['reactivo']?> <?=$datos['quest'][45][140]['react_ayuda']?></h3></label>
 											<div class="col-xl-12 col-lg-12 row">
 												<div class="col-xl-12 col-lg-12 row m-radio-inline" style="padding-left:30px;">
 
@@ -1468,13 +1439,9 @@ if($datos['cat_status_evaluacion'] == 42){
  										</div>
 
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-12 col-lg-12">
-												<h3 class="m-form__heading-title pad_fix">
-													<!--10. ¿Cuenta con ingresos propios para cubrir los gastos del hogar, alimentos y, en su caso, manuntención de sus hijos?-->
-													10. <?=$datos['quest'][46][145]['reactivo']?>
-												</h3>
-											</div>
-											<div class="col-xl-12 col-lg-12 row">
+											<!--10. ¿Cuenta con ingresos propios para cubrir los gastos del hogar, alimentos y, en su caso, manuntención de sus hijos?-->
+											<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix">10. <?=$datos['quest'][46][145]['reactivo']?></h3></label>
+											<div class="col-xl-12 col-lg-12 row" style="padding-left:30px;">
 												<div class="m-radio-inline" style="padding-left:15px;">
 													<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 														<input type="radio" name="<?=$datos['quest'][46][145]['react_id_reactivo']?>" <?=((isset($options[46]['id_opcion']))&&($options[46]['id_opcion'] == $datos['quest'][46][145]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][46][145]['opc_id_opcion']?>"> <?=$datos['quest'][46][145]['opc_nombre']?>
@@ -1497,13 +1464,9 @@ if($datos['cat_status_evaluacion'] == 42){
 										</div>
 
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-12 col-lg-12">
-												<h3 class="m-form__heading-title pad_fix">
-													<!--11. ¿Su pareja, expareja o familiar de él controla o tiene en su posesión objetos personales de su propiedad (documentos de identidad, objetos de hijiene y ropa, así como necesarios para trabajar)?-->
-													11. <?=$datos['quest'][47][149]['reactivo']?> <?=$datos['quest'][47][149]['react_ayuda']?>
-												</h3>
-											</div>
-											<div class="col-xl-4 col-lg-4">
+											<!--11. ¿Su pareja, expareja o familiar de él controla o tiene en su posesión objetos personales de su propiedad (documentos de identidad, objetos de hijiene y ropa, así como necesarios para trabajar)?-->
+											<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix">11. <?=$datos['quest'][47][149]['reactivo']?> <?=$datos['quest'][47][149]['react_ayuda']?></h3></label>
+											<div class="col-xl-4 col-lg-4" style="padding-left:30px;">
 												<div class="m-radio-inline">
 													<!--Si, ¿Cuales Objetos?-->
 													<label class="m-radio m-radio--solid m-radio--brand">
@@ -1539,16 +1502,10 @@ if($datos['cat_status_evaluacion'] == 42){
  												VII. <?=$datos['quest'][48][151]['subgrupo']?>
  											</h3>
  										</div>
-
-
- 										<div class="m-form__heading">
- 											<h3 class="m-form__heading-title">
-												<!--12. Seleccione los juicios o procedimientos iniciados contra su pareja, expareja o algún de familiar de él-->
-												12. <?=$datos['quest'][48][151]['reactivo']?>
- 											</h3>
- 										</div>
 										<div class="form-group m-form__group">
-	 										<div class="row">
+										<!--12. Seleccione los juicios o procedimientos iniciados contra su pareja, expareja o algún de familiar de él-->
+										<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">12. <?=$datos['quest'][48][151]['reactivo']?></h3></label>
+	 										<div class="row" style="padding-left:20px;">
 	 											<div class="col-xl-1 col-lg-1">
 	 												<span class="m-switch m-switch--outline m-switch--brand">
 	 													<label>
@@ -1582,7 +1539,7 @@ if($datos['cat_status_evaluacion'] == 42){
 	 											</div>
 	 											<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][48][153]['opc_nombre']?>.</label>
 	 										</div>
-	 										<div class="row">
+	 										<div class="row" style="padding-left:20px;">
 	 											<div class="col-xl-1 col-lg-1">
 	 												<span class="m-switch m-switch--outline m-switch--brand">
 	 													<label>
@@ -1628,14 +1585,10 @@ if($datos['cat_status_evaluacion'] == 42){
 												<span class="m-form__help"><?=$datos['quest'][55][0]['react_ayuda']?></span>
 											</div>
 										</div>
- 										<div class="m-form__heading">
- 											<h3 class="m-form__heading-title">
-												<!--13. ¿Su pareja o expareja cuenta con alguna de las siguientes características?-->
-												13. <?=$datos['quest'][49][157]['reactivo']?>
- 											</h3>
- 										</div>
 										<div class="form-group m-form__group">
-	 										<div class="row">
+										<!--13. ¿Su pareja o expareja cuenta con alguna de las siguientes características?-->
+										<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">13. <?=$datos['quest'][49][157]['reactivo']?></h3></label>
+	 										<div class="row" style="padding-left:20px;">
 	 											<div class="col-xl-1 col-lg-1">
 	 												<span class="m-switch m-switch--outline m-switch--brand">
 	 													<label>
@@ -1667,7 +1620,7 @@ if($datos['cat_status_evaluacion'] == 42){
 	 											</div>
 	 											<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][49][159]['opc_nombre']?>.</label>
 	 										</div>
-	 										<div class="row">
+	 										<div class="row" style="padding-left:20px;">
 	 											<div class="col-xl-1 col-lg-1">
 	 												<span class="m-switch m-switch--outline m-switch--brand">
 	 													<label>
@@ -1691,55 +1644,46 @@ if($datos['cat_status_evaluacion'] == 42){
 	 											<label class="col-xl-3 col-lg-3 col-form-label"><?=$datos['quest'][49][161]['opc_nombre']?>.</label>
 	 										</div>
 										</div>
+										<!--14. Número de personas y familias que viven donde habita-->
+										<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix2">14.  Número de personas y familias que viven donde habita</h3></label>
+										  <div class="form-group m-form__group row" style="padding-left:30px;">
+												<div class="col-lg-3 m-form__group-sub">
+													<!--¿Cuanta gente vive en su casa?-->
+													<label class="form-control-label"><?=$datos['quest'][50][0]['reactivo']?></label>
+													<input type="text" class="form-control m-input spin_riesgo" name="<?=$datos['quest'][50][0]['react_id_reactivo']?>" value="<?=isset($obtener_reactivos[50]['campo_unico'])?$obtener_reactivos[50]['campo_unico']:''?>">
+													<span class="m-form__help"><?=$datos['quest'][50][0]['react_ayuda']?></span>
+												</div>
+												<div class="col-lg-3 m-form__group-sub">
+													<!--¿Cuántos cuartos tiene su casa?-->
+													<label class="form-control-label"><?=$datos['quest'][51][0]['reactivo']?></label>
+													<input type="text" class="form-control m-input spin_riesgo" name="<?=$datos['quest'][51][0]['react_id_reactivo']?>" value="<?=isset($obtener_reactivos[51]['campo_unico'])?$obtener_reactivos[51]['campo_unico']:''?>">
+													<span class="m-form__help"><?=$datos['quest'][51][0]['react_ayuda']?></span>
+												</div>
+												<div class="col-lg-6 m-form__group-sub">
+													<!--¿Cuántas familias viven en el mismo predio/casa?-->
+													<label class="form-control-label"><?=$datos['quest'][52][0]['reactivo']?></label>
+													<input type="text" class="form-control m-input spin_riesgo" name="<?=$datos['quest'][52][0]['react_id_reactivo']?>" value="<?=isset($obtener_reactivos[52]['campo_unico'])?$obtener_reactivos[52]['campo_unico']:''?>">
+													<span class="m-form__help"><?=$datos['quest'][52][0]['react_ayuda']?></span>
+												</div>
+										  </div>
 
-											<div class="m-form__heading">
-												<h3 class="m-form__heading-title">
-													<!--14. Número de personas y familias que viven donde habita-->
-													14.  Número de personas y familias que viven donde habita
-												</h3>
-											</div>
-
-										<div class="form-group m-form__group row">
-											<div class="col-lg-3 m-form__group-sub">
-												<!--¿Cuanta gente vive en su casa?-->
-												<label class="form-control-label"><?=$datos['quest'][50][0]['reactivo']?></label>
-												<input type="text" class="form-control m-input spin_riesgo" name="<?=$datos['quest'][50][0]['react_id_reactivo']?>" value="<?=isset($obtener_reactivos[50]['campo_unico'])?$obtener_reactivos[50]['campo_unico']:''?>">
-												<span class="m-form__help"><?=$datos['quest'][50][0]['react_ayuda']?></span>
-											</div>
-											<div class="col-lg-3 m-form__group-sub">
-												<!--¿Cuántos cuartos tiene su casa?-->
-												<label class="form-control-label"><?=$datos['quest'][51][0]['reactivo']?></label>
-												<input type="text" class="form-control m-input spin_riesgo" name="<?=$datos['quest'][51][0]['react_id_reactivo']?>" value="<?=isset($obtener_reactivos[51]['campo_unico'])?$obtener_reactivos[51]['campo_unico']:''?>">
-												<span class="m-form__help"><?=$datos['quest'][51][0]['react_ayuda']?></span>
-											</div>
-											<div class="col-lg-6 m-form__group-sub">
-												<!--¿Cuántas familias viven en el mismo predio/casa?-->
-												<label class="form-control-label"><?=$datos['quest'][52][0]['reactivo']?></label>
-												<input type="text" class="form-control m-input spin_riesgo" name="<?=$datos['quest'][52][0]['react_id_reactivo']?>" value="<?=isset($obtener_reactivos[52]['campo_unico'])?$obtener_reactivos[52]['campo_unico']:''?>">
-												<span class="m-form__help"><?=$datos['quest'][52][0]['react_ayuda']?></span>
-											</div>
-										</div>
  										<div class="m-separator m-separator--dashed m-separator--lg"></div>
 
  									</div>
         <!--redes de apoyo-->
 									<div class="m-form__section m-form__section--first">
+										<!--VIII. REDES DE APOYO-->
 										<div class="m-form__heading">
 											<h3 class="m-form__heading-title anexo_tamiz_mujeres">
 												<!--VIII. REDES DE APOYO-->
 												VIII. <?=$datos['quest'][53][162]['subgrupo']?>
 											</h3>
 										</div>
-
 										<div class="form-group m-form__group row">
-											<div class="m-form__heading col-xl-5 col-lg-5">
-	 											<h3 class="m-form__heading-title pad_fix">
-													<!--15. ¿Cuenta con apoyo de familiares y/o amigas(o)?-->
-													15. <?=$datos['quest'][53][162]['reactivo']?>
-	 											</h3>
-	 										</div>
+											<!--15. ¿Cuenta con apoyo de familiares y/o amigas(o)?-->
+											<label class="col-xl-6 col-lg-6 col-form-label"><h3 class="pad_fix">15. <?=$datos['quest'][53][162]['reactivo']?></h3></label>
 											<div class="col-xl-7 col-lg-7 row">
-												<div class="m-radio-inline">
+												<div class="m-radio-inline" style="padding-left:30px;">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--Tiene familiares o amigas(os) que conocen de la situación de violencia en que se encuentra-->
 														<input type="radio" name="<?=$datos['quest'][53][162]['react_id_reactivo']?>" <?=((isset($options[53]['id_opcion']))&&($options[53]['id_opcion'] == $datos['quest'][53][162]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][53][162]['opc_id_opcion']?>"> <?=$datos['quest'][53][162]['opc_nombre']?>
