@@ -24,7 +24,10 @@ if($datos['cat_status_evaluacion'] == 42){
 				</h3>
 			</div>
 		</div>
-		<div style="float:right; display: inline; position:relative; top:20px;"><a href="<?=env('APP_URL')?>pdf/<?=$datos['id_evaluacion']?>" target="_blank"><img src="<?=env('APP_URL')?>img/pdf.png" width="32px"></a></div>
+		<?php
+			$show_pdf = isset($obtener_reactivos[9]['campo_unico'])?'':'none';
+		?>
+		<div style="float:right; display: inline; position:relative; top:20px; display: <?=$show_pdf?>;" id="show_pdf"><a href="<?=env('APP_URL')?>pdf/<?=$datos['id_evaluacion']?>" target="_blank"><img src="<?=env('APP_URL')?>img/pdf.png" width="32px"></a></div>
 		<div id="counter" data-value="<?=$datos['riesgo']?>"><?=$datos['riesgo']?></div>
 	</div>
 	<div class="m-portlet__body m-portlet__body--no-padding">

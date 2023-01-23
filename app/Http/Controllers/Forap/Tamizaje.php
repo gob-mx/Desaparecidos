@@ -79,10 +79,12 @@ class Tamizaje extends Controller
         $valoracion = 'RIESGO CRITICO';
         break;
     }
+    $show_pdf = (isset($store[9]))?true:false;
     $datos = [
         'id_evaluacion' => $id_evaluacion,
         'resp' => 'true',
         'stat' => $store['state'],
+        'show_pdf' => $show_pdf,
         'riesgo' => $riesgo,
         'valoracion' => $valoracion
     ];

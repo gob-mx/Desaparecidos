@@ -1,33 +1,3 @@
-$("body").on("click", "#tmz_js_fn_01", function() {
-		$.ajax({
-			headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			},
-			url: app_url + 'tamizaje/nuevo_tamizaje',
-			type: 'POST',
-			data: $('#nuevo_tamizaje').serialize() + '&' + $.param({'state':41}),
-			dataType: 'json',
-			success: function(resp_success){
-        if (resp_success['resp'] == 'true') {
-					swal({
-							title: "¡Correcto!",
-							text: "Su avance se guardó",
-							type: "success",
-							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-					})
-				}else{
-					swal({
-							title: "Error",
-							text: resp_success['mensaje'],
-							type: "error",
-							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-					})
-				}
-			},
-			error: function(respuesta){ alerta('Alerta!','Error de conectividad de red TZJ-02');}
-		});
-});
-
 $("body").on("click", ".counter20", function(){
 		var actual = $("#counter20").data('value');
 		var opc = $(this).data('opc_valor');
@@ -372,8 +342,11 @@ var WizardTamizaje = function() {
 												 $(this).attr("disabled","true");
 											  }),
 												$("#tmz_js_fn_01").remove(),
-												$('[data-wizard-action="submit"]').remove()
-              				}else{
+												$('[data-wizard-action="submit"]').remove();
+												if(resp_success['show_pdf'] == true){
+														$("#show_pdf").show();
+												}
+              				}else if (resp_success['resp'] == 'false'){
                         mApp.unprogress(n),
 												swal({
 														title: "Error",
@@ -389,3 +362,36 @@ var WizardTamizaje = function() {
         }
     }
 }();
+
+$("body").on("click", "#tmz_js_fn_01", function() {
+		$.ajax({
+			headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: app_url + 'tamizaje/nuevo_tamizaje',
+			type: 'POST',
+			data: $('#nuevo_tamizaje').serialize() + '&' + $.param({'state':41}),
+			dataType: 'json',
+			success: function(resp_success){
+        if (resp_success['resp'] == 'true') {
+					swal({
+							title: "¡Correcto!",
+							text: "Su avance se guardó",
+							type: "success",
+							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+					});
+					if(resp_success['show_pdf'] == true){
+							$("#show_pdf").show();
+					}
+				}else if (resp_success['resp'] == 'false'){
+					swal({
+							title: "Error",
+							text: resp_success['mensaje'],
+							type: "error",
+							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+					})
+				}
+			},
+			error: function(respuesta){ alerta('Alerta!','Error de conectividad de red TZJ-02');}
+		});
+});
