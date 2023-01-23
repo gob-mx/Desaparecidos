@@ -298,7 +298,9 @@ var WizardTamizaje = function() {
                     51: {required: !0},
                     52: {required: !0},
                     53: {required: !0},
-                    54: {required: !0}
+                    54: {required: !0},
+										55: {required: !0},
+										56: {required: !0}
                 },
                 messages: {
                     "prioritario[]": {

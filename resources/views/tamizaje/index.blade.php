@@ -1834,9 +1834,11 @@ $(".caracteristicas_pareja").on("click", function() {
 $("#cuales_objetos_on, #cuales_objetos_off").on("click", function() {
 	if( $('#cuales_objetos_on').prop('checked') ) {
 	   $("#cuales_objetos_input").show(650);
+		 $("#cuales_objetos_input").prop('disabled', false);
   }else{
 	   $("#cuales_objetos_input").hide(650);
 		 $("#cuales_objetos").val('');
+		 $("#cuales_objetos_input").prop('disabled', true);
 	}
 });
 
@@ -1844,6 +1846,7 @@ $("#cuales_objetos_on, #cuales_objetos_off").on("click", function() {
 $("#procedimientos_iniciados").on("click", function() {
 	$(".procedimientos_iniciados").prop("checked", false);
 	$("#otros_procedimientos_input").hide(650);
+	$("#otros_procedimientos_input").prop('disabled', true);
 	$("#otros_procedimientos_text").val('');
 });
 $(".procedimientos_iniciados").on("click", function() {
@@ -1852,8 +1855,10 @@ $(".procedimientos_iniciados").on("click", function() {
 $("#otros_procedimientos").on("click", function() {
 	if( $('#otros_procedimientos').prop('checked') ) {
 	   $("#otros_procedimientos_input").show(650);
+		 $("#otros_procedimientos_input").prop('disabled', false);
   }else{
 	   $("#otros_procedimientos_input").hide(650);
+		 $("#otros_procedimientos_input").prop('disabled', true);
 		 $("#otros_procedimientos_text").val('');
 	}
 });
