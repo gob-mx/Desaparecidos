@@ -334,7 +334,7 @@ var WizardTamizaje = function() {
                         mApp.unprogress(n),
                         swal({
                             title: resp_success['riesgo'] + " - " + resp_success['valoracion'],
-                            text: "El formulario se procesó de manera correcta!!",
+                            text: "¡El formulario se procesó de manera correcta!",
                             type: "success",
                             confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
                         }),
