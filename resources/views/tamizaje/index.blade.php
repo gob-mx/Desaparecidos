@@ -692,11 +692,6 @@ if($datos['cat_status_evaluacion'] == 42){
 										<div class="col-xl-6 col-lg-6">
 											<div class="m-radio-inline row">
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
-													<!--no-->
-													<input class="counter13" data-opc_valor="<?=$datos['quest'][30][85]['opc_valor']?>" type="radio" name="<?=$datos['quest'][30][85]['react_id_reactivo']?>" <?=((isset($options[30]['id_opcion']))&&($options[30]['id_opcion'] == $datos['quest'][30][85]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][30][85]['opc_id_opcion']?>"> (<?=$datos['quest'][30][85]['opc_valor']?>) <?=$datos['quest'][30][85]['opc_nombre']?>
-													<span></span>
-												</label>
-												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 													<!--Controla su forma de vestir y salidas del hogar-->
 													<input class="counter13" data-opc_valor="<?=$datos['quest'][30][86]['opc_valor']?>" type="radio" name="<?=$datos['quest'][30][86]['react_id_reactivo']?>" <?=((isset($options[30]['id_opcion']))&&($options[30]['id_opcion'] == $datos['quest'][30][86]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][30][86]['opc_id_opcion']?>"> (<?=$datos['quest'][30][86]['opc_valor']?>) <?=$datos['quest'][30][86]['opc_nombre']?>
 													<span></span>
@@ -711,6 +706,11 @@ if($datos['cat_status_evaluacion'] == 42){
 													<input class="counter13" data-opc_valor="<?=$datos['quest'][30][88]['opc_valor']?>" type="radio" name="<?=$datos['quest'][30][88]['react_id_reactivo']?>" <?=((isset($options[30]['id_opcion']))&&($options[30]['id_opcion'] == $datos['quest'][30][88]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][30][88]['opc_id_opcion']?>"> (<?=$datos['quest'][30][88]['opc_valor']?>) <?=$datos['quest'][30][88]['opc_nombre']?>
 													<span></span>
 												</label>
+												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
+													<!--no-->
+													<input class="counter13" data-opc_valor="<?=$datos['quest'][30][85]['opc_valor']?>" type="radio" name="<?=$datos['quest'][30][85]['react_id_reactivo']?>" <?=((isset($options[30]['id_opcion']))&&($options[30]['id_opcion'] == $datos['quest'][30][85]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][30][85]['opc_id_opcion']?>"> (<?=$datos['quest'][30][85]['opc_valor']?>) <?=$datos['quest'][30][85]['opc_nombre']?>
+													<span></span>
+												</label>
 											</div>
 										</div>
 									</div>
@@ -722,11 +722,6 @@ if($datos['cat_status_evaluacion'] == 42){
 										</label>
 										<div class="col-xl-6 col-lg-6">
 											<div class="m-radio-inline row">
-												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
-													<!--No-->
-													<input class="counter14" data-opc_valor="<?=$datos['quest'][31][89]['opc_valor']?>" type="radio" name="<?=$datos['quest'][31][89]['react_id_reactivo']?>" <?=((isset($options[31]['id_opcion']))&&($options[31]['id_opcion'] == $datos['quest'][31][89]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][31][89]['opc_id_opcion']?>"> (<?=$datos['quest'][31][89]['opc_valor']?>) <?=$datos['quest'][31][89]['opc_nombre']?>
-													<span></span>
-												</label>
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 													<!--Llamadas insistentes y/o mensajes por diversos medios-->
 													<input class="counter14" data-opc_valor="<?=$datos['quest'][31][90]['opc_valor']?>" type="radio" name="<?=$datos['quest'][31][90]['react_id_reactivo']?>" <?=((isset($options[31]['id_opcion']))&&($options[31]['id_opcion'] == $datos['quest'][31][90]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][31][90]['opc_id_opcion']?>"> (<?=$datos['quest'][31][90]['opc_valor']?>) <?=$datos['quest'][31][90]['opc_nombre']?>
@@ -740,6 +735,11 @@ if($datos['cat_status_evaluacion'] == 42){
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 													<!--La sigue o espía por lugares donde frecuenta (centro laboral, de estudios, etc.)-->
 													<input class="counter14" data-opc_valor="<?=$datos['quest'][31][92]['opc_valor']?>" type="radio" name="<?=$datos['quest'][31][92]['react_id_reactivo']?>" <?=((isset($options[31]['id_opcion']))&&($options[31]['id_opcion'] == $datos['quest'][31][92]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][31][92]['opc_id_opcion']?>"> (<?=$datos['quest'][31][92]['opc_valor']?>) <?=$datos['quest'][31][92]['opc_nombre']?>
+													<span></span>
+												</label>
+												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
+													<!--No-->
+													<input class="counter14" data-opc_valor="<?=$datos['quest'][31][89]['opc_valor']?>" type="radio" name="<?=$datos['quest'][31][89]['react_id_reactivo']?>" <?=((isset($options[31]['id_opcion']))&&($options[31]['id_opcion'] == $datos['quest'][31][89]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][31][89]['opc_id_opcion']?>"> (<?=$datos['quest'][31][89]['opc_valor']?>) <?=$datos['quest'][31][89]['opc_nombre']?>
 													<span></span>
 												</label>
 											</div>
@@ -1684,8 +1684,8 @@ if($datos['cat_status_evaluacion'] == 42){
 										</div>
 										<div class="form-group m-form__group row">
 											<!--15. ¿Cuenta con apoyo de familiares y/o amigas(o)?-->
-											<label class="col-xl-6 col-lg-6 col-form-label"><h3 class="pad_fix">15. <?=$datos['quest'][53][162]['reactivo']?></h3></label>
-											<div class="col-xl-7 col-lg-7 row">
+											<label class="col-xl-12 col-lg-12 col-form-label"><h3 class="pad_fix">15. <?=$datos['quest'][53][162]['reactivo']?></h3></label>
+											<div class="col-xl-12 col-lg-12 row">
 												<div class="m-radio-inline" style="padding-left:30px;">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--Tiene familiares o amigas(os) que conocen de la situación de violencia en que se encuentra-->
