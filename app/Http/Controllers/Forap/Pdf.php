@@ -246,12 +246,20 @@ class Pdf extends Controller
         $fpdf->SetXY(9.6,22.5);
         $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[23]['nombre'])),0,'C',false);
 
-
         $fpdf->Rect(17.95, 22.181, 2.45, .878, 'F');
         $fpdf->SetXY(17.95,22.55);
         $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[23]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[23]['val_opc'];
+    }elseif(($options[23]['val_opc'] == 0)&&($options[23]['nombre'] == 'Desconoce')){
+        $fpdf->SetFillColor(255,255,255);
+        $fpdf->SetTextColor(200,200,200);
+        $fpdf->Rect(9.58, 22.181, 8.31, .878, 'F');
+        $fpdf->SetXY(9.6,22.5);
+        $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[23]['nombre'])),0,'C',false);
+        $fpdf->SetFillColor(235,227,239);
+        $fpdf->SetTextColor(0,0,0);
     }
+
 
     // 6. ¿Su pareja o expareja ejerce violencia contra sus hijos/as, familiares u otras personas?
     if(isset($options[24]) && $options[24]['val_opc'] != 0){
@@ -267,6 +275,14 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,23.45);
         $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[24]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[24]['val_opc'];
+    }elseif(($options[24]['val_opc'] == 0)&&($options[24]['nombre'] == 'Desconoce')){
+        $fpdf->SetFillColor(255,255,255);
+        $fpdf->SetTextColor(200,200,200);
+        $fpdf->Rect(9.58, 23.1, 8.31, .878, 'F');
+        $fpdf->SetXY(9.6,23.4);
+        $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[24]['nombre'])),0,'C',false);
+        $fpdf->SetFillColor(235,227,239);
+        $fpdf->SetTextColor(0,0,0);
     }
 
     // 7. ¿Su pareja o expareja le ha obligado alguna vez a tener relaciones sexuales?
@@ -422,6 +438,14 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,13.9);
         $fpdf->MultiCell(2.4, .4, utf8_decode(strip_tags($options[33]['val_opc'])), 0, 'C',false);
         $riesgo = $riesgo + $options[33]['val_opc'];
+    }elseif(($options[33]['val_opc'] == 0)&&($options[33]['nombre'] == 'Aceptó separarse sin ningún problema')){
+        $fpdf->SetFillColor(255,255,255);
+        $fpdf->SetTextColor(200,200,200);
+        $fpdf->Rect(9.45, 13.65, 8.45, .868, 'F');
+        $fpdf->SetXY(9.6,13.7);
+        $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[33]['nombre'])),0,'C',false);
+        $fpdf->SetFillColor(235,227,239);
+        $fpdf->SetTextColor(0,0,0);
     }
 
     //15. ¿Actualmente vive usted con su pareja?
@@ -470,6 +494,14 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,16.6);
         $fpdf->MultiCell(2.4, .4, utf8_decode(strip_tags($options[36]['val_opc'])), 0, 'C',false);
         $riesgo = $riesgo + $options[36]['val_opc'];
+    }elseif(($options[36]['val_opc'] == 0)&&($options[36]['nombre'] == 'Desconoce')){
+        $fpdf->SetFillColor(255,255,255);
+        $fpdf->SetTextColor(200,200,200);
+        $fpdf->Rect(9.45, 16.393, 8.45, .868, 'F');
+        $fpdf->SetXY(9.6,16.6);
+        $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[36]['nombre'])),0,'C',false);
+        $fpdf->SetFillColor(235,227,239);
+        $fpdf->SetTextColor(0,0,0);
     }
 
     //18. ¿Su pareja o expareja usa o ha usado un arma de fuego?
@@ -486,6 +518,14 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,17.6);
         $fpdf->MultiCell(2.4, .4, utf8_decode(strip_tags($options[37]['val_opc'])), 0, 'C',false);
         $riesgo = $riesgo + $options[37]['val_opc'];
+    }elseif(($options[37]['val_opc'] == 0)&&($options[37]['nombre'] == 'Desconoce')){
+        $fpdf->SetFillColor(255,255,255);
+        $fpdf->SetTextColor(200,200,200);
+        $fpdf->Rect(9.45, 17.31, 8.45, .868, 'F');
+        $fpdf->SetXY(9.6,17.6);
+        $fpdf->MultiCell(8.1,.4,utf8_decode(strip_tags($options[37]['nombre'])),0,'C',false);
+        $fpdf->SetFillColor(235,227,239);
+        $fpdf->SetTextColor(0,0,0);
     }
 
     $fpdf->SetXY(17.95,18.6);
