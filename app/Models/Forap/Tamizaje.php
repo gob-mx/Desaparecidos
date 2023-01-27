@@ -228,6 +228,23 @@ class Tamizaje extends Model
     return $datos;
   }
 
+  static function getToken($tokenFSIAP){
+    $data = DB::table('fa_tokens as fat')
+              ->join('fa_remoteUser AS far', 'far.id_remoteUser', '=', 'fat.id_remoteUser')
+              ->select('fat.id_expediente','fat.id_victima','far.id_usuario')
+              ->where('fat.tokenFSIAP', '=', $tokenFSIAP)
+              ->get();
+    return $data;
+  }
+  static function getEvaluacion($id_expediente, $id_entrevistado){
+    $data = DB::table('fa_evaluacion as fae')
+              ->join('cm_catalogo AS cat', 'fae.cat_status_evaluacion', '=', 'cat.id_cat')
+              ->select('fae.id_evaluacion', 'cat.etiqueta')
+              ->where('fae.id_expediente', '=', $id_expediente)
+              ->where('fae.id_entrevistado', '=', $id_entrevistado)
+              ->get();
+    return $data;
+  }
   static function data_tamizaje($token){
     $data = DB::table('fa_tokens as fat')
               ->join('fa_remoteUser AS far', 'far.id_remoteUser', '=', 'fat.id_remoteUser')

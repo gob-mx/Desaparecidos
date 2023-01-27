@@ -23,6 +23,9 @@ class CredencialesApi
       if(!$consumer_secret){
         return redirect('/401');
       }
+      if((Api::tokenExistente($_SERVER ['HTTP_TOKENFSIAP']))&&($_SERVER ['REQUEST_METHOD'] == 'POST')){
+        return redirect('/401');
+      }
       $body = file_get_contents('php://input');
       $local_signature = hash_hmac( 'sha256', $body, $consumer_secret, false );
       if($external_signature == $local_signature) {

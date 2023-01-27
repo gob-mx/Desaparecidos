@@ -4,6 +4,8 @@ use App\Http\Controllers\Framework\Controller;
 use Illuminate\Http\Request;
 use App\Models\Framework\Catalogo as ModelCatalogo;
 use App\Models\Forap\Expediente as ModelExpediente;
+use App\Models\Forap\Tamizaje as ModelTamizaje;
+use App\Models\Framework\Login as ModelLogin;
 use Helpme;
 
 class Tamizaje extends Controller
@@ -35,10 +37,17 @@ class Tamizaje extends Controller
   }
 
   public function put(){
+    $tokenFSIAP = $_SERVER ['HTTP_TOKENFSIAP'];
+    $tokenData = ModelTamizaje::getToken($tokenFSIAP);
+    $id_expediente = $tokenData[0]->id_expediente;
+    $id_entrevistado = $tokenData[0]->id_victima;
+    $evaluacion = ModelTamizaje::getEvaluacion($id_expediente, $id_entrevistado);
+    $riesgo = ModelTamizaje::riesgo($evaluacion[0]->id_evaluacion);
+    ModelLogin::signout($tokenData[0]->id_usuario);
     $datos = [
-        'status' => 'Se completó el tamizaje',
-        'riesgo' => '44',
-        'token' => $_SERVER ['HTTP_TOKENFSIAP']
+        'status' => $evaluacion[0]->etiqueta,
+        'riesgo' => $riesgo,
+        'token' => $tokenFSIAP
     ];
     print json_encode($datos);
   }

@@ -27,4 +27,12 @@ class Api extends Model
         }
   }
 
+  static function tokenExistente($tokenFSIAP){
+    $dato = DB::table('fa_tokens')
+              ->where('tokenFSIAP', $tokenFSIAP)
+              ->first();
+    $result = (isset($dato->tokenFSIAP))?true:false;
+    return $result;
+  }
+
 }
