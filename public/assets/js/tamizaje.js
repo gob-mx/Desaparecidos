@@ -345,6 +345,7 @@ var WizardTamizaje = function() {
 											  }),
 												$("#tmz_js_fn_01").remove(),
 												$('[data-wizard-action="submit"]').remove();
+												$("#breadcrumb-title").append(' / <span id="tmz_fin">(Tamizaje finalizado)<span>');
 												if(resp_success['show_pdf'] == true){
 														$("#show_pdf").show();
 												}

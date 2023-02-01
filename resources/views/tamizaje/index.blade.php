@@ -2,7 +2,7 @@
 <?php
 $status_evaluacion = '';
 if($datos['cat_status_evaluacion'] == 42){
-		$status_evaluacion = ' / (Finalizado)'
+		$status_evaluacion = ' / <span id="tmz_fin">(Tamizaje finalizado)<span>';
 		?>
 		$("#nuevo_tamizaje").find(':input').each(function() {
 		 $(this).attr("disabled","true");

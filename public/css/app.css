@@ -685,5 +685,9 @@ z-index:100;
 
 
 #title_tmz{
+  font-weight: bold;
+}
+#tmz_fin{
   color: #219A97;
+  font-weight: bold;
 }
