@@ -35,7 +35,7 @@ class Tamizaje extends Controller
             'id_evaluacion' => $store['id_evaluacion'],
             'resp' => 'false',
             'stat' => $store['state'],
-            'mensaje' => 'Existen campos dentro del apartado "IV. SITUACIÓN DE HIJAS O HIJOS" que no se han llenado de forma correcta, verifíquelos'
+            'mensaje' => 'Existen campos dentro de la Seccion 7 "Factores de vulnerabilidad", apartado IV "SITUACIÓN DE HIJAS O HIJOS", numeral 4 "Número de hijas o hijos menores de 18 años" que no se han seleccionado, verifíquelos'
         ];
         print json_encode($datos);
         exit();
