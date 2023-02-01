@@ -1,8 +1,8 @@
 <script>
-$("#breadcrumb-title").html('<?=env('APP_NAME')?>');
-$("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['generales']->nombreVictima?>');
 <?php
+$status_evaluacion = '';
 if($datos['cat_status_evaluacion'] == 42){
+		$status_evaluacion = ' / (Finalizado)'
 		?>
 		$("#nuevo_tamizaje").find(':input').each(function() {
 		 $(this).attr("disabled","true");
@@ -12,6 +12,8 @@ if($datos['cat_status_evaluacion'] == 42){
 		<?php
 }
 ?>
+$("#breadcrumb-title").html('<?=env('APP_NAME')?>');
+$("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['generales']->nombreVictima?> <?=$status_evaluacion?>');
 </script>
 
 
@@ -19,7 +21,7 @@ if($datos['cat_status_evaluacion'] == 42){
 	<div class="m-portlet__head">
 		<div class="m-portlet__head-caption">
 			<div class="m-portlet__head-title">
-				<h3 class="m-portlet__head-text">
+				<h3 class="m-portlet__head-text" id="title_tmz">
 					<?=$datos['quest'][1][0]['name_exam']?>
 				</h3>
 			</div>

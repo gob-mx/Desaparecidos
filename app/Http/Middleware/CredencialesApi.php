@@ -21,10 +21,18 @@ class CredencialesApi
       $consumer_pass = $credencial_ex[1];
       $consumer_secret = Api::getSecret($consumer_pass, $consumer_key);
       if(!$consumer_secret){
-        return redirect('/401');
+        $datos = [
+            'alert' => 'consumer_secret no es valida'
+        ];
+        print json_encode($datos);
+        exit();
       }
       if((Api::tokenExistente($_SERVER ['HTTP_TOKENFSIAP']))&&($_SERVER ['REQUEST_METHOD'] == 'POST')){
-        return redirect('/401');
+        $datos = [
+            'alert' => 'El tokenFSIAP esta duplicado'
+        ];
+        print json_encode($datos);
+        exit();
       }
       $body = file_get_contents('php://input');
       $local_signature = hash_hmac( 'sha256', $body, $consumer_secret, false );

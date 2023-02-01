@@ -19,8 +19,10 @@ class Pdf extends Controller
     $checkbox = ModelTamizaje::obtener_checkbox($id_evaluacion);
     $obtener_reactivos = ModelTamizaje::obtener_reactivos($id_evaluacion);
     $delito = ModelTamizaje::obtener_delito($obtener_reactivos[9]['campo_unico']);
+    $evaluacion = ModelTamizaje::getStatus($id_evaluacion);
 
     $fpdf = new customPdf('P', 'cm', 'Letter');
+    $fpdf->setConfig('status',$evaluacion['cat_status_evaluacion']);
     $fpdf->SetTitle(utf8_decode("Valoración de riesgo en mujeres víctimas de violencia de pareja"));
     $fpdf->SetAuthor('FGJCDMX');
     $fpdf->setSourceFile("../resources/templates/format.pdf");
@@ -250,7 +252,7 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,22.55);
         $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[23]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[23]['val_opc'];
-    }elseif(($options[23]['val_opc'] == 0)&&($options[23]['nombre'] == 'Desconoce')){
+    }elseif((isset($options[23]))&&(($options[23]['val_opc'] == 0)&&($options[23]['nombre'] == 'Desconoce'))){
         $fpdf->SetFillColor(255,255,255);
         $fpdf->SetTextColor(200,200,200);
         $fpdf->Rect(9.58, 22.181, 8.31, .878, 'F');
@@ -275,7 +277,7 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,23.45);
         $fpdf->MultiCell(2.4,.3,utf8_decode(strip_tags($options[24]['val_opc'])),0,'C',false);
         $riesgo = $riesgo + $options[24]['val_opc'];
-    }elseif(($options[24]['val_opc'] == 0)&&($options[24]['nombre'] == 'Desconoce')){
+    }elseif((isset($options[24]))&&(($options[24]['val_opc'] == 0)&&($options[24]['nombre'] == 'Desconoce'))){
         $fpdf->SetFillColor(255,255,255);
         $fpdf->SetTextColor(200,200,200);
         $fpdf->Rect(9.58, 23.1, 8.31, .878, 'F');
@@ -438,7 +440,7 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,13.9);
         $fpdf->MultiCell(2.4, .4, utf8_decode(strip_tags($options[33]['val_opc'])), 0, 'C',false);
         $riesgo = $riesgo + $options[33]['val_opc'];
-    }elseif(($options[33]['val_opc'] == 0)&&($options[33]['nombre'] == 'Aceptó separarse sin ningún problema')){
+    }elseif((isset($options[33]))&&(($options[33]['val_opc'] == 0)&&($options[33]['nombre'] == 'Aceptó separarse sin ningún problema'))){
         $fpdf->SetFillColor(255,255,255);
         $fpdf->SetTextColor(200,200,200);
         $fpdf->Rect(9.45, 13.65, 8.45, .868, 'F');
@@ -494,7 +496,7 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,16.6);
         $fpdf->MultiCell(2.4, .4, utf8_decode(strip_tags($options[36]['val_opc'])), 0, 'C',false);
         $riesgo = $riesgo + $options[36]['val_opc'];
-    }elseif(($options[36]['val_opc'] == 0)&&($options[36]['nombre'] == 'Desconoce')){
+    }elseif((isset($options[36]))&&(($options[36]['val_opc'] == 0)&&($options[36]['nombre'] == 'Desconoce'))){
         $fpdf->SetFillColor(255,255,255);
         $fpdf->SetTextColor(200,200,200);
         $fpdf->Rect(9.45, 16.393, 8.45, .868, 'F');
@@ -518,7 +520,7 @@ class Pdf extends Controller
         $fpdf->SetXY(17.95,17.6);
         $fpdf->MultiCell(2.4, .4, utf8_decode(strip_tags($options[37]['val_opc'])), 0, 'C',false);
         $riesgo = $riesgo + $options[37]['val_opc'];
-    }elseif(($options[37]['val_opc'] == 0)&&($options[37]['nombre'] == 'Desconoce')){
+    }elseif(isset($options[37]) && (($options[37]['val_opc'] == 0)&&($options[37]['nombre'] == 'Desconoce'))){
         $fpdf->SetFillColor(255,255,255);
         $fpdf->SetTextColor(200,200,200);
         $fpdf->Rect(9.45, 17.31, 8.45, .868, 'F');
@@ -1067,15 +1069,19 @@ class Pdf extends Controller
 
 class customPdf extends Fpdi
 {
-    var $firma;
+    var $status;
 
-    //$fpdf->setConfig('firma',$firma);
+    //$fpdf->setConfig('status',$status);
     function setConfig($var,$val)
     {
         $this->{$var} = $val;
     }
 
-    public function Header(){}
+    public function Header(){
+      if($this->status !== 42){
+        $this->Image("../resources/templates/watermark.png", 15, 1, -200);
+      }
+    }
     public function Footer(){}
 
 }

@@ -19,6 +19,10 @@ class Tamizaje extends Model
     return $dataTable->make();
   }
 
+  static function getStatus($id_evaluacion){
+    return Tamizaje::where('id_evaluacion', $id_evaluacion)->first();
+  }
+
 
   static function obtener_delito($id_delito){
     $result = DB::table('fa_delitos')
