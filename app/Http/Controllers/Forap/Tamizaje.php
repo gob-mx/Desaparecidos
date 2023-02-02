@@ -77,11 +77,7 @@ class Tamizaje extends Controller
     $valoracion = '';
     switch (true) {
     case ($riesgo == 0):
-        $valoracion = 'Resultado sujeto a análisis\
-        El puntaje final de la Valoración es 0. Este resultado no es absoluto\
-        y debe analizarse las circunstancias no previstas en este instrumento\
-        para determinar el tipo de medidas de protección.
-        ';
+        $valoracion = 'Resultado sujeto a análisis. El puntaje final de la Valoración es 0. Este resultado no es absoluto y debe analizarse las circunstancias no previstas en este instrumento para determinar el tipo de medidas de protección.';
         break;
     case ($riesgo > 0 && $riesgo <= 12):
         $valoracion = 'RIESGO LEVE';
