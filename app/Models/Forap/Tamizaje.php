@@ -46,7 +46,7 @@ class Tamizaje extends Model
                 ->join('fa_eva_opc AS faeo', 'fae.id_evaluacion', '=', 'faeo.id_evaluacion')
                 ->join('fa_reactivos AS far', 'faeo.id_reactivo', '=', 'far.id_reactivo')
                 ->join('fa_opciones AS fao', 'faeo.id_opcion', '=', 'fao.id_opcion')
-                ->select(	'far.reactivo', 'faeo.id_reactivo', 'far.valor as val_react', 	'fao.nombre', 	'faeo.id_opcion', 	'fao.valor as val_opc')
+                ->select(	'far.reactivo', 'faeo.id_reactivo', 'far.valor as val_react', 	'fao.nombre', 	'faeo.id_opcion', 	'faeo.valor as val_opc')
                 ->where('faeo.multi_o_single','=','Single')
                 ->where('fae.id_evaluacion','=',$id_evaluacion)
                 ->get();
@@ -58,7 +58,7 @@ class Tamizaje extends Model
                                     "val_react" => $valor->val_react,
                                     "nombre" => $valor->nombre,
                                     "id_opcion" => $valor->id_opcion,
-                                    "val_opc" => $valor->val_opc,
+                                    "val_opc" => $valor->val_opc
                                   );
     }
     return $array;
@@ -104,7 +104,7 @@ class Tamizaje extends Model
                                     "id_eva_react" => $valor->id_eva_react
                                   );
     }
-    $i = base64_encode($array[41]['campo_unico']);
+    //$i = base64_encode($array[41]['campo_unico']);
     //dd(base64_decode($i));
     //dd($i);
     return $array;
@@ -125,6 +125,30 @@ class Tamizaje extends Model
       return $total;
   }
 
+  static function riesgo_eva($id_evaluacion){
+      $total = DB::table('fa_evaluacion')
+                ->join('fa_eva_opc', 'fa_evaluacion.id_evaluacion', '=', 'fa_eva_opc.id_evaluacion')
+                ->where('fa_evaluacion.id_evaluacion', $id_evaluacion)
+                ->sum('fa_eva_opc.valor');
+      return $total;
+  }
+
+  static function obtener_valor_opciones($id_opcion){
+      $valor =  DB::table('fa_opciones')
+              ->select('valor')
+              ->where('id_opcion', $id_opcion)
+              ->first();
+      return $valor->valor;
+  }
+
+  static function obtener_valor_reactivo($id_reactivo){
+      $valor =  DB::table('fa_reactivos')
+              ->select('valor')
+              ->where('id_reactivo', $id_reactivo)
+              ->first();
+      return $valor->valor;
+  }
+
   static function agregar_options($data){
     $eva_opc = DB::table('fa_eva_opc')
               ->where('id_evaluacion', $data['id_evaluacion'])
@@ -133,7 +157,10 @@ class Tamizaje extends Model
     if(isset($eva_opc)){
       $eva_opc = DB::table('fa_eva_opc')
                 ->where('id_eva_opc', $eva_opc->id_eva_opc)
-                ->update(['id_opcion' => $data['valor']]);
+                ->update([
+                  'id_opcion' => $data['valor'],
+                  'valor' => $data['value']
+                ]);
     }else{
       $id_eva_opc = DB::table('fa_eva_opc')->insertGetId(
           [
@@ -141,12 +168,14 @@ class Tamizaje extends Model
               'id_reactivo' => $data['clave'],
               'id_opcion' => $data['valor'],
               'multi_o_single' => 'Single',
+              'valor' => $data['value'],
               'user_alta' => 1,
               'fecha_alta' => date("Y-m-d H:i:s")
           ]
       );
     }
   }
+
   static function agregar_checkbox($data){
     foreach($data['valor'] as $val){
       $eva_opc = DB::table('fa_eva_opc')
@@ -161,6 +190,7 @@ class Tamizaje extends Model
                 'id_reactivo' => $data['clave'],
                 'id_opcion' => $val,
                 'multi_o_single' => 'Multi',
+                'valor' => $data['value'],
                 'user_alta' => 1,
                 'fecha_alta' => date("Y-m-d H:i:s")
             ]
@@ -179,8 +209,6 @@ class Tamizaje extends Model
     }
   }
 
-
-
   static function agregar_reactivos($data, $arreglos){
     $valor = (in_array($data['clave'], $arreglos))?json_encode($data['valor']):$data['valor'];
     $eva_react = DB::table('fa_eva_react')
@@ -188,13 +216,19 @@ class Tamizaje extends Model
               ->where('id_reactivo', $data['clave'])
               ->first();
     if(isset($eva_react)){
-      DB::table('fa_eva_react')->where('id_eva_react', $eva_react->id_eva_react)->update(['campo_unico' => $valor]);
+      DB::table('fa_eva_react')
+                ->where('id_eva_react', $eva_react->id_eva_react)
+                ->update([
+                    'campo_unico' => $valor,
+                    'valor' => $data['value'],
+                ]);
     }else{
       $id_eva_react = DB::table('fa_eva_react')->insertGetId(
           [
               'id_evaluacion' => $data['id_evaluacion'],
               'id_reactivo' => $data['clave'],
               'campo_unico' => $valor,
+              'valor' => $data['value'],
               'user_alta' => 1,
               'fecha_alta' => date("Y-m-d H:i:s")
           ]
@@ -327,8 +361,9 @@ class Tamizaje extends Model
 
       $data_evaluacion = self::determinar_evaluacion($evaluacion);
       $id_evaluacion = $data_evaluacion['id_evaluacion'];
-      $riesgo = self::riesgo($id_evaluacion);
       $cat_status_evaluacion = $data_evaluacion['cat_status_evaluacion'];
+      //$riesgo = ($cat_status_evaluacion == 42)?self::riesgo_eva($id_evaluacion):self::riesgo($id_evaluacion);
+      $riesgo = self::riesgo_eva($id_evaluacion);
       $datos = [
           'generales' => $data[0],
           'quest' => $react,

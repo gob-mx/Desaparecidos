@@ -53,10 +53,20 @@ class Tamizaje extends Controller
     $id_evaluacion = $store['id_evaluacion'];
     ModelTamizaje::actualizar_estado_evaluacion($id_evaluacion, $store['state']);
 
+    //dd($store);
     foreach ($store as $clave => $valor){
+
+      $valorizacion = '';
+      if (in_array($clave, $reactivos)) {
+        $valorizacion = ModelTamizaje::obtener_valor_reactivo($clave);
+      }elseif((in_array($clave, $options))or(in_array($clave, $checkbox))){
+        $valorizacion = ModelTamizaje::obtener_valor_opciones($valor);
+      }
+
       $data = [
           'clave' => $clave,
           'valor' => $valor,
+          'value' => $valorizacion,
           'id_evaluacion' => $id_evaluacion
       ];
       if (in_array($clave, $options)) {ModelTamizaje::agregar_options($data);}
@@ -66,7 +76,14 @@ class Tamizaje extends Controller
     $riesgo = ModelTamizaje::riesgo($id_evaluacion);
     $valoracion = '';
     switch (true) {
-    case ($riesgo >= 0 && $riesgo <= 12):
+    case ($riesgo == 0):
+        $valoracion = 'Resultado sujeto a análisis\
+        El puntaje final de la Valoración es 0. Este resultado no es absoluto\
+        y debe analizarse las circunstancias no previstas en este instrumento\
+        para determinar el tipo de medidas de protección.
+        ';
+        break;
+    case ($riesgo > 0 && $riesgo <= 12):
         $valoracion = 'RIESGO LEVE';
         break;
     case ($riesgo >= 13 && $riesgo <= 21):
@@ -76,7 +93,7 @@ class Tamizaje extends Controller
         $valoracion = 'RIESGO SEVERO';
         break;
     case ($riesgo >= 45):
-        $valoracion = 'RIESGO CRITICO';
+        $valoracion = 'RIESGO CRÍTICO';
         break;
     }
     $show_pdf = (isset($store[9]))?true:false;
@@ -97,16 +114,18 @@ class Tamizaje extends Controller
       $token = $_SESSION['url_token'];
       $datos = ModelTamizaje::data_tamizaje($token);
       if($datos['cat_status_evaluacion'] != 40){
-      $options = ModelTamizaje::obtener_options($datos['id_evaluacion']);
-      $checkbox = ModelTamizaje::obtener_checkbox($datos['id_evaluacion']);
-      $obtener_reactivos = ModelTamizaje::obtener_reactivos($datos['id_evaluacion']);
-      $delito = ModelTamizaje::obtener_delito($obtener_reactivos[9]['campo_unico']);
-      return view('tamizaje/index')
-                                ->with('options', $options)
-                                ->with('checkbox', $checkbox)
-                                ->with('obtener_reactivos', $obtener_reactivos)
-                                ->with('delito', $delito)
-                                ->with('datos', $datos);
+
+        $options = ModelTamizaje::obtener_options($datos['id_evaluacion']);
+        $checkbox = ModelTamizaje::obtener_checkbox($datos['id_evaluacion']);
+        $obtener_reactivos = ModelTamizaje::obtener_reactivos($datos['id_evaluacion']);
+        $delito = ModelTamizaje::obtener_delito($obtener_reactivos[9]['campo_unico']);
+        return view('tamizaje/index')
+                                  ->with('options', $options)
+                                  ->with('checkbox', $checkbox)
+                                  ->with('obtener_reactivos', $obtener_reactivos)
+                                  ->with('delito', $delito)
+                                  ->with('datos', $datos);
+
      }else{
        return view('tamizaje/index')->with('datos', $datos);
      }
