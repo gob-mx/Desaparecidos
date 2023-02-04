@@ -114,12 +114,12 @@ class Tamizaje extends Controller
         $options = ModelTamizaje::obtener_options($datos['id_evaluacion']);
         $checkbox = ModelTamizaje::obtener_checkbox($datos['id_evaluacion']);
         $obtener_reactivos = ModelTamizaje::obtener_reactivos($datos['id_evaluacion']);
-        $delito = ModelTamizaje::obtener_delito($obtener_reactivos[9]['campo_unico']);
+        //$delito = ModelTamizaje::obtener_delito($obtener_reactivos[9]['campo_unico']);
         return view('tamizaje/index')
                                   ->with('options', $options)
                                   ->with('checkbox', $checkbox)
                                   ->with('obtener_reactivos', $obtener_reactivos)
-                                  ->with('delito', $delito)
+                                  //->with('delito', $delito)
                                   ->with('datos', $datos);
 
      }else{

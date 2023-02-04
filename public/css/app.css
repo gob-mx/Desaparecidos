@@ -678,9 +678,9 @@ position: relative;
 float: right;
 font-size: 4em;
 top:80px;
-right:-30px;
+right:0px;
 color: #cdcdcd;
-z-index:100;
+z-index:50;
 }
 
 

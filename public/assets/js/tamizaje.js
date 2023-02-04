@@ -385,6 +385,7 @@ $("body").on("click", "#tmz_js_fn_01", function() {
 					});
 					if(resp_success['show_pdf'] == true){
 							$("#show_pdf").show();
+							$("#counter").css("right", "-30px");
 					}
 				}else if (resp_success['resp'] == 'false'){
 					swal({
