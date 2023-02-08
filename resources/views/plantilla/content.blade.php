@@ -19,9 +19,9 @@ if($_SESSION['id_rol'] == 2){
 ?>
 <script>
 jQuery(document).ready(function() {
-  $("#m_aside_left").remove();
-  $('.m-footer').remove();
-  //$("#m_header").remove();
+  $("#m_aside_left").remove(); // menu lateral izquierdo
+  $("#m_header_topbar").remove(); // menu superior derecho logout
+  $('.m-footer').remove(); // pie de página
   carga_archivo('contenedor_principal','tamizaje');
 });
 </script>
