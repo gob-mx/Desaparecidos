@@ -7,11 +7,12 @@ if($datos['cat_status_evaluacion'] == 42){
 		$("#nuevo_tamizaje").find(':input').each(function() {
 		 $(this).attr("disabled","true");
 		});
-		$("#tmz_js_fn_01").remove();
 		$('[data-wizard-action="submit"]').remove();
 		<?php
 }
+echo isset($checkbox[38])?'$("#counter").css("right", "-30px");':'';
 ?>
+
 $("#breadcrumb-title").html('<?=env('APP_NAME')?>');
 $("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['generales']->nombreVictima?> <?=$status_evaluacion?>');
 </script>
@@ -27,7 +28,7 @@ $("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['g
 			</div>
 		</div>
 		<?php
-			$show_pdf = isset($obtener_reactivos[9]['campo_unico'])?'':'none';
+			$show_pdf = isset($checkbox[38])?'':'none';
 		?>
 		<div style="float:right; display: inline; position:relative; top:20px; display: <?=$show_pdf?>;" id="show_pdf"><a href="<?=env('APP_URL')?>pdf/<?=$datos['id_evaluacion']?>" target="_blank"><img src="<?=env('APP_URL')?>img/pdf.png" width="32px"></a></div>
 		<div id="counter" data-value="<?=$datos['riesgo']?>"><?=$datos['riesgo']?></div>
@@ -818,17 +819,17 @@ $("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['g
 											<div class="m-radio-inline">
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 													<!--SÍ, viven juntos-->
-													<input class="counter17" data-opc_valor="<?=$datos['quest'][34][100]['opc_valor']?>" type="radio" name="<?=$datos['quest'][34][100]['react_id_reactivo']?>" <?=((isset($options[34]['id_opcion']))&&($options[34]['id_opcion'] == $datos['quest'][34][100]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][34][100]['opc_id_opcion']?>"> (<?=$datos['quest'][34][100]['opc_valor']?>) <?=$datos['quest'][34][100]['opc_nombre']?>
+													<input class="counter17 validacion_cruzada_1a" data-opc_valor="<?=$datos['quest'][34][100]['opc_valor']?>" type="radio" name="<?=$datos['quest'][34][100]['react_id_reactivo']?>" <?=((isset($options[34]['id_opcion']))&&($options[34]['id_opcion'] == $datos['quest'][34][100]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][34][100]['opc_id_opcion']?>"> (<?=$datos['quest'][34][100]['opc_valor']?>) <?=$datos['quest'][34][100]['opc_nombre']?>
 													<span></span>
 												</label>
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 													<!--NO, ya no viven juntos, pero insiste en retomar la relación-->
-													<input class="counter17" data-opc_valor="<?=$datos['quest'][34][101]['opc_valor']?>" type="radio" name="<?=$datos['quest'][34][101]['react_id_reactivo']?>" <?=((isset($options[34]['id_opcion']))&&($options[34]['id_opcion'] == $datos['quest'][34][101]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][34][101]['opc_id_opcion']?>"> (<?=$datos['quest'][34][101]['opc_valor']?>) <?=$datos['quest'][34][101]['opc_nombre']?>
+													<input class="counter17 validacion_cruzada_1a" data-opc_valor="<?=$datos['quest'][34][101]['opc_valor']?>" type="radio" name="<?=$datos['quest'][34][101]['react_id_reactivo']?>" <?=((isset($options[34]['id_opcion']))&&($options[34]['id_opcion'] == $datos['quest'][34][101]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][34][101]['opc_id_opcion']?>"> (<?=$datos['quest'][34][101]['opc_valor']?>) <?=$datos['quest'][34][101]['opc_nombre']?>
 													<span></span>
 												</label>
 												<label class="col-xl-12 col-lg-12 m-radio m-radio--solid m-radio--brand">
 													<!--NO, ya no viven juntos, y no insiste en retomar la relación-->
-													<input class="counter17" data-opc_valor="<?=$datos['quest'][34][102]['opc_valor']?>" type="radio" name="<?=$datos['quest'][34][102]['react_id_reactivo']?>" <?=((isset($options[34]['id_opcion']))&&($options[34]['id_opcion'] == $datos['quest'][34][102]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][34][102]['opc_id_opcion']?>"> (<?=$datos['quest'][34][102]['opc_valor']?>) <?=$datos['quest'][34][102]['opc_nombre']?>
+													<input class="counter17 validacion_cruzada_1a" data-opc_valor="<?=$datos['quest'][34][102]['opc_valor']?>" type="radio" name="<?=$datos['quest'][34][102]['react_id_reactivo']?>" <?=((isset($options[34]['id_opcion']))&&($options[34]['id_opcion'] == $datos['quest'][34][102]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][34][102]['opc_id_opcion']?>"> (<?=$datos['quest'][34][102]['opc_valor']?>) <?=$datos['quest'][34][102]['opc_nombre']?>
 													<span></span>
 												</label>
 											</div>
@@ -1329,12 +1330,12 @@ $("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['g
 												<div class="m-radio-inline">
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--No-->
-														<input type="radio" name="<?=$datos['quest'][43][134]['react_id_reactivo']?>" <?=((isset($options[43]['id_opcion']))&&($options[43]['id_opcion'] == $datos['quest'][43][134]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][43][134]['opc_id_opcion']?>"> <?=$datos['quest'][43][134]['opc_nombre']?>
+														<input readonly class="validacion_cruzada_1b" type="radio" name="<?=$datos['quest'][43][134]['react_id_reactivo']?>" <?=((isset($options[43]['id_opcion']))&&($options[43]['id_opcion'] == $datos['quest'][43][134]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][43][134]['opc_id_opcion']?>"> <?=$datos['quest'][43][134]['opc_nombre']?>
 														<span></span>
 													</label>
 													<label class="m-radio m-radio--solid m-radio--brand">
 														<!--Si-->
-														<input type="radio" name="<?=$datos['quest'][43][135]['react_id_reactivo']?>" <?=((isset($options[43]['id_opcion']))&&($options[43]['id_opcion'] == $datos['quest'][43][135]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][43][135]['opc_id_opcion']?>"> <?=$datos['quest'][43][135]['opc_nombre']?>
+														<input readonly class="validacion_cruzada_1b" type="radio" name="<?=$datos['quest'][43][135]['react_id_reactivo']?>" <?=((isset($options[43]['id_opcion']))&&($options[43]['id_opcion'] == $datos['quest'][43][135]['opc_id_opcion']))?'checked':''?> value="<?=$datos['quest'][43][135]['opc_id_opcion']?>"> <?=$datos['quest'][43][135]['opc_nombre']?>
 														<span></span>
 													</label>
 												</div>
@@ -1740,12 +1741,6 @@ $("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['g
 											</a>
 										</div>
 										<div class="col-lg-6 m--align-right">
-											<a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon" id="tmz_js_fn_01">
-												<span>
-													<span>Guardar</span>&nbsp;&nbsp;
-													<i class="la la-save"></i>
-												</span>
-											</a>
 											<a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon" data-wizard-action="submit">
 												<span>
 													<i class="la la-check"></i>&nbsp;&nbsp;

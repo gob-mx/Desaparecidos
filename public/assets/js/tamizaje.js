@@ -1,3 +1,33 @@
+$("body").on("click", ".validacion_cruzada_1a", function(){
+	if($(this).val()=='100'){
+		$("input[name=43][value='135']").prop("checked",true);
+	}else{
+		$("input[name=43][value='135']").prop("checked",false);
+		$("input[name=43][value='134']").prop("checked",true);
+	}
+});
+
+$("body").on("click", ".validacion_cruzada_1b", function(){
+	if($(this).val()=='135'){
+		$("input[name=34][value='100']").prop("checked",true);
+	}else{
+		$("input[name=34][value='100']").prop("checked",false);
+		swal({
+				title: "Ambigüedad",
+				text: "Verifique la pregunta 16. ¿Actualmente vive usted con su pareja?",
+				type: "info",
+				confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+		}).then(function(){
+			wizard = new mWizard('m_wizard', {
+				startStep: 1, // Initial active step number
+				clickableSteps: true,  // Allow step clicking
+			});
+			wizard.goTo(6);
+		})
+
+	}
+});
+
 $("body").on("click", ".counter20", function(){
 		var actual = $("#counter20").data('value');
 		var opc = $(this).data('opc_valor');
@@ -231,13 +261,38 @@ var WizardTamizaje = function() {
                 mUtil.scrollTop()
             }),
             r.on("change", function(e) {
-                /*1 === e.getStep() &&
-                swal({
-                    title: "",
-                    text: "Se ha completado la seccion número uno",
-                    type: "success",
-                    confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-                })*/
+								$.ajax({
+									headers: {
+												'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+									},
+									url: app_url + 'tamizaje/nuevo_tamizaje',
+									type: 'POST',
+									data: $('#nuevo_tamizaje').serialize() + '&' + $.param({'state':41}),
+									dataType: 'json',
+									success: function(resp_success){
+										if (resp_success['resp'] == 'true') {
+											console.log('Avance guardado!!');
+											8 === e.getStep() &&
+											swal({
+													title: "",
+													text: "Ha completado el tamizaje, verifique el PDF antes de finalizarlo, recuerde que una vez finalizado el tamizaje será inalterable",
+													type: "success",
+													confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+											}).then(function(){
+												$("#show_pdf").show();
+												$("#counter").css("right", "-30px");
+											})
+										}else if (resp_success['resp'] == 'false'){
+											swal({
+													title: "Error",
+													text: resp_success['mensaje'],
+													type: "error",
+													confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+											})
+										}
+									},
+									error: function(respuesta){ alerta('Alerta!','Error de conectividad de red WIZARD-001');}
+								});
             }),
             r.on("change", function(e) {
                 /*2 === e.getStep() && alert(2)*/
@@ -322,6 +377,15 @@ var WizardTamizaje = function() {
                 submitHandler: function(e) {}
             }),
             (n = i.find('[data-wizard-action="submit"]')).on("click", function() {
+									if($("[name='54']").val()==''){
+										swal({
+											title: "¡Faltan campos!",
+											text: 'Escriba los resultados del Anexo Factores de Vulnerabilidad, así como información que considere importante y que no recoja la ficha',
+											type: "error",
+											confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+										});
+										return;
+									};
                   mApp.progress(n),
                   $.ajax({
               			headers: {
@@ -343,12 +407,11 @@ var WizardTamizaje = function() {
 												$("#nuevo_tamizaje").find(':input').each(function() {
 												 $(this).attr("disabled","true");
 											  }),
-												$("#tmz_js_fn_01").remove(),
 												$('[data-wizard-action="submit"]').remove();
 												$("#breadcrumb-title").append(' / <span id="tmz_fin">(Tamizaje finalizado)<span>');
-												if(resp_success['show_pdf'] == true){
+												/*if(resp_success['show_pdf'] == true){
 														$("#show_pdf").show();
-												}
+												}*/
               				}else if (resp_success['resp'] == 'false'){
                         mApp.unprogress(n),
 												swal({
@@ -365,37 +428,3 @@ var WizardTamizaje = function() {
         }
     }
 }();
-
-$("body").on("click", "#tmz_js_fn_01", function() {
-		$.ajax({
-			headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			},
-			url: app_url + 'tamizaje/nuevo_tamizaje',
-			type: 'POST',
-			data: $('#nuevo_tamizaje').serialize() + '&' + $.param({'state':41}),
-			dataType: 'json',
-			success: function(resp_success){
-        if (resp_success['resp'] == 'true') {
-					swal({
-							title: "¡Correcto!",
-							text: "Su avance se guardó",
-							type: "success",
-							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-					});
-					if(resp_success['show_pdf'] == true){
-							$("#show_pdf").show();
-							$("#counter").css("right", "-30px");
-					}
-				}else if (resp_success['resp'] == 'false'){
-					swal({
-							title: "Error",
-							text: resp_success['mensaje'],
-							type: "error",
-							confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-					})
-				}
-			},
-			error: function(respuesta){ alerta('Alerta!','Error de conectividad de red TZJ-02');}
-		});
-});

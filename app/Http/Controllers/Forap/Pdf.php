@@ -44,7 +44,7 @@ class Pdf extends Controller
 
 
     $fpdf->Text(4.5, 6.08, utf8_decode($obtener_reactivos[6]['campo_unico']));
-    $fpdf->Text(17.5, 6.08, utf8_decode($obtener_reactivos[7]['campo_unico']));
+    $fpdf->Text(19.5, 6.08, utf8_decode($obtener_reactivos[7]['campo_unico']));
     $fpdf->Text(5.4, 6.6, utf8_decode($obtener_reactivos[8]['campo_unico']));
 
     $fpdf->SetFontSize(7);
