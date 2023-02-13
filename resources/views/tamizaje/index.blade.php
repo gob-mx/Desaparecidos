@@ -8,6 +8,19 @@ if($datos['cat_status_evaluacion'] == 42){
 		 $(this).attr("disabled","true");
 		});
 		$('[data-wizard-action="submit"]').remove();
+		$('[data-wizard-action="abortar"]').remove();
+		$("#tmz_js_fn_02").removeAttr("id");
+		<?php
+}
+if($datos['cat_status_evaluacion'] == 43){
+		$status_evaluacion = ' / <span id="tmz_fin">(Tamizaje interrumpido)<span>';
+		?>
+		$("#nuevo_tamizaje").find(':input').each(function() {
+		 $(this).attr("disabled","true");
+		});
+		$('[data-wizard-action="submit"]').remove();
+		$('[data-wizard-action="abortar"]').remove();
+		$("#tmz_js_fn_02").removeAttr("id");
 		<?php
 }
 echo isset($checkbox[38])?'$("#counter").css("right", "-30px");':'';
@@ -1741,13 +1754,19 @@ $("#breadcrumb-title").append(' / <?=$datos['generales']->folio?> / <?=$datos['g
 											</a>
 										</div>
 										<div class="col-lg-6 m--align-right">
+											<a href="#" class="btn btn-secondary  m-btn m-btn--custom m-btn--icon" data-wizard-action="abortar" id="tmz_js_fn_01">
+												<span>
+													<i class="fa 	fa-sign-in-alt"></i>&nbsp;&nbsp;
+													<span>Atención interrumpida</span>
+												</span>
+											</a>
 											<a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon" data-wizard-action="submit">
 												<span>
 													<i class="la la-check"></i>&nbsp;&nbsp;
 													<span>Finalizar</span>
 												</span>
 											</a>
-											<a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon" data-wizard-action="next">
+											<a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon" data-wizard-action="next" id="tmz_js_fn_02">
 												<span>
 													<span>Continuar</span>&nbsp;&nbsp;
 													<i class="la la-arrow-right"></i>

@@ -78,7 +78,6 @@ $("body").on("click", ".counter16", function(){
 		$("#counter16").data('value',parseInt(opc));
 });
 
-
 $("body").on("click", ".counter15", function(){
 		var actual = $("#counter15").data('value');
 		var opc = $(this).data('opc_valor');
@@ -128,7 +127,6 @@ $("body").on("click", ".counter11", function(){
 		$("#counter").text(new_val);
 		$("#counter11").data('value',parseInt(opc));
 });
-
 
 $("body").on("click", ".counter10", function(){
 		var actual = $("#counter10").data('value');
@@ -220,7 +218,6 @@ $("body").on("click", ".counter2", function(){
 		$("#counter2").data('value',parseInt(opc));
 });
 
-
 $("body").on("change", ".counter", function(){
 		var actual = $(this).data('value');
 		var opc = $(this).find(':selected').data('opc_valor');
@@ -261,38 +258,17 @@ var WizardTamizaje = function() {
                 mUtil.scrollTop()
             }),
             r.on("change", function(e) {
-								$.ajax({
-									headers: {
-												'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-									},
-									url: app_url + 'tamizaje/nuevo_tamizaje',
-									type: 'POST',
-									data: $('#nuevo_tamizaje').serialize() + '&' + $.param({'state':41}),
-									dataType: 'json',
-									success: function(resp_success){
-										if (resp_success['resp'] == 'true') {
-											console.log('Avance guardado!!');
-											8 === e.getStep() &&
-											swal({
-													title: "",
-													text: "Ha completado el tamizaje, verifique el PDF antes de finalizarlo, recuerde que una vez finalizado el tamizaje será inalterable",
-													type: "success",
-													confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-											}).then(function(){
-												$("#show_pdf").show();
-												$("#counter").css("right", "-30px");
-											})
-										}else if (resp_success['resp'] == 'false'){
-											swal({
-													title: "Error",
-													text: resp_success['mensaje'],
-													type: "error",
-													confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
-											})
-										}
-									},
-									error: function(respuesta){ alerta('Alerta!','Error de conectividad de red WIZARD-001');}
-								});
+							/*8 === e.getStep() &&
+							swal({
+									title: "",
+									text: "Ha completado el tamizaje, verifique el PDF antes de finalizarlo, recuerde que una vez finalizado el tamizaje será inalterable",
+									type: "success",
+									confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+							}).then(function(){
+								$("#show_pdf").show();
+								$("#counter").css("right", "-30px");
+								$("#tmz_js_fn_02").removeAttr("id");
+							})*/
             }),
             r.on("change", function(e) {
                 /*2 === e.getStep() && alert(2)*/
@@ -408,6 +384,7 @@ var WizardTamizaje = function() {
 												 $(this).attr("disabled","true");
 											  }),
 												$('[data-wizard-action="submit"]').remove();
+												$('[data-wizard-action="abortar"]').remove();
 												$("#breadcrumb-title").append(' / <span id="tmz_fin">(Tamizaje finalizado)<span>');
 												/*if(resp_success['show_pdf'] == true){
 														$("#show_pdf").show();
@@ -428,3 +405,90 @@ var WizardTamizaje = function() {
         }
     }
 }();
+
+$("body").on("click", "#tmz_js_fn_01", function() {
+	swal({
+			title: "Atención!",
+			text: 'En caso de que la víctima no desee continuar con la entrevista y el inicio de la carpeta de investigación, confirme que la atención se ha interrumpido y no es posible finalizar el tamizaje de riesgo',
+			type: "info",
+			showCancelButton: true,
+			cancelButtonText: `Continuar con tamizaje`,
+			confirmButtonText: 'Interrumpir'
+	}).then(function(isConfirm) {
+			if (isConfirm) {
+				$.ajax({
+					headers: {
+								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					url: app_url + 'tamizaje/nuevo_tamizaje',
+					type: 'POST',
+					data: $("#nuevo_tamizaje").serialize() + '&' + $.param({'state':43}),
+					dataType: 'json',
+					success: function(resp_success){
+						if (resp_success['resp'] == 'true') {
+							swal({
+									title: "El formulario fué interrumpido",
+									text: "El tamizaje fue clasificado como interrumpido",
+									type: "success",
+									confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+							}),
+							$("#nuevo_tamizaje").find(':input').each(function() {
+							 $(this).attr("disabled","true");
+							}),
+							$('[data-wizard-action="submit"]').remove();
+							$('[data-wizard-action="abortar"]').remove();
+							$("#tmz_js_fn_02").removeAttr("id");
+							$("#breadcrumb-title").append(' / <span id="tmz_fin">(Tamizaje interrumpido)<span>');
+							/*if(resp_success['show_pdf'] == true){
+									$("#show_pdf").show();
+							}*/
+						}
+					},
+					error: function(respuesta){ alerta('Alerta!','Error de conectividad de red TZJ-01');}
+				});
+
+			}
+		});
+});
+
+$("body").on("click", "#tmz_js_fn_02", function() {
+	wizard = new mWizard('m_wizard', {
+		startStep: 1, // Initial active step number
+		clickableSteps: true,  // Allow step clicking
+	});
+	wizard.on("change", function(e) {
+		8 === wizard.currentStep &&
+		swal({
+				title: "",
+				text: "Ha completado el tamizaje, verifique el PDF antes de finalizarlo, recuerde que una vez finalizado el tamizaje será inalterable",
+				type: "success",
+				confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+		}).then(function(){
+			$("#show_pdf").show();
+			$("#counter").css("right", "-30px");
+			$("#tmz_js_fn_02").removeAttr("id");
+		})
+	}),
+	$.ajax({
+		headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		url: app_url + 'tamizaje/nuevo_tamizaje',
+		type: 'POST',
+		data: $('#nuevo_tamizaje').serialize() + '&' + $.param({'state':41}),
+		dataType: 'json',
+		success: function(resp_success){
+			if (resp_success['resp'] == 'true') {
+				console.log('Avance guardado!!');
+			}else if (resp_success['resp'] == 'false'){
+				swal({
+						title: "Error",
+						text: resp_success['mensaje'],
+						type: "error",
+						confirmButtonClass: "btn btn-secondary m-btn m-btn--wide"
+				})
+			}
+		},
+		error: function(respuesta){ alerta('Alerta!','Error de conectividad de red WIZARD-001');}
+	});
+});

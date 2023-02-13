@@ -43,7 +43,7 @@ class Tamizaje extends Controller
     $id_entrevistado = $tokenData[0]->id_victima;
     $evaluacion = ModelTamizaje::getEvaluacion($id_expediente, $id_entrevistado);
     $riesgo = ModelTamizaje::riesgo($evaluacion[0]->id_evaluacion);
-    ModelLogin::signout($tokenData[0]->id_usuario);
+    //ModelLogin::signout($tokenData[0]->id_usuario);
     $datos = [
         'status' => $evaluacion[0]->etiqueta,
         'riesgo' => $riesgo,

@@ -74,22 +74,32 @@
             <li class="m-nav__separator m-nav__separator--fit"></li>
 
             <?php if(isset($_SESSION['token'])){ ?>
-            <li class="m-nav__item">
-              <a href="<?=env('APP_URL')?>" target="_blank" class="m-nav__link">
-                <i class="m-nav__link-icon flaticon-browser"></i>
-                <span class="m-nav__link-text">
-                  Site
-                </span>
-              </a>
-            </li>
-            <li class="m-nav__item">
-              <a href="<?=env('APP_URL')?>login/lockSession" class="m-nav__link">
-                <i class="m-nav__link-icon flaticon-lock"></i>
-                <span class="m-nav__link-text">
-                  Bloquear
-                </span>
-              </a>
-            </li>
+
+
+            <?php
+            if($_SESSION['id_rol'] !== 2){
+            ?>
+                <li class="m-nav__item">
+                  <a href="<?=env('APP_URL')?>" target="_blank" class="m-nav__link">
+                    <i class="m-nav__link-icon flaticon-browser"></i>
+                    <span class="m-nav__link-text">
+                      Site
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a href="<?=env('APP_URL')?>login/lockSession" class="m-nav__link">
+                    <i class="m-nav__link-icon flaticon-lock"></i>
+                    <span class="m-nav__link-text">
+                      Bloquear
+                    </span>
+                  </a>
+                </li>
+            <?php
+            }
+            ?>
+
+
             <li class="m-nav__separator m-nav__separator--fit"></li>
             <li class="m-nav__item">
               <span id="comm_js_fn_01" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
