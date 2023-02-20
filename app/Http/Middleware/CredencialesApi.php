@@ -39,11 +39,11 @@ class CredencialesApi
       if($external_signature == $local_signature) {
         return $next($request);
       } else {
-        //echo 'tu firma es esta: '.$external_signature.' se esperaba esta: '.$local_signature;
-        //echo ' estas credenciales se recibieron: consumer_key: '.$credencial_ex[0].'  consumer_pass: '.$credencial_ex[1];
-        echo 'Firma esperada: '.$local_signature;
+        $datos = [
+            'alert' => 'La firma no es válida'
+        ];
+        print json_encode($datos);
         exit();
-        //return redirect('/401');
       }
     }
 }

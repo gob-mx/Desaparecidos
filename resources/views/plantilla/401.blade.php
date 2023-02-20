@@ -26,9 +26,6 @@
 							401
 						</h1>
 					</span>
-					<p class="m-error_desc">
-						<?=env('APP_NAME')?>:<br> No tiene autorización para ver el recurso solicitado.
-					</p>
 				</div>
 			</div>
 		</div>
