@@ -15,6 +15,7 @@ class Expediente extends Model
   static function guardar_expediente($expediente, $tokenFSIAP){
 
       $id_unidad = self::getUnidadID($expediente);
+      if(!$id_unidad){return false;}
       $expedienteID = self::obtener_folio($expediente['carpetainvestigacion']);
       $id_expediente = $expedienteID?$expedienteID:self::insertar_expediente($expediente['carpetainvestigacion']);
       $id_trazabilidad = $expedienteID?self::actualizaTraza($id_expediente, $id_unidad):self::insertTrazabilidad($id_expediente, $id_unidad);
@@ -295,7 +296,7 @@ class Expediente extends Model
                 ->where('cveagencia','=',$expediente['empleadoAgencia'])
                 ->where('cveunidad','=',$expediente['empleadoUnidad'])
                 ->get();
-    $id_unidad = $unidadID[0]->id_unidad;
+    $id_unidad = (isset($unidadID[0]))?$unidadID[0]->id_unidad:false;
     return $id_unidad;
   }
 

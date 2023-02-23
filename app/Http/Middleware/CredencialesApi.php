@@ -40,7 +40,7 @@ class CredencialesApi
         return $next($request);
       } else {
         $datos = [
-            'alert' => 'La firma no es valida'
+            'alert' => $local_signature //'La firma no es valida'
         ];
         print json_encode($datos);
         exit();

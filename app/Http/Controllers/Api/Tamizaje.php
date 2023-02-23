@@ -29,10 +29,16 @@ class Tamizaje extends Controller
     $expediente = json_decode($body, true);
     $tokenFSIAP = $_SERVER ['HTTP_TOKENFSIAP'];
     $url_token = ModelExpediente::guardar_expediente($expediente, $tokenFSIAP);
-    $datos = [
-        'URL' => env('APP_URL').'tamizaje/tamizajeFSIAP/'.$url_token,
-        'token' => $tokenFSIAP
-    ];
+    if(!$url_token){
+      $datos = [
+          'alert' => 'No existe la unidad con identificadores: '. $expediente['empleadoFiscalia']. '-' .$expediente['empleadoAgencia']. '-' .$expediente['empleadoUnidad']
+      ];
+    }else{
+      $datos = [
+          'URL' => env('APP_URL').'tamizaje/tamizajeFSIAP/'.$url_token,
+          'token' => $tokenFSIAP
+      ];
+    }
     print json_encode($datos);
   }
 

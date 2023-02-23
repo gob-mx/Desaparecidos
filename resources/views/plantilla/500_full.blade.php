@@ -9,7 +9,6 @@
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!--begin::Base Styles -->
 		<link href="<?=env('APP_URL')?>assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="<?=env('APP_URL')?>assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
@@ -30,11 +29,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- end:: Page -->
-    	<!--begin::Base Scripts -->
-		<script src="<?=env('APP_URL')?>assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="<?=env('APP_URL')?>assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
-		<!--end::Base Scripts -->
 	</body>
 	<!-- end::Body -->
 </html>
