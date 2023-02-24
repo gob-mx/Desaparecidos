@@ -280,7 +280,6 @@ var WizardTamizaje = function() {
                     2: {required: !0},
                     3: {required: !0},
                     4: {required: !0},
-                    5: {required: !0},
                     6: {required: !0},
                     7: {required: !0},
                     8: {required: !0},
