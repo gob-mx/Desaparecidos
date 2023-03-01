@@ -113,7 +113,11 @@ class Tamizaje extends Model
   static function actualizar_estado_evaluacion($id_evaluacion, $status){
       $eva_opc = DB::table('fa_evaluacion')
                 ->where('id_evaluacion', $id_evaluacion)
-                ->update(['cat_status_evaluacion' => $status]);
+                ->update([
+                  'cat_status_evaluacion' => $status,
+                  'user_mod' => $_SESSION['id_usuario'],
+                  'fecha_mod' => date("Y-m-d H:i:s")
+                ]);
   }
 
   static function riesgo($id_evaluacion){
@@ -169,7 +173,7 @@ class Tamizaje extends Model
               'id_opcion' => $data['valor'],
               'multi_o_single' => 'Single',
               'valor' => $data['value'],
-              'user_alta' => 1,
+              'user_alta' => $_SESSION['id_usuario'],
               'fecha_alta' => date("Y-m-d H:i:s")
           ]
       );
@@ -191,7 +195,7 @@ class Tamizaje extends Model
                 'id_opcion' => $val,
                 'multi_o_single' => 'Multi',
                 'valor' => $data['value'],
-                'user_alta' => 1,
+                'user_alta' => $_SESSION['id_usuario'],
                 'fecha_alta' => date("Y-m-d H:i:s")
             ]
         );
@@ -229,7 +233,7 @@ class Tamizaje extends Model
               'id_reactivo' => $data['clave'],
               'campo_unico' => $valor,
               'valor' => $data['value'],
-              'user_alta' => 1,
+              'user_alta' => $_SESSION['id_usuario'],
               'fecha_alta' => date("Y-m-d H:i:s")
           ]
       );
@@ -255,7 +259,7 @@ class Tamizaje extends Model
             'id_aplicador' => $data['id_aplicador'],
             'id_examen' => $data['id_examen'],
             'cat_status_evaluacion' => 40,
-            'user_alta' => 1,
+            'user_alta' => $_SESSION['id_usuario'],
             'fecha_alta' => date("Y-m-d H:i:s")
         ]
     );
