@@ -11,6 +11,31 @@ class Config extends Model
   protected $primaryKey = 'id_config';
   public $timestamps = false;
 
+  static function auditarApi($request, $data ,$body, $error, $success){
+
+      $metodo = (isset($request->segments()[1]))?$request->segments()[1]:'index';
+      DB::table('fw_auditoria')->insert(
+          [
+              'id_metodo' => 1,
+              'permiso' => $data,
+              'controlador' => $request->segments()[0],
+              'metodo' => $metodo,
+              'post' => $body,
+              'headers' => json_encode($request->headers->all()),
+              'server' => json_encode($request->server->all()),
+              'session' => $error,
+              'ip' => $request->getClientIp(),
+              'url' => $request->url(),
+              'path' => $request->path(),
+              'method' => $request->method(),
+              'token_session' => $success,
+              'user_alta' => 1,
+              'fecha_alta' => date("Y-m-d H:i:s")
+          ]
+      );
+
+  }
+
   static function updateLogin($request, $rol){
 
       DB::table('fw_login')

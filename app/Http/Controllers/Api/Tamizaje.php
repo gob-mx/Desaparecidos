@@ -6,6 +6,7 @@ use App\Models\Framework\Catalogo as ModelCatalogo;
 use App\Models\Forap\Expediente as ModelExpediente;
 use App\Models\Forap\Tamizaje as ModelTamizaje;
 use App\Models\Framework\Login as ModelLogin;
+use App\Models\Framework\Config;
 use Helpme;
 
 class Tamizaje extends Controller
@@ -24,12 +25,13 @@ class Tamizaje extends Controller
     print json_encode($datos);
   }
 
-  public function post(){
+  public function post(Request $request){
     $body = file_get_contents('php://input');
     $expediente = json_decode($body, true);
     $tokenFSIAP = $_SERVER ['HTTP_TOKENFSIAP'];
     $url_token = ModelExpediente::guardar_expediente($expediente, $tokenFSIAP);
     if(!$url_token){
+      Config::auditarApi($request,'API' ,$body, 'No existe la unidad con identificadores: '. $expediente['empleadoFiscalia']. '-' .$expediente['empleadoAgencia']. '-' .$expediente['empleadoUnidad'], 'ERROR');
       $datos = [
           'alert' => 'No existe la unidad con identificadores: '. $expediente['empleadoFiscalia']. '-' .$expediente['empleadoAgencia']. '-' .$expediente['empleadoUnidad']
       ];
