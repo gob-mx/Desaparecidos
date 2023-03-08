@@ -17,7 +17,7 @@ class Expediente extends Model
       $id_unidad = self::getUnidadID($expediente);
       if(!$id_unidad){return false;}
       $expedienteID = self::obtener_folio($expediente['carpetainvestigacion']);
-      $id_expediente = $expedienteID?$expedienteID:self::insertar_expediente($expediente['carpetainvestigacion']);
+      $id_expediente = $expedienteID?$expedienteID:self::insertar_expediente($expediente['carpetainvestigacion'],$expediente['control']);
       $id_trazabilidad = $expedienteID?self::actualizaTraza($id_expediente, $id_unidad):self::insertTrazabilidad($id_expediente, $id_unidad);
       $expedienteID?self::actualizaDelitos($id_expediente, $expediente):self::insertDelitos($id_expediente, $expediente);
       $id_victima = $expedienteID?self::actualizaVictimas($id_expediente, $expediente):self::insertVictimas($id_expediente, $expediente);
@@ -249,6 +249,9 @@ class Expediente extends Model
             'id_expediente' => $id_expediente,
             'idvictima' => $expediente['idvictima'],
             'nombreVictima' => $expediente['nombreVictima'],
+            'nombre' => $expediente['nombre'],
+            'apellidoPat' => $expediente['apellidoPat'],
+            'apellidoMat' => $expediente['apellidoMat'],
             'sexo' => $expediente['sexo'],
             'genero' => $expediente['genero'],
             'edad' => $expediente['edad'],
@@ -278,10 +281,11 @@ class Expediente extends Model
     return (isset($result[0]))?$result[0]->id_expediente:false;
   }
 
-  static function insertar_expediente($expediente){
+  static function insertar_expediente($expediente,$control){
     $id_expediente = DB::table('fa_expediente')->insertGetId(
         [
             'folio' => $expediente,
+            'control' => $control,
             'user_alta' => 1,
             'fecha_alta' => date("Y-m-d H:i:s")
         ]
