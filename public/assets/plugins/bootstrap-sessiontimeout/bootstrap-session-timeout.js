@@ -25,8 +25,8 @@
             logoutUrl: 'login/salir',
 			      loginHome: 'login',
 			      sesionVerify:'login/verifica_session',
-            warnAfter: 5000,
-            redirAfter: 15000,
+            warnAfter: 30000, //tiempo en que se envia la solicitud al server
+            redirAfter: 60000, // tiempo de la barra en la cuenta regresiva
             keepAliveInterval: 10000,
             keepAlive: false,
             ignoreUserActivity: true,
@@ -91,8 +91,8 @@
               <div class="modal-dialog"> \
                 <div class="modal-content"> \
                   <div class="modal-header"> \
-                    <h4 class="modal-title">' + opt.duplicatetitle + '</h4> \
                     <button type="button" class="close" id="redirect_exit" aria-hidden="true">&times;</button> \
+                    <h4 class="modal-title">' + opt.duplicatetitle + '</h4> \
                   </div> \
                   <div class="modal-body"> \
                     <p>' + opt.messagedup + '</p> \

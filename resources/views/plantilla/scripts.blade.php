@@ -18,7 +18,7 @@
 <script src="<?=env('APP_URL')?>assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 <!-- JQuery Plugins-->
-<script src="<?=env('APP_URL')?>assets/plugins/bootstrap-sessiontimeout/bootstrap-session-timeout.js" type="text/javascript"></script>
+<script src="<?=env('APP_URL')?>assets/plugins/bootstrap-sessiontimeout/bootstrap-session-timeout.js?v=1.0" type="text/javascript"></script>
 <script src="<?=env('APP_URL')?>assets/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>
 <script src="<?=env('APP_URL')?>assets/plugins/buzz/buzz.min.js"></script>
 <script src="<?=env('APP_URL')?>assets/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
