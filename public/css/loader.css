@@ -15,11 +15,11 @@ body {
   height: 120px;
   position: absolute;
   left:50%; top:50%;
-  background: url(../img/fgj_a.svg) no-repeat center 0;
+  background: url(../img/asforms.svg) no-repeat center 0;
   margin:-50px 0 0 -50px;
 }
 #initloader:before {
-  content: " F o r A P ";
+  content: " A S F O R M S ";
   display: inline-block;
 
   color: #FFF;
