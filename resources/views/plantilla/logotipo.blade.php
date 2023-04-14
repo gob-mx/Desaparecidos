@@ -2,7 +2,7 @@
   <div class="m-stack m-stack--ver m-stack--general">
 
     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-      <img src="<?=env('APP_URL')?>assets/app/media/img/icons/fgj.svg"/>
+      <img src="<?=env('APP_URL')?>assets/app/media/img/icons/asforms.svg"/>
       <a href="javascript:;" class="m-brand__logo-wrapper"><?=env('APP_NAME')?></a>
     </div>
     <div class="m-stack__item m-stack__item--middle m-brand__tools">

@@ -17,8 +17,8 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 
-Route::group(['prefix' => 'tamizaje'], function(){
-    Route::get('/', 'Api\Tamizaje@get');
-    Route::post('/', 'Api\Tamizaje@post');
-    Route::put('/', 'Api\Tamizaje@put');
+Route::group(['prefix' => 'ws'], function(){
+    Route::get('/', 'Api\Ws@get');
+    Route::post('/', 'Api\Ws@post');
+    Route::put('/', 'Api\Ws@put');
 });

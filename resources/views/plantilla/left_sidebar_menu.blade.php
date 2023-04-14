@@ -9,7 +9,7 @@
     <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
       <li class="m-menu__section ">
         <h4 class="m-menu__section-text">
-          Componentes
+          OPCIONES
         </h4>
         <i class="m-menu__section-icon flaticon-more-v3"></i>
       </li>
@@ -52,17 +52,17 @@
 
             <?php
             if(Helpme::tiene_permiso('Controllers|index')){ ?>
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-user-ok"></i><span class="m-menu__link-text">Tamizajes</span>
-									 <i class="m-menu__ver-arrow la la-angle-right"></i></a>
-								<div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-									<ul class="m-menu__subnav">
-										<li class="m-menu__item " aria-haspopup="true">
-                      <a href="javascript:;" onclick="carga_archivo('contenedor_principal','tamizaje/violenciaMujeres');" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Mujeres víctimas de violencia de pareja</span></a></li>
-									</ul>
-								</div>
-							</li>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','asforms/transferencia');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Pago de siniestro vía transferencia</span></a>
+              </li>
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','asforms/identificacion');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Identificación persona física</span></a>
+              </li>
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','asforms/reclamacion');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Solicitud de reclamación</span></a>
+              </li>
+
             <?php } ?>
 
 
@@ -111,7 +111,7 @@
             <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
               <span class="m-menu__link">
                 <span class="m-menu__link-text">
-                  <?=env('APP_NAME')?>
+                  Framework
                 </span>
               </span>
             </li>

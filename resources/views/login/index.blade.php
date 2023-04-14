@@ -15,7 +15,7 @@
 		<link href="<?=env('APP_URL')?>assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="<?=env('APP_URL')?>css/app.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
-		<link rel="shortcut icon" href="<?=env('APP_URL')?>assets/demo/default/media/img/logo/favicon.ico?v=2" />
+		<link rel="shortcut icon" href="<?=env('APP_URL')?>assets/demo/default/media/img/logo/favicon.ico?v=5" />
 	</head>
 	<!-- end::Head -->
 	<!-- begin::Body -->
@@ -28,13 +28,14 @@
 					<div class="m-stack m-stack--hor m-stack--desktop">
 						<div class="m-stack__item m-stack__item--fluid">
 	            <div class="m-login__wrapper">
-	              <div class="m-login__logo"><?=env('APP_NAME')?></div>
+								<div style="text-align: center;" ><img src="<?=env('APP_URL')?>assets/demo/default/media/img/logo/logo_login.png"></div>
+	              <!--<div class="m-login__logo"><?=env('APP_NAME')?></div>-->
 
 	              <!--Formulario de inicio de sesion-->
 	              <div class="m-login__signin">
 	                <div class="m-login__head">
 	                  <h3 class="m-login__title">
-	                    Ingrese sus credenciales
+	                    <br>Ingrese sus credenciales
 	                  </h3>
 	                </div>
 	                <form class="m-login__form m-form" action="" id="form">

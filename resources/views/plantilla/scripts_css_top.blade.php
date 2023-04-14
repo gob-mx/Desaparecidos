@@ -36,4 +36,4 @@
 <!--Datatables-->
 <link href="<?=env('APP_URL')?>assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 
-<link rel="shortcut icon" href="<?=env('APP_URL')?>assets/demo/default/media/img/logo/favicon.ico?v=2" />
+<link rel="shortcut icon" href="<?=env('APP_URL')?>assets/demo/default/media/img/logo/favicon.ico?v=5" />

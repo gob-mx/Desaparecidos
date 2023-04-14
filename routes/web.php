@@ -10,13 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => 'tamizaje'], function(){
-    Route::get('/', 'Forap\Tamizaje@index');
-    Route::post('/nuevo_tamizaje', 'Forap\Tamizaje@nuevo_tamizaje');
-    Route::post('/listaTamizajes/{id_expediente}', 'Forap\Tamizaje@listaTamizajes');
-    Route::get('/tamizajeFSIAP/{token}', 'Forap\Tamizaje@tamizajeFSIAP');
-    Route::get('/violenciaMujeres', 'Forap\Tamizaje@violenciaMujeres');
-    Route::post('/violenciaMujeresGet', 'Forap\Tamizaje@violenciaMujeresGet');
+
+Route::group(['prefix' => 'asforms'], function(){
+    Route::get('/', 'Asforms\Formularios@index');
+    Route::post('/transferencia', 'Asforms\Formularios@transferencia');
+    Route::post('/identificacion', 'Asforms\Formularios@identificacion');
+    Route::post('/reclamacion', 'Asforms\Formularios@reclamacion');
 });
 
 Route::group(['prefix' => 'pdf'], function(){

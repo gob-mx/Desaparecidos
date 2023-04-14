@@ -32,10 +32,10 @@ class CredencialesApi
         print json_encode($datos);
         exit();
       }
-      if((Api::tokenExistente($_SERVER ['HTTP_TOKENFSIAP']))&&($_SERVER ['REQUEST_METHOD'] == 'POST')){
+      if((Api::tokenExistente($_SERVER ['HTTP_TOKEN']))&&($_SERVER ['REQUEST_METHOD'] == 'POST')){
         Config::auditarApi($request,'API-Middleware' ,$body, 'El tokenFSIAP esta duplicado', 'ERROR');
         $datos = [
-            'alert' => 'El tokenFSIAP esta duplicado'
+            'alert' => 'El token esta duplicado'
         ];
         print json_encode($datos);
         exit();

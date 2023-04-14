@@ -14,8 +14,8 @@ class populateUbicaciones extends Seeder
       DB::table('fw_ubicacion')->insert(
       array(
       'id_ubicacion'=>1,
-      'descripcion_ubicacion'=>'Dirección General de Informática',
-      'direccion'=>'Direccion',
+      'descripcion_ubicacion'=>'Oficinas Centrales',
+      'direccion'=>'Av. Miguel Alemán 5391-Local 10, La Purísima, 67129 Guadalupe, N.L.',
       'cat_tipo_ubicacion'=>1,
       'user_alta'=>0,
       'user_mod'=>0,
