@@ -11,11 +11,10 @@
 |
 */
 
-Route::group(['prefix' => 'asforms'], function(){
-    Route::get('/', 'Asforms\Formularios@index');
-    Route::post('/transferencia', 'Asforms\Formularios@transferencia');
-    Route::post('/identificacion', 'Asforms\Formularios@identificacion');
-    Route::post('/reclamacion', 'Asforms\Formularios@reclamacion');
+Route::group(['prefix' => 'wizard'], function(){
+    Route::get('/', 'Gfsiniestros\Wizard@index');
+    Route::get('/form', 'Gfsiniestros\Wizard@form');
+    Route::post('/nuevo_registro', 'Gfsiniestros\Wizard@nuevo_registro');
 });
 
 Route::group(['prefix' => 'pdf'], function(){

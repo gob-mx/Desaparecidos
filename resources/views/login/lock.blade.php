@@ -63,7 +63,7 @@
                     </form>
                 </div>
             </div>
-            <div class="page-footer-custom"> 2022 &copy; FGJCDMX <?=env('APP_NAME')?> </div>
+            <div class="page-footer-custom"> 2022 &copy; ASSEGURO <?=env('APP_NAME')?> </div>
         </div>
         <!--[if lt IE 9]>
 		<script src="<?=env('APP_URL')?>assets/plugins/respond.min.js"></script>

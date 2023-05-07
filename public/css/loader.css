@@ -11,15 +11,15 @@ body {
   z-index: 1000;
 }
 #initloader {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 162px;
   position: absolute;
   left:50%; top:50%;
   background: url(../img/asforms.svg) no-repeat center 0;
   margin:-50px 0 0 -50px;
 }
 #initloader:before {
-  content: " A S F O R M S ";
+  content: " G F S I N I E S T R O S ";
   display: inline-block;
 
   color: #FFF;
@@ -28,8 +28,8 @@ body {
 
   position: relative;
   font-size: 2em;
-  top: 120px;
-  width: 270px;
-  left: -70px;;
+  top: 168px;
+  width: 300px;
+  left: -88px;;
   text-align: center;
 }

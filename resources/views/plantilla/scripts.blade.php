@@ -58,5 +58,4 @@
 <script src="<?=env('APP_URL')?>assets/js/common.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/catalogo.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/wow.min.js"></script>
-<script src="<?=env('APP_URL')?>assets/js/pdf.js"></script>
-<script src="<?=env('APP_URL')?>assets/js/tamizaje.js"></script>
+<script src="<?=env('APP_URL')?>assets/js/wizard.js"></script>

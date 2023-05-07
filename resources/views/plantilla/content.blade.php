@@ -13,23 +13,3 @@
   </div>
 
 </div>
-
-<?php
-if($_SESSION['id_rol'] == 2){
-?>
-<script>
-jQuery(document).ready(function() {
-  $("#m_aside_left").remove(); // menu lateral izquierdo
-  //$("#m_header_topbar").remove(); // menu superior derecho logout
-  $('.m-footer').remove(); // pie de página
-  carga_archivo('contenedor_principal','tamizaje');
-});
-</script>
-<style>
-.m-header--fixed .m-body {
-    padding-top: 70px!important;
-}
-</style>
-<?php
-}
-?>

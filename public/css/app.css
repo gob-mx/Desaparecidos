@@ -519,7 +519,7 @@ padding-top: 5px;
 }
 
 .m-brand .m-brand__logo{
-  width: 130px;
+  width: 190px;
 }
 
 .m-brand .m-brand__logo .m-brand__logo-wrapper a{
@@ -752,4 +752,8 @@ z-index:50;
 
 .m-aside-left--minimize .m-aside-menu.m-aside-menu--submenu-skin-dark .m-menu__nav .m-menu__item:not([m-menu-submenu-mode=accordion]).m-menu__item--hover>.m-menu__submenu .m-menu__subnav .m-menu__item>.m-menu__link .m-menu__link-icon{
   color: #ffffff;
+}
+
+.m-brand.m-brand--skin-dark .m-brand__tools .m-brand__icon>i {
+    color: #FFFFFF !important;
 }
