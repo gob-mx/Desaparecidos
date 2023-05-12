@@ -23,7 +23,7 @@ class Wizard extends Controller
 
   public function form()
   {
-       return view('wizard/mainform');
+       return view('wizard/listado');
   }
   public function nuevo_registro()
   {

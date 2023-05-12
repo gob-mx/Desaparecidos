@@ -23,7 +23,7 @@
 				<div class="m-error_container">
 					<span class="m-error_number">
 						<h1>
-							401
+							401 Unauthorized
 						</h1>
 					</span>
 				</div>

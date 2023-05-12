@@ -23,7 +23,7 @@
 				<div class="m-error_container">
 					<span class="m-error_number">
 						<h1>
-							404
+							404 Not Found
 						</h1>
 					</span>
 				</div>

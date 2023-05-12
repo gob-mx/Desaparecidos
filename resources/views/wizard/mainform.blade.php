@@ -498,7 +498,7 @@ $("#breadcrumb-title").append(' / GF SNTE 5 / Wizard');
 						};
 
 						jQuery(document).ready(function() {
-						    WizardTamizaje.init()
+						    Wizard.init()
 								BootstrapSpinRiesgo.init()
 						});
 						</script>

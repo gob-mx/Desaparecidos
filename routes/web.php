@@ -10,6 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'solicitudes'], function(){
+    Route::get('/', 'Gfsiniestros\Solicitudes@index');
+    Route::post('/listado_solicitudes', 'Gfsiniestros\Solicitudes@listado_solicitudes');
+    Route::get('/modal_add_solicitud', 'Gfsiniestros\Solicitudes@modal_add_solicitud');
+    Route::post('/buscar', 'Gfsiniestros\Solicitudes@buscar');
+    Route::post('/insertar', 'Gfsiniestros\Solicitudes@insertar');
+});
 
 Route::group(['prefix' => 'wizard'], function(){
     Route::get('/', 'Gfsiniestros\Wizard@index');

@@ -23,7 +23,7 @@
 				<div class="m-error_container">
 					<span class="m-error_number">
 						<h1>
-							500
+							500 Internal Server Error
 						</h1>
 					</span>
 				</div>

@@ -23,7 +23,7 @@
 				<div class="m-error_container">
 					<span class="m-error_number">
 						<h1>
-							403
+							403 Forbidden
 						</h1>
 					</span>
 				</div>
