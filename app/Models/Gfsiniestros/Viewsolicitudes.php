@@ -34,29 +34,26 @@ class Viewsolicitudes extends Model
     return $dataTable->make();
   }
 
-  static function ou2($id){
+  static function ou2($id_solicitud){
 
 
     $salida = '
-    <a data-function="'.$id.'" class="usr_js_fn_03 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
-      <i class="flaticon-cogwheel"></i>
+    <a onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/'.$id_solicitud.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+      <i class="flaticon-users"></i>
     </a>
     ';
-    if(9 == 9){
-        $salida .= '
-        <a data-function="'.$id.'" id="usr_js_fn_07" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
-          <i class="flaticon-lock"></i>
-        </a>
-        ';
-    }
 
-    if(Helpme::tiene_permiso('Login|auditoria')){
-      $salida .= '
-      <a data-function="'.$id.'" class="usr_js_fn_09 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
-        <i class="flaticon-eye"></i>
-      </a>
-      ';
-    }
+    $salida .= '
+    <a onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/form_data/'.$id_solicitud.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+      <i class="flaticon-list-1"></i>
+    </a>
+    ';
+
+    $salida .= '
+    <a onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/upload/'.$id_solicitud.'\');" class="sol_js_fn_05 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+      <i class="flaticon-folder-3"></i>
+    </a>
+    ';
 
     return $salida;
   }

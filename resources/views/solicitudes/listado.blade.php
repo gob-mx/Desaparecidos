@@ -1,14 +1,21 @@
 <script>
 $("#breadcrumb-title").html('<?=env('APP_NAME')?>');
-$("#breadcrumb-title").append(' / GF SNTE 5 / Listado');
+$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listado\');">GF SNTE 5</a> ');
 </script>
 		<div class="m-portlet m-portlet--mobile">
 
 			<div class="m-portlet__head">
-				<div class="m-portlet__head-caption">
+				 <div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<h3 class="m-portlet__head-text">
+								Solicitudes
+							</h3>
+						</div>
+					</div>
+					<div class="m-portlet__head-caption">
 						<div class="col-xl-12 order-1 order-xl-2 m--align-right">
 
-							<a id="wzd_js_fn_01" href="javascript:;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+							<a id="sol_js_fn_01" href="javascript:;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
 								<span>
 									<i class="fa fa-users left"></i>
 									<span>
@@ -17,7 +24,6 @@ $("#breadcrumb-title").append(' / GF SNTE 5 / Listado');
 								</span>
 							</a>
 
-							<div class="m-separator m-separator--dashed d-xl-none"></div>
 						</div>
 				</div>
 			</div>
@@ -44,7 +50,7 @@ $("#breadcrumb-title").append(' / GF SNTE 5 / Listado');
         $('#solicitudes').dataTable( {
             responsive: true,
             "fnDrawCallback": function( oSettings ) {
-              /**/
+              $('[data-toggle="m-tooltip"]').tooltip();
             },
             "language": {
                 "url": "<?=env('APP_URL')?>assets/plugins/datatables/Spanish.json"

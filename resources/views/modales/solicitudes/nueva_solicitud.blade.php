@@ -76,10 +76,10 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Cancelar
               </button>
-              <button type="button" class="btn btn-primary" id="wzd_js_fn_02">
+              <button type="button" class="btn btn-primary" id="sol_js_fn_02">
                 Buscar
               </button>
-              <button type="button" class="btn btn-primary" id="wzd_js_fn_03">
+              <button type="button" class="btn btn-primary" id="sol_js_fn_03">
                 Agregar
               </button>
 						</div>

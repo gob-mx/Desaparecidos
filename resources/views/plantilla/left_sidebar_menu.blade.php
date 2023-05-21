@@ -51,13 +51,13 @@
 
             <?php  if(Helpme::tiene_permiso('Wizard|form')){ ?>
 
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','wizard/form');" class="m-menu__link m-menu__toggle">
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','solicitudes/listado');" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">GF SNTE 5</span></a>
               </li>
 
             <?php } ?>
 
-            <?php  if(Helpme::tiene_permiso('Wizard|form')){ ?>
+            <?php  if(Helpme::tiene_permiso('Wizard|formX')){ ?>
 
               <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="#" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Recupera</span></a>
@@ -87,7 +87,7 @@
 
       <?php
          if(
-           (Helpme::tiene_permiso('Wizard|form'))
+           (Helpme::tiene_permiso('Wizard|formx'))
          )
          {
       ?>

@@ -50,6 +50,7 @@
 
 <!--mis Librerias-->
 <script>var app_url = '<?=env('APP_URL')?>';</script>
+<script src="<?=env('APP_URL')?>assets/js/clabe.min.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/controllers.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/generales.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/inicio.js"></script>
@@ -58,4 +59,5 @@
 <script src="<?=env('APP_URL')?>assets/js/common.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/catalogo.js"></script>
 <script src="<?=env('APP_URL')?>assets/js/wow.min.js"></script>
-<script src="<?=env('APP_URL')?>assets/js/wizard.js"></script>
+<script src="<?=env('APP_URL')?>assets/js/solicitudes.js"></script>
+<script src="<?=env('APP_URL')?>assets/js/beneficiarios.js"></script>

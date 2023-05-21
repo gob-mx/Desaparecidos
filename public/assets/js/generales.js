@@ -1,4 +1,5 @@
 function carga_archivo(div_contenedor,ruta,parametros){
+	$('body').removeData();
 	$('body').addClass('m-page--loading-non-block');
 	$('#'+div_contenedor).load(ruta,parametros, function(){
 		$('body').removeClass('m-page--loading-non-block');
@@ -66,7 +67,7 @@ $("body").on("change", "#auditar_fecha_alta", function(){
 						  $('#register_logger_audit').append('<div class="m-timeline-2__item"><span class="m-timeline-2__item-time">' +	date + '</span><div class="m-timeline-2__item-cricle"><i class="fa fa-genderless m--font-danger"></i></div><div class="m-timeline-2__item-text  m--padding-top-5">' + b.descripcion + '<br><br></div></div>' );
 					});
 			},
-			error: function(respuesta){ alerta('Alerta!','Error de conectividad de red USR-02');}
+			error: function(respuesta){ alerta('Alerta!','Error de conectividad de red GRAL-02');}
 		});
 
 });
@@ -264,41 +265,41 @@ function habilita_dependiente_check(dependiente,check){
  * @type ID-curp
  */
 
-function validarCURP(input) {
-  var curp =  input.value.toUpperCase(),
-  resultado = document.getElementById("resultado"),
-  valido = false;
+ function validarCURP(input) {
+     var curp = input.value.toUpperCase(),
+         resultado = document.getElementById("resultado"),
+         valido = "<i class='fa fa-times red'></i>";
 
- if (curpValida(curp)) {
-  valido = true;
+     if (curpValida(curp)) { // ⬅️ Acá se comprueba
+     	   valido = "<i class='fa fa-check green'></i>";
+     }
+		 $("#resultado").html(valido);
  }
-
- return valido;
-}
 
 function curpValida(curp) {
-var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0\d|1[0-2])(?:[0-2]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-  validado = curp.match(re);
- if (!validado)  //Coincide con el formato general?
-  return false;
+    var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+        validado = curp.match(re);
 
- //Validar que coincida el dígito verificador
- function digitoVerificador(curp17) {
-     //Fuente https://consultas.curp.gob.mx/CurpSP/
-     var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
-         lngSuma      = 0.0,
-         lngDigito    = 0.0;
-     for(var i=0; i<17; i++)
-         lngSuma= lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
-     lngDigito = 10 - lngSuma % 10;
-     if(lngDigito == 10)
-         return 0;
-     return lngDigito;
- }
- if (validado[2] != digitoVerificador(validado[1]))
-  return false;
+    if (!validado)  //Coincide con el formato general?
+    	return false;
 
-return true; //Validado
+    //Validar que coincida el dígito verificador
+    function digitoVerificador(curp17) {
+        //Fuente https://consultas.curp.gob.mx/CurpSP/
+        var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+            lngSuma      = 0.0,
+            lngDigito    = 0.0;
+        for(var i=0; i<17; i++)
+            lngSuma = lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
+        lngDigito = 10 - lngSuma % 10;
+        if (lngDigito == 10) return 0;
+        return lngDigito;
+    }
+
+    if (validado[2] != digitoVerificador(validado[1]))
+    	return false;
+
+    return true; //Validado
 }
 
 
@@ -310,16 +311,14 @@ return true; //Validado
  */
 
 function validarRFC(input) {
-    var rfc         = input.value.trim().toUpperCase(),
-        valido = false;
+    var rfc = input.value.trim().toUpperCase(),
+		    resultado = document.getElementById("resultado2"),
+        valido = "<i class='fa fa-times red'></i>";
 
-    var rfcCorrecto = rfcValido(rfc);
-
-    if (rfcCorrecto) {
-    	valido = true;
-    }
-
-  return valido;
+				if (rfcValido(rfc)) { // ⬅️ Acá se comprueba
+	      	   valido = "<i class='fa fa-check green'></i>";
+	      }
+	 		 $("#resultado2").html(valido);
 }
 
 function rfcValido(rfc, aceptarGenerico = true) {
@@ -424,4 +423,231 @@ function resalta_seleccionado(id){
 $("body").on("focus", "[data-set_max_word]", function() {
 		var modo_max = Number($(this).data('set_max_word'));
 		$(this).maxlength({threshold: modo_max,warningClass:"m-badge m-badge--primary m-badge--rounded m-badge--wide",limitReachedClass:"m-badge m-badge--brand m-badge--rounded m-badge--wide",appendToParent:!0});
+});
+
+$("body").on("click", ".modal_dir", function() {
+		iden = $(this).attr('data-iden');
+		id = $(this).attr('data-id');
+		hidden = $(this).attr('data-hidden');
+			$.ajax({
+				headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				url: 'direcciones/modal_dir/' + iden + '/' + id + '/' + hidden ,
+				dataType: 'html',
+				success: function(resp_success){
+					var modal =  resp_success;
+					  $(modal).modal().on('shown.bs.modal',function(){
+					}).on('hidden.bs.modal',function(){
+						$(this).remove();
+					});
+				},
+				error: function(respuesta){ alerta('Alerta!','Error de conectividad de red GRAL-03');}
+			});
+});
+
+$("body").on("click", ".cp_search", function() {
+	    cp = $("#codigo_postal").val();
+
+			var msj_error="";
+			if( cp == "" )	msj_error+='Ingrese el código postal a buscar.<br />';
+
+			if( !msj_error == "" ){
+				alerta('Faltan datos', msj_error);
+				return false;
+			}
+
+			$.ajax({
+				headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				url: 'direcciones/cp_search/' + cp ,
+				type: 'POST',
+				dataType: 'html',
+				success: function(resp_success){
+						$("#asentamiento").html(resp_success);
+				},
+				error: function(respuesta){ alerta('Alerta!','Error de conectividad de red GRAL-04');}
+			});
+});
+
+
+$("body").on("change", "#asentamiento", function() {
+	id_cp = $("#asentamiento").val();
+	$.ajax({
+		headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		url: 'direcciones/get_all/' + id_cp ,
+		type: 'POST',
+		dataType: 'json',
+		success: function(resp_success){
+			$('#estado').val(resp_success['estado']);
+			$('#municipio').val(resp_success['municipio']);
+			$('#ciudad').val(resp_success['ciudad']);
+		},
+		error: function(respuesta){ alerta('Alerta!','Error de conectividad de red GRAL-04');}
+	});
+});
+
+$("body").on("click", "#gral_js_fn_01", function() {
+
+			var msj_error="";
+			if( $("#asentamiento").val() == "" )	msj_error+='Seleccione el asentamiento.<br />';
+			if( $("#calle").val() == "" )	msj_error+='Escriba la calle de la dirección.<br />';
+			if( $("#num_ext").val() == "" )	msj_error+='Escriba el número exterior.<br />';
+
+			if( !msj_error == "" ){
+				alerta('Faltan datos', msj_error);
+				return false;
+			}
+
+			$.ajax({
+				headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				url: 'direcciones/insert',
+				type: 'POST',
+				dataType: 'json',
+				data: $("#direccion").serialize(),
+				success: function(resp_success){
+					$('#' + $("#id").val()).val($("#calle").val() + ' ' + $("#num_ext").val() + ' ' + $('select[name="asentamiento"] option:selected').text());
+					$('#' + $("#hidden").val()).val(resp_success['id_direccion']); //se carga con el identificador del nuevo insert
+					$('#address_form').modal('hide');
+				},
+				error: function(respuesta){ alerta('Alerta!','Error de conectividad de red GRAL-04');}
+			});
+});
+
+$("body").on("click", ".portlet_dir", function() {
+			dir_id = $(this).attr('data-dir_id');
+			$('#' + $("#id").val()).val($(this).attr('data-dir_calle') + ' ' + $(this).attr('data-dir_num_ext') + ' ' + $(this).attr('data-dir_asentamiento'));
+			$('#' + $("#hidden").val()).val(dir_id); //se carga con el identificador guardado
+			$('#address_form').modal('hide');
+});
+
+$("body").on("click", "#add_nueva_dir", function() {
+
+			$("#dir_exist").css({'display':'none'});
+			$("#direccion").css({'display':''});
+			$("#footer_dir").css({'display':''});
+
+});
+
+$("body").on("click", "#add_exist_dir", function() {
+
+			$("#dir_exist").css({'display':''});
+			$("#direccion").css({'display':'none'});
+			$("#footer_dir").css({'display':'none'});
+
+});
+
+function validarEmail(input) {
+	var mail = input.value.trim().toLowerCase(),
+		  valido = "<i class='fa fa-times red'></i>";
+
+		if (emailValida(mail)) { // ⬅️ Acá se comprueba
+				valido = "<i class='fa fa-check green'></i>";
+		}
+		$("#resultado3").html(valido);
+}
+
+function emailValida(mail) {
+	 var re       = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+			 validado = String(mail).match(re);
+
+	 if (!validado)  //Coincide con el formato general?
+		 return false;
+
+	 return true; //Validado
+}
+
+function validarE_firma(input) {
+	var sign = input.value.trim(),
+		  valido = "<i class='fa fa-times red'></i>";
+
+		if (efirmaValida(sign)) { // ⬅️ Acá se comprueba
+				valido = "<i class='fa fa-check green'></i>";
+		}
+		$("#resultado4").html(valido);
+}
+
+function efirmaValida(sign) {
+	 var re       = /^\d{20}$/,
+			 validado = sign.match(re);
+
+	 if (!validado)  //Coincide con el formato general?
+		 return false;
+
+	 return true; //Validado
+}
+
+function validarTel(input) {
+	var tel = input.value.trim(),
+		  valido = "<i class='fa fa-phone red'></i>";
+
+		if (telValida(tel)) { // ⬅️ Acá se comprueba
+				valido = "<i class='fa fa-phone green'></i>";
+		}
+		$("#resultado5").html(valido);
+}
+
+function telValida(tel) {
+	 var re       = /^\d{10}$/,
+			 validado = tel.match(re);
+
+	 if (!validado)  //Coincide con el formato general?
+		 return false;
+
+	 return true; //Validado
+}
+
+function validarClabe(input) {
+	var clabeNum = input.value.trim(),
+	    clabeCheck = clabe.validate(clabeNum),
+		  valido = "<i class='fa fa-money-bill-alt red'></i>";
+			$("#banco").val(clabeCheck.bank);
+			$("#bank_id").val(clabeCheck.code.bank);
+		if (clabeCheck.ok) { // ⬅️ Acá se comprueba
+				valido = "<i class='fa fa-money-bill-alt green'></i>";
+		}
+		$("#resultado6").html(valido);
+}
+
+$("body").on("change", ".pais", function() {
+  id_estado = $(this).attr('data-estado');
+  estado = $("#" + id_estado).val();
+	pais = $("#" + $(this).attr('data-pais')).val();
+  ciudad = $(this).attr('data-change');
+  $('#'+ciudad).html('');
+	$.ajax({
+		headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		url: 'direcciones/get_estados/' + pais ,
+		type: 'POST',
+		dataType: 'html',
+		success: function(resp_success){
+			$('#' + id_estado).html(resp_success);
+		},
+		error: function(respuesta){ alerta('Alerta!','Error de conectividad de red SOL-05');}
+	});
+});
+
+$("body").on("change", ".estado", function() {
+	estado = $("#" + $(this).attr('data-estado')).val();
+	pais = $("#" + $(this).attr('data-pais')).val();
+  ciudad = $(this).attr('data-change');
+	$.ajax({
+		headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		url: 'direcciones/get_ciudades/' + estado + '/' + pais ,
+		type: 'POST',
+		dataType: 'html',
+		success: function(resp_success){
+			$('#' + ciudad).html(resp_success);
+		},
+		error: function(respuesta){ alerta('Alerta!','Error de conectividad de red SOL-05');}
+	});
 });

@@ -587,14 +587,14 @@ padding-top: 5px;
 
 .btn-primary {
     color: #fff;
-    background-color: #003765;
-    border-color: #003765;
+    background-color: #009cdf;
+    border-color: #009de0;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #2c5b82;
-    border-color: #2c5b82;
+    background-color: #009cdf;
+    border-color: #009de0;
 }
 .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__link .m-menu__link-text {
     color: #FFFFFF;
@@ -756,4 +756,52 @@ z-index:50;
 
 .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__icon>i {
     color: #FFFFFF !important;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    margin: 0;
+    font-family: "arial";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: normal;
+    line-break: auto;
+    font-size: .875rem;
+    word-wrap: break-word;
+    opacity: 0;
+}
+
+.tooltip .tooltip-inner {
+    color: #6f727d;
+    background: #fff;
+    -webkit-box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.1);
+    box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.1);
+    padding: 7px 20px 7px 20px;
+    font-size: 1rem;
+    border-radius: 30px;
+}
+
+.bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
+    left: 0;
+    border-width: 0.4rem 0 0.4rem 0.4rem;
+    border-left-color: #fff;
+}
+
+.red{
+  color:red !important;
+}
+
+.green{
+  color:green !important;
 }

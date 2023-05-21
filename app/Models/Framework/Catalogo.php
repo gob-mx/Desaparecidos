@@ -98,6 +98,73 @@ class Catalogo extends Model
       return Helpme::setOption($array,$id_cat);
   }
 
+
+  static function SelectEstados(){
+      $array = array();
+      $cat = DB::table('SPM_estados')
+            ->select('id','estado')
+            ->get();
+
+        $cont = 0;
+        foreach ($cat as $row) {
+            $array[$cont]['value']=$row->id;
+            $array[$cont]['valor']=$row->estado;
+            $cont++;
+        }
+
+      return Helpme::setOption($array,null);
+  }
+
+  static function SelectNacionalidades(){
+      $array = array();
+      $cat = DB::table('CAT_Nacionalidad')
+            ->select('id','Nacionalidad')
+            ->where('activo', '=', 1)
+            ->get();
+
+        $cont = 0;
+        foreach ($cat as $row) {
+            $array[$cont]['value']=$row->id;
+            $array[$cont]['valor']=$row->Nacionalidad;
+            $cont++;
+        }
+
+      return Helpme::setOption($array,110);
+  }
+
+  static function SelectOcupaciones(){
+      $array = array();
+      $cat = DB::table('CAT_Ocupaciones')
+            ->select('id','ocupacion')
+            ->get();
+
+        $cont = 0;
+        foreach ($cat as $row) {
+            $array[$cont]['value']=$row->id;
+            $array[$cont]['valor']=$row->ocupacion;
+            $cont++;
+        }
+
+      return Helpme::setOption($array,null);
+  }
+
+  static function SelectPaises(){
+      $array = array();
+      $cat = DB::table('CAT_Paises')
+            ->select('id','pais')
+            ->where('activo', '=', 1)
+            ->get();
+
+        $cont = 0;
+        foreach ($cat as $row) {
+            $array[$cont]['value']=$row->id;
+            $array[$cont]['valor']=$row->pais;
+            $cont++;
+        }
+
+      return Helpme::setOption($array,141);
+  }
+
   static function listaCatalogo(){
     $dataTable = new DT(
       Catalogo::where('id_cat', '>', 0),

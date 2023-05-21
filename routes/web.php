@@ -10,22 +10,58 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'upload'], function(){
+    Route::get('/', 'Gfsiniestros\Upload@index');
+    Route::post('/dropzone/{folder}', 'Gfsiniestros\Upload@dropzone');
+});
+
+Route::group(['prefix' => 'beneficiarios'], function(){
+    Route::get('/', 'Gfsiniestros\Beneficiarios@index');
+    Route::post('/listado_beneficiarios/{id_solicitud}', 'Gfsiniestros\Beneficiarios@listado_beneficiarios');
+    Route::get('/list/{id_solicitud}', 'Gfsiniestros\Beneficiarios@list');
+    Route::get('/datos/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@datos');
+    Route::get('/upload/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@upload');
+    Route::post('/update_poliza_designacion/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_poliza_designacion');
+    Route::post('/update_comprobante_domicilio/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_comprobante_domicilio');
+    Route::post('/update_comprobante_domicilio_extranjero/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_comprobante_domicilio_extranjero');
+    Route::post('/update_ine/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_ine');
+    Route::post('/update_fto_pld/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_fto_pld');
+    Route::post('/update_fto_transferencia/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_fto_transferencia');
+    Route::post('/update_estado_cuenta/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_estado_cuenta');
+    Route::post('/update_cedula_fiscal/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_cedula_fiscal');
+    Route::post('/update_curp/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_curp');
+    Route::post('/update_comprobante_fiel/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_comprobante_fiel');
+    Route::get('/form_data/{id_beneficiario}/{id_solicitud}', 'Gfsiniestros\Beneficiarios@form_data');
+});
+
 Route::group(['prefix' => 'solicitudes'], function(){
     Route::get('/', 'Gfsiniestros\Solicitudes@index');
     Route::post('/listado_solicitudes', 'Gfsiniestros\Solicitudes@listado_solicitudes');
     Route::get('/modal_add_solicitud', 'Gfsiniestros\Solicitudes@modal_add_solicitud');
+    Route::get('/modal_edit_solicitud/{id_solicitud}', 'Gfsiniestros\Solicitudes@modal_edit_solicitud');
     Route::post('/buscar', 'Gfsiniestros\Solicitudes@buscar');
     Route::post('/insertar', 'Gfsiniestros\Solicitudes@insertar');
-});
-
-Route::group(['prefix' => 'wizard'], function(){
-    Route::get('/', 'Gfsiniestros\Wizard@index');
-    Route::get('/form', 'Gfsiniestros\Wizard@form');
-    Route::post('/nuevo_registro', 'Gfsiniestros\Wizard@nuevo_registro');
+    Route::get('/listado', 'Gfsiniestros\Solicitudes@listado');
+    Route::post('/nuevo_registro', 'Gfsiniestros\Solicitudes@nuevo_registro');
+    Route::get('/upload/{id_solicitud}', 'Gfsiniestros\Solicitudes@upload');
+    Route::post('/update_ine/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_ine');
+    Route::post('/update_act_nac/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_act_nac');
+    Route::post('/update_act_def/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_act_def');
+    Route::post('/update_fto_rec/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_fto_rec');
+    Route::get('/form_data/{id_solicitud}', 'Gfsiniestros\Solicitudes@form_data');
 });
 
 Route::group(['prefix' => 'pdf'], function(){
     Route::get('/{id_evaluacion}', 'Forap\Pdf@index');
+});
+
+Route::group(['prefix' => 'direcciones'], function(){
+    Route::get('/modal_dir/{iden}/{id}/{hidden}', 'Framework\Direcciones@modal_dir');
+    Route::post('/cp_search/{cp}', 'Framework\Direcciones@cp_search');
+    Route::post('/get_all/{id_cp}', 'Framework\Direcciones@get_all');
+    Route::post('/insert', 'Framework\Direcciones@insert');
+    Route::post('/get_ciudades/{estado}/{pais}', 'Framework\Direcciones@get_ciudades');
+    Route::post('/get_estados/{pais}', 'Framework\Direcciones@get_estados');
 });
 
 Route::group(['prefix' => 'webhook'], function(){
