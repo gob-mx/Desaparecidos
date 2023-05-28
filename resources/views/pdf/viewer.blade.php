@@ -1,5 +1,4 @@
 <script>
-//$("#breadcrumb-title").html('<?=env('APP_NAME')?>');
 $("#breadcrumb-title").append('<?=$datos['breadcrumbs']?>');
 </script>
 

@@ -34,7 +34,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
               <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_1_4" role="tab">Fallecimiento</a>
             </li>
           </ul>
-          <form>
+          <form id="datos_asegurado">
             <div class="tab-content">
                   <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
 
@@ -43,8 +43,8 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         ¿Cual fue su último domicilio?
                       </label>
                       <div class="input-group col-10">
-                        <input type="text" class="form-control" id="id_domicilio_cuando_fallecio" readonly name="id_domicilio_cuando_fallecio" value="">
-                        <input id="id_dom_1" name="id_dom_1" type="hidden" value="">
+                        <input type="text" class="form-control" id="id_domicilio_cuando_fallecio" readonly name="id_domicilio_cuando_fallecio" value="<?=$datos['humanAddress1']?>">
+                        <input id="id_dom_1" name="id_dom_1" type="hidden" value="<?=$datos['asegurado']->id_domicilio_cuando_fallecio?>">
                         <div class="input-group-append">
                           <a class="btn btn-secondary modal_dir" data-iden="<?=$datos['id_solicitud']?>"  data-id="id_domicilio_cuando_fallecio" data-hidden="id_dom_1" type='link'>Direcciones...</a>
                         </div>
@@ -55,13 +55,13 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         ¿Cual fué su lugar de nacimiento?
                       </label>
                       <div class="col-3">
-                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input pais" id="pais_as" name="pais_as"><?=$datos['paises']?></select>
+                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input pais" id="pais_as" name="pais_as"><?=$datos['paises1']?></select>
                       </div>
                       <div class="col-3">
-                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input estado" id="entidad_as" name="entidad_as"><option><?=$datos['estados']?></option></select>
+                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input estado" id="entidad_as" name="entidad_as"><option><?=$datos['estados1']?></option></select>
                       </div>
                       <div class="col-4">
-                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input" id="ciudad_nac" name="ciudad_nac"><option>Seleccione primero el estado</option></select>
+                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input" id="ciudad_nac" name="ciudad_nac"><?=$datos['ciudades1']?></select>
                       </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -78,7 +78,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-4">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="curp" oninput="validarCURP(this)" onkeyup="this.value = this.value.toUpperCase();" name="curp" placeholder="Ingrese su CURP" value="">
+                          <input type="text" class="form-control m-input" id="curp" oninput="validarCURP(this)" onkeyup="this.value = this.value.toUpperCase();" name="curp" placeholder="Ingrese su CURP" value="<?=$datos['asegurado']->curp?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado"><i class="fa fa-times red"></i></span></span>
                         </div>
                       </div>
@@ -93,7 +93,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Número de Polizas
                       </label>
                       <div class="col-4">
-                        <input class="form-control m-input" type="text" id="no_polizas" name="no_polizas" placeholder="Número de polizas" value="">
+                        <input class="form-control m-input" type="text" id="no_polizas" name="no_polizas" placeholder="Número de polizas" value="<?=$datos['no_poliza']?>">
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
                         Tipo de Seguro
@@ -115,7 +115,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         No. de Certificado
                       </label>
                       <div class="col-4">
-                        <input class="form-control m-input" type="text" id="no_certificado" name="no_certificado" placeholder="No. de Certificado" value="">
+                        <input class="form-control m-input" type="text" id="no_certificado" name="no_certificado" placeholder="No. de Certificado" value="<?=$datos['certificado']?>">
                       </div>
                     </div>
 
@@ -128,7 +128,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Número de afiliación al IMSS o al ISSSTE
                       </label>
                       <div class="col-4">
-                        <input class="form-control m-input" type="text" id="afiliacion_imss_issste" name="afiliacion_imss_issste" placeholder="Número de afiliación al IMSS o al ISSSTE" value="">
+                        <input class="form-control m-input" type="text" id="afiliacion_imss_issste" name="afiliacion_imss_issste" placeholder="Número de afiliación al IMSS o al ISSSTE" value="<?=$datos['asegurado']->afiliacion_imss_issste?>">
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
                         Ocupación
@@ -151,7 +151,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Antigüedad en la Empresa
                       </label>
                       <div class="col-4">
-                        <input class="form-control m-input spin_antiguedad" readonly type="text" id="antiguedad_en_empresa" name="antiguedad_en_empresa" placeholder="Antiguedad en años" value="">
+                        <input class="form-control m-input spin_antiguedad" readonly type="text" id="antiguedad_en_empresa" name="antiguedad_en_empresa" placeholder="Antiguedad en años" value="<?=$datos['asegurado']->antiguedad_en_empresa?>">
                       </div>
                     </div>
 
@@ -160,8 +160,8 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Domicilio de la Empresa
                       </label>
                       <div class="input-group col-4">
-                        <input type="text" class="form-control" id="id_domicilio_empresa" readonly name="id_domicilio_empresa" value="Emilio Carranza 300 Saltillo Centro">
-                        <input id="id_dom_2" name="id_dom_2" type="hidden" value="1">
+                        <input type="text" class="form-control" id="id_domicilio_empresa" readonly name="id_domicilio_empresa" value="<?=$datos['humanAddress2']?>">
+                        <input id="id_dom_2" name="id_dom_2" type="hidden" value="<?=$datos['asegurado']->id_domicilio_empresa?>">
                         <div class="input-group-append">
                           <a class="btn btn-secondary modal_dir" data-iden="<?=$datos['id_solicitud']?>"  data-id="id_domicilio_empresa" data-hidden="id_dom_2" type='link'>Direcciones...</a>
                         </div>
@@ -184,13 +184,13 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         ¿Ciudad?
                       </label>
                       <div class="col-3">
-                          <select data-pais="pais_fall" data-estado="entidad_fall" data-change="id_lugar" id="pais_fall" name="pais_fall" readonly class="form-control m-input pais"><?=$datos['paises']?></select>
+                          <select data-pais="pais_fall" data-estado="entidad_fall" data-change="id_lugar" id="pais_fall" name="pais_fall" readonly class="form-control m-input pais"><?=$datos['paises2']?></select>
                       </div>
                       <div class="col-3">
-                          <select data-pais="pais_fall" data-estado="entidad_fall" data-change="id_lugar" id="entidad_fall" name="entidad_fall" readonly class="form-control m-input estado"><option><?=$datos['estados']?></option></select>
+                          <select data-pais="pais_fall" data-estado="entidad_fall" data-change="id_lugar" id="entidad_fall" name="entidad_fall" readonly class="form-control m-input estado"><option><?=$datos['estados2']?></option></select>
                       </div>
                       <div class="col-4">
-                          <select data-pais="pais_fall" data-estado="entidad_fall" data-change="id_lugar" id="id_lugar" name="id_lugar" readonly class="form-control m-input"><option>Seleccione primero el estado</option></select>
+                          <select data-pais="pais_fall" data-estado="entidad_fall" data-change="id_lugar" id="id_lugar" name="id_lugar" readonly class="form-control m-input"><?=$datos['ciudades2']?></select>
                       </div>
 
                     </div>
@@ -208,13 +208,13 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Fecha:
                       </label>
                       <div class="col-2">
-                        <input class="form-control m-input" type="date" id="fecha_fallecimiento" name="fecha_fallecimiento" placeholder="Fecha de fallecimiento" value="">
+                        <input class="form-control m-input" type="date" id="fecha_fallecimiento" name="fecha_fallecimiento" placeholder="Fecha de fallecimiento" value="<?=$datos['fallecido']->fecha_fallecimiento?>">
                       </div>
                       <label for="example-text-input" class="col-1 col-form-label">
                         Causa:
                       </label>
                       <div class="col-5">
-                        <input class="form-control m-input" type="text"  id="causa_fallecimiento" name="causa_fallecimiento" placeholder="Causa del fallecimiento" value="">
+                        <input class="form-control m-input" type="text"  id="causa_fallecimiento" name="causa_fallecimiento" placeholder="Causa del fallecimiento" value="<?=$datos['fallecido']->causa_fallecimiento?>">
                       </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -222,13 +222,13 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Agencia de servicios funerarios
                       </label>
                       <div class="col-6">
-                        <input class="form-control m-input" type="text" id="agencia_servicio_funerario" name="agencia_servicio_funerario" placeholder="Agencia que proporcionó los servicios funerarios" value="">
+                        <input class="form-control m-input" type="text" id="agencia_servicio_funerario" name="agencia_servicio_funerario" placeholder="Agencia que proporcionó los servicios funerarios" value="<?=$datos['fallecido']->agencia_servicio_funerario?>">
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
                         Fecha de servicios funerarios
                       </label>
                       <div class="col-2">
-                        <input class="form-control m-input" type="date" id="fecha_servicios_funerarios" name="fecha_servicios_funerarios" placeholder="Fecha de los servicios funerarios" value="">
+                        <input class="form-control m-input" type="date" id="fecha_servicios_funerarios" name="fecha_servicios_funerarios" placeholder="Fecha de los servicios funerarios" value="<?=$datos['fallecido']->fecha_servicios_funerarios?>">
                       </div>
                     </div>
                     <div class="form-group m-form__group row">
@@ -236,7 +236,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         En caso de muerte violenta, indique que autoridad tomó Conocimiento del hecho:
                       </label>
                       <div class="col-8">
-                        <input class="form-control m-input" type="text" id="autoridad_tomo_hechos_violentos" name="autoridad_tomo_hechos_violentos" value="">
+                        <input class="form-control m-input" type="text" id="autoridad_tomo_hechos_violentos" name="autoridad_tomo_hechos_violentos" value="<?=$datos['fallecido']->autoridad_tomo_hechos_violentos?>">
                       </div>
                     </div>
 
@@ -286,6 +286,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
           }
       };
       jQuery(document).ready(function() {
+          window.onload = validarCURP(document.getElementById("curp"));
           Select2.init();
           BootstrapSpin2.init();
       });

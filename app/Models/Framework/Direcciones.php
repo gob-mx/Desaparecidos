@@ -56,6 +56,24 @@ class Direcciones extends Model
 
   }
 
+  static function getHumanAddress($id){
+
+    $data = DB::table('AS_Direcciones AS asd')
+              ->join('SPM_CP AS cp','asd.id_cp', '=', 'cp.id')
+              ->join('SPM_estados AS edo','cp.id_estado', '=', 'edo.id')
+              ->join('SPM_municipios AS mpio','cp.id_municipio', '=', 'mpio.id')
+              ->join('SPM_ciudades AS cty','cp.id_ciudad', '=', 'cty.id')
+              ->select('asd.id',	'asd.calle', 'asd.num_ext', 'asd.num_int', 'cp.asentamiento','cp.codigo_postal', 'edo.estado','cty.ciudad', 'mpio.municipio')
+              ->where('asd.id_solicitud', '=', $id)
+              ->get();
+    if(isset($data[0])){
+      return $data[0]->calle.' '.$data[0]->num_ext.' '.$data[0]->num_int.' '.$data[0]->asentamiento;
+    }else{
+      return null;
+    }
+
+  }
+
   static function insert($request){
     $id = DB::table('AS_Direcciones')->insertGetId(
         [
@@ -74,8 +92,40 @@ class Direcciones extends Model
     return $datos;
   }
 
-  static function get_ciudades($id_estado,$id_pais){
+  static function get_estados($id_pais,$id=null){
       $array = array();
+      $cat = array();
+
+      switch ($id_pais) {
+        case 141:
+            $cat = DB::table('SPM_estados AS mex')
+                  ->select(	'mex.id as id', 'mex.estado as estado')
+                  ->orderBy('mex.estado', 'asc')
+                  ->get();
+            break;
+        case 65:
+            $cat = DB::table('CAT_Estados_usa AS usa')
+                  ->select(	'usa.clave1 as id', 'usa.estado')
+                  ->groupBy('usa.estado')
+                  ->orderBy('usa.estado', 'asc')
+                  ->get();
+            break;
+      }
+
+        $cont = 0;
+        foreach ($cat as $row) {
+            $array[$cont]['value']=$row->id;
+            $array[$cont]['valor']=$row->estado;
+            $cont++;
+        }
+
+      return Helpme::setOption($array,$id);
+  }
+
+  static function get_ciudades($id_pais,$id_estado,$id=null){
+      $array = array();
+      $cat = array();
+
       switch ($id_pais) {
         case 141:
             $cat = DB::table('SPM_CP AS cp')
@@ -103,35 +153,7 @@ class Direcciones extends Model
             $cont++;
         }
 
-      return Helpme::setOption($array,null);
-  }
-
-  static function get_estados($id_pais){
-    $array = array();
-    switch ($id_pais) {
-      case 141:
-          $cat = DB::table('SPM_estados AS mex')
-                ->select(	'mex.id as id', 'mex.estado as edo')
-                ->orderBy('mex.estado', 'asc')
-                ->get();
-          break;
-      case 65:
-          $cat = DB::table('CAT_Estados_usa AS usa')
-                ->select(	'usa.clave1 as id',	'usa.estado as edo')
-                ->groupBy('usa.estado')
-                ->orderBy('usa.estado', 'asc')
-                ->get();
-          break;
-    }
-
-        $cont = 0;
-        foreach ($cat as $row) {
-            $array[$cont]['value']=$row->id;
-            $array[$cont]['valor']=$row->edo;
-            $cont++;
-        }
-
-      return Helpme::setOption($array,null);
+      return Helpme::setOption($array,$id);
   }
 
 }

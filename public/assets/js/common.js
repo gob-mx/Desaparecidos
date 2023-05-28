@@ -58,6 +58,7 @@ $("body").on("click", ".loginfn", function() {
 		        /**/
 		    },
 				success: function(respuesta){
+					console.log(respuesta);
 					if(respuesta[0].resp=='acceso_correcto'){
 						if(respuesta[2].via == 'correcta'){
 							if(respuesta[1].dispositivo=='celular'){

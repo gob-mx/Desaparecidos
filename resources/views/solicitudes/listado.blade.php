@@ -33,9 +33,8 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 					<thead>
 						<tr>
 								<th>ID</th>
-								<th>Nombre</th>
-								<th>Paterno</th>
-								<th>Materno</th>
+								<th>Agente</th>
+								<th>Asegurado</th>
 								<th>RFC</th>
 								<th>Forma de Pago</th>
 								<th># Beneficiarios</th>

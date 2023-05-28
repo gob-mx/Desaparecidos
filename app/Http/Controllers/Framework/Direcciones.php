@@ -42,9 +42,9 @@ class Direcciones extends Controller
     print json_encode (ModelDirecciones::insert($request));
   }
 
-  public function get_ciudades($id_estado,$id_pais)
+  public function get_ciudades($id_pais,$id_estado)
   {
-    echo ModelDirecciones::get_ciudades($id_estado,$id_pais);
+    echo ModelDirecciones::get_ciudades($id_pais,$id_estado);
   }
 
   public function get_estados($id_pais)

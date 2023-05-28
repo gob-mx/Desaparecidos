@@ -10,16 +10,42 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'viewer'], function(){
+    Route::get('/{database}/{documento}/{id}', 'Gfsiniestros\Viewer@index');
+});
+
+Route::group(['prefix' => 'pdfpld'], function(){
+    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdfpld@index');
+});
+
+Route::group(['prefix' => 'pdfpldext'], function(){
+    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdfpldext@index');
+});
+
+Route::group(['prefix' => 'pdfreclamacion'], function(){
+    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdfreclamacion@index');
+});
+
+Route::group(['prefix' => 'pdftransferencia'], function(){
+    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdftransferencia@index');
+});
+
 Route::group(['prefix' => 'upload'], function(){
     Route::get('/', 'Gfsiniestros\Upload@index');
     Route::post('/dropzone/{folder}', 'Gfsiniestros\Upload@dropzone');
 });
 
 Route::group(['prefix' => 'beneficiarios'], function(){
+    Route::post('/datos_beneficiario', 'Gfsiniestros\Beneficiarios@datos_beneficiario');
+    Route::get('/modal_add_beneficiario/{id_solicitud}', 'Gfsiniestros\Beneficiarios@modal_add_beneficiario');
+    Route::post('/addBeneficiario', 'Gfsiniestros\Beneficiarios@addBeneficiario');
+    Route::get('/modal_edit_beneficiario/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@modal_edit_beneficiario');
+    Route::post('/editBeneficiario', 'Gfsiniestros\Beneficiarios@editBeneficiario');
     Route::get('/', 'Gfsiniestros\Beneficiarios@index');
     Route::post('/listado_beneficiarios/{id_solicitud}', 'Gfsiniestros\Beneficiarios@listado_beneficiarios');
+    Route::post('/listado_beneficiarios_admin/{id_solicitud}', 'Gfsiniestros\Beneficiarios@listado_beneficiarios_admin');
     Route::get('/list/{id_solicitud}', 'Gfsiniestros\Beneficiarios@list');
-    Route::get('/datos/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@datos');
+    Route::get('/listadmin/{id_solicitud}', 'Gfsiniestros\Beneficiarios@listadmin');
     Route::get('/upload/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@upload');
     Route::post('/update_poliza_designacion/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_poliza_designacion');
     Route::post('/update_comprobante_domicilio/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_comprobante_domicilio');
@@ -32,16 +58,22 @@ Route::group(['prefix' => 'beneficiarios'], function(){
     Route::post('/update_curp/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_curp');
     Route::post('/update_comprobante_fiel/{id_beneficiario}/{file}', 'Gfsiniestros\Beneficiarios@update_comprobante_fiel');
     Route::get('/form_data/{id_beneficiario}/{id_solicitud}', 'Gfsiniestros\Beneficiarios@form_data');
+    Route::post('/delete/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@delete');
 });
 
 Route::group(['prefix' => 'solicitudes'], function(){
+    Route::post('/datos_asegurado', 'Gfsiniestros\Solicitudes@datos_asegurado');
     Route::get('/', 'Gfsiniestros\Solicitudes@index');
     Route::post('/listado_solicitudes', 'Gfsiniestros\Solicitudes@listado_solicitudes');
+    Route::post('/listado_solicitudes_filter', 'Gfsiniestros\Solicitudes@listado_solicitudes_filter');
     Route::get('/modal_add_solicitud', 'Gfsiniestros\Solicitudes@modal_add_solicitud');
+    Route::get('/modal_crm/{id_solicitud}', 'Gfsiniestros\Solicitudes@modal_crm');
+    Route::post('/add_mensaje', 'Gfsiniestros\Solicitudes@add_mensaje');
     Route::get('/modal_edit_solicitud/{id_solicitud}', 'Gfsiniestros\Solicitudes@modal_edit_solicitud');
     Route::post('/buscar', 'Gfsiniestros\Solicitudes@buscar');
     Route::post('/insertar', 'Gfsiniestros\Solicitudes@insertar');
     Route::get('/listado', 'Gfsiniestros\Solicitudes@listado');
+    Route::get('/listadofilter', 'Gfsiniestros\Solicitudes@listadofilter');
     Route::post('/nuevo_registro', 'Gfsiniestros\Solicitudes@nuevo_registro');
     Route::get('/upload/{id_solicitud}', 'Gfsiniestros\Solicitudes@upload');
     Route::post('/update_ine/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_ine');
@@ -51,16 +83,12 @@ Route::group(['prefix' => 'solicitudes'], function(){
     Route::get('/form_data/{id_solicitud}', 'Gfsiniestros\Solicitudes@form_data');
 });
 
-Route::group(['prefix' => 'pdf'], function(){
-    Route::get('/{id_evaluacion}', 'Forap\Pdf@index');
-});
-
 Route::group(['prefix' => 'direcciones'], function(){
     Route::get('/modal_dir/{iden}/{id}/{hidden}', 'Framework\Direcciones@modal_dir');
     Route::post('/cp_search/{cp}', 'Framework\Direcciones@cp_search');
     Route::post('/get_all/{id_cp}', 'Framework\Direcciones@get_all');
     Route::post('/insert', 'Framework\Direcciones@insert');
-    Route::post('/get_ciudades/{estado}/{pais}', 'Framework\Direcciones@get_ciudades');
+    Route::post('/get_ciudades/{pais}/{estado}', 'Framework\Direcciones@get_ciudades');
     Route::post('/get_estados/{pais}', 'Framework\Direcciones@get_estados');
 });
 

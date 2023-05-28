@@ -133,11 +133,10 @@ class Usuarios extends Controller
         $chge_pass = ModelUsuarios::cambiar_password($request->input('password1'),$_SESSION['id_usuario']);
       }
 
-      \Debugbar::info('>'.$chge_pass);
 
       if($chge_pass >= 0){
         $set_pass_chge = ModelUsuarios::pass_chge_stat(11,$_SESSION['id_usuario']);
-        \Debugbar::info('>>'.$set_pass_chge);
+
         if($set_pass_chge >= 0){
           $respuesta = array('resp' => true , 'dispositivo' => $_SESSION['dispositivo'] );
         }else{
@@ -181,7 +180,7 @@ class Usuarios extends Controller
 
       if(!is_dir($upload_dir)){
         if(!mkdir($upload_dir, 0777, true)) {
-            Debugbar::info('Error al crear la estructura del directorio');
+            dd('Error al crear la estructura del directorio');
             exit();
         }
       }
@@ -189,7 +188,7 @@ class Usuarios extends Controller
       $allowed_ext = array('jpg','jpeg','png','gif','pdf');
 
       if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
-        Debugbar::info('Error! Error en el metodo HTTP!'.$_SERVER['REQUEST_METHOD']);
+        dd('Error! Error en el metodo HTTP!'.$_SERVER['REQUEST_METHOD']);
       }
 
       if(((strpos($_FILES['file']['type'], 'image') !== false) ||
@@ -201,7 +200,7 @@ class Usuarios extends Controller
         $allowed_ext = array('jpg','jpeg','png','gif');
 
         if(!in_array(self::get_extension($pic['name']),$allowed_ext)){
-          Debugbar::info('Solo las extensiones '.implode(',',$allowed_ext).' son permitidas!');
+          dd('Solo las extensiones '.implode(',',$allowed_ext).' son permitidas!');
         }
         */
         $extension_or = pathinfo($pic['name']);
@@ -218,7 +217,7 @@ class Usuarios extends Controller
           echo $temporal.'|'.$original;
         }
       }else{
-        Debugbar::info('Algunos errores ocurrieron al actualizar el avatar: '.strpos($_FILES['file']['type'], 'image'));
+        dd('Algunos errores ocurrieron al actualizar el avatar: '.strpos($_FILES['file']['type'], 'image'));
       }
     }else{
       return redirect()->action('Framework\Login@error403');

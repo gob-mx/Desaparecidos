@@ -1,6 +1,6 @@
 <script>
 $("#breadcrumb-title").html('<?=env('APP_NAME')?>');
-$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listado\');">GF SNTE 5</a> /  <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/<?=$datos['id_solicitud']?>\');">Beneficiarios</a>');
+$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listado\');">GF SNTE 5</a> /  <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/listadmin/<?=$datos['id_solicitud']?>\');">Beneficiarios</a>');
 </script>
 		<div class="m-portlet m-portlet--mobile">
 
@@ -60,7 +60,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 								"headers": {
 								'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 								},
-                "url": "beneficiarios/listado_beneficiarios/<?=$datos['id_solicitud']?>",
+                "url": "beneficiarios/listado_beneficiarios_admin/<?=$datos['id_solicitud']?>",
                 "type": "POST"
             }
         } );

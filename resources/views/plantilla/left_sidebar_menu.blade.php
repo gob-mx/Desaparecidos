@@ -22,7 +22,7 @@
 
       <?php
          if(
-           (Helpme::tiene_permiso('Wizard|form'))
+           (Helpme::tiene_permiso('Solicitudes|listado'))
          )
          {
       ?>
@@ -49,7 +49,7 @@
 
 
 
-            <?php  if(Helpme::tiene_permiso('Wizard|form')){ ?>
+            <?php  if(Helpme::tiene_permiso('Solicitudes|listado')){ ?>
 
               <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','solicitudes/listado');" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">GF SNTE 5</span></a>
@@ -57,7 +57,15 @@
 
             <?php } ?>
 
-            <?php  if(Helpme::tiene_permiso('Wizard|formX')){ ?>
+            <?php  if(Helpme::tiene_permiso('Solicitudes|listado')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','solicitudes/listadofilter');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Mis&nbsp;Solicitudes</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Unknown|formX')){ ?>
 
               <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="#" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Recupera</span></a>

@@ -1,5 +1,6 @@
 function carga_archivo(div_contenedor,ruta,parametros){
 	$('body').removeData();
+	$('.tooltip').hide();
 	$('body').addClass('m-page--loading-non-block');
 	$('#'+div_contenedor).load(ruta,parametros, function(){
 		$('body').removeClass('m-page--loading-non-block');
@@ -322,7 +323,8 @@ function validarRFC(input) {
 }
 
 function rfcValido(rfc, aceptarGenerico = true) {
-    const re       = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
+    //const re       = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
+		const re       = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)? ?(?:([A-Z\d]{2})([A\d]) ?)?$/;
     var   validado = rfc.match(re);
 
 
@@ -583,6 +585,7 @@ function efirmaValida(sign) {
 }
 
 function validarTel(input) {
+	console.log(input);
 	var tel = input.value.trim(),
 		  valido = "<i class='fa fa-phone red'></i>";
 
@@ -614,6 +617,12 @@ function validarClabe(input) {
 		$("#resultado6").html(valido);
 }
 
+function clabeValida(clabeNum) {
+	    clabeNum = clabeNum.trim();
+	    clabeCheck = clabe.validate(clabeNum);
+			return clabeCheck.ok;
+}
+
 $("body").on("change", ".pais", function() {
   id_estado = $(this).attr('data-estado');
   estado = $("#" + id_estado).val();
@@ -642,7 +651,7 @@ $("body").on("change", ".estado", function() {
 		headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		},
-		url: 'direcciones/get_ciudades/' + estado + '/' + pais ,
+		url: 'direcciones/get_ciudades/' + pais + '/' + estado ,
 		type: 'POST',
 		dataType: 'html',
 		success: function(resp_success){

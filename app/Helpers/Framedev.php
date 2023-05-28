@@ -135,6 +135,13 @@ class Framedev {
       copy('../storage/'.$newfldr.'/'.$imagen, $tmp.$destino);
       return $destino;
     }
+    public static function duplicatePublicNoDelete($imagen,$newfldr){
+      $token = self::token();
+      $destino = $token.$imagen;
+      $tmp = '../public/tmp/';
+      copy('../storage/'.$newfldr.'/'.$imagen, $tmp.$destino);
+      return $destino;
+    }
      public static function getYearsOld($date) {
        list($Y,$m,$d) = explode("-",$date);
        return( date("md") < $m.$d ? date("Y")-$Y-1 : date("Y")-$Y );

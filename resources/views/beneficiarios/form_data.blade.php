@@ -34,7 +34,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
               <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_1_4" role="tab">Bancarios</a>
             </li>
           </ul>
-          <form id="beneficiario">
+          <form id="datos_beneficiario">
             <div class="tab-content">
                   <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
 
@@ -43,8 +43,8 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         ¿Cual es su domicilio?
                       </label>
                       <div class="input-group col-5">
-                        <input type="text" class="form-control" id="id_direccion" readonly name="id_direccion" value="">
-                        <input id="id_dom_4" name="id_dom_4" type="hidden" value="">
+                        <input type="text" class="form-control" id="id_direccion" readonly name="id_direccion" value="<?=$datos['humanAddress']?>">
+                        <input id="id_dom_4" name="id_dom_4" type="hidden" value="<?=$datos['beneficiarioData']->id_direccion?>">
                         <div class="input-group-append">
                           <a class="btn btn-secondary modal_dir" data-iden="<?=$datos['id_solicitud']?>"  data-id="id_direccion" data-hidden="id_dom_4" type='link'>Direcciones...</a>
                         </div>
@@ -54,7 +54,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-3">
                         <select class="form-control m-select2" id="id_pais_nacimiento" name="id_pais_nacimiento">
-                          <?=$datos['paises']?>
+                          <?=$datos['paises1']?>
                         </select>
                       </div>
                     </div>
@@ -65,7 +65,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-4">
                         <select class="form-control m-select2" id="id_pais_residencia" name="id_pais_residencia">
-                          <?=$datos['paises']?>
+                          <?=$datos['paises2']?>
                         </select>
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
@@ -87,19 +87,19 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         A Paterno
                       </label>
                       <div class="col-3">
-                        <input class="form-control m-input" type="text" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" value="">
+                        <input class="form-control m-input" type="text" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" value="<?=$datos['beneficiarioData']->ap_paterno?>">
                       </div>
                       <label for="example-text-input" class="col-1 col-form-label">
                         A Materno
                       </label>
                       <div class="col-3">
-                        <input class="form-control m-input" type="text" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" value="">
+                        <input class="form-control m-input" type="text" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" value="<?=$datos['beneficiarioData']->ap_materno?>">
                       </div>
                       <label for="example-text-input" class="col-1 col-form-label">
                         Nombres
                       </label>
                       <div class="col-3">
-                        <input class="form-control m-input" type="text" id="nombres" name="nombres" placeholder="Nombre(s)" value="">
+                        <input class="form-control m-input" type="text" id="nombres" name="nombres" placeholder="Nombre(s)" value="<?=$datos['beneficiarioData']->nombres?>">
                       </div>
                     </div>
 
@@ -116,13 +116,13 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Fecha Nacimiento
                       </label>
                       <div class="col-2">
-                        <input class="form-control m-input" type="date" id="fecha_nac" name="fecha_nac" placeholder="Fecha de nacimiento" value="">
+                        <input class="form-control m-input" type="date" id="fecha_nac" name="fecha_nac" placeholder="Fecha de nacimiento" value="<?=$datos['beneficiarioData']->fecha_nac?>">
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
                         Entidad Federativa de Nacimiento
                       </label>
                       <div class="col-3">
-                        <select class="form-control m-select2" id="entidad_federativa_nac" name="entidad_federativa_nac" style="width: 100%;">
+                        <select class="form-control m-select2" id="id_estado_pais_nac" name="id_estado_pais_nac" style="width: 100%;">
                           <?=$datos['estados']?>
                         </select>
                       </div>
@@ -154,7 +154,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-3 input-group" style="width: 100%;">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="lada_telefono" oninput="validarTel(this)"  name="lada_telefono" value="">
+                          <input type="text" class="form-control m-input" id="lada_telefono" oninput="validarTel(this)"  name="lada_telefono" value="<?=$datos['beneficiarioData']->lada_telefono?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado5"><i class="fa fa-phone red"></i></span></span>
                         </div>
                       </div>
@@ -166,7 +166,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-2">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="email" oninput="validarEmail(this)" onkeyup="this.value = this.value.toLowerCase();" name="email" placeholder="Ingrese su mail" value="">
+                          <input type="text" class="form-control m-input" id="email" oninput="validarEmail(this)" onkeyup="this.value = this.value.toLowerCase();" name="email" placeholder="Ingrese su mail" value="<?=$datos['beneficiarioData']->email?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado3"><i class="fa fa-times red"></i></span></span>
                         </div>
                       </div>
@@ -175,7 +175,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-2">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="curp" oninput="validarCURP(this)" onkeyup="this.value = this.value.toUpperCase();" name="curp" placeholder="Ingrese su CURP" value="">
+                          <input type="text" class="form-control m-input" id="curp" oninput="validarCURP(this)" onkeyup="this.value = this.value.toUpperCase();" name="curp" placeholder="Ingrese su CURP" value="<?=$datos['beneficiarioData']->curp?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado"><i class="fa fa-times red"></i></span></span>
                         </div>
                       </div>
@@ -184,7 +184,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-2">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="rfc" oninput="validarRFC(this)" onkeyup="this.value = this.value.toUpperCase();" name="rfc" placeholder="Ingrese su RFC" value="">
+                          <input type="text" class="form-control m-input" id="rfc" oninput="validarRFC(this)" onkeyup="this.value = this.value.toUpperCase();" name="rfc" placeholder="Ingrese su RFC" value="<?=$datos['beneficiarioData']->rfc?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado2"><i class="fa fa-times red"></i></span></span>
                         </div>
                       </div>
@@ -193,7 +193,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-2">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="serie_e_firma" oninput="validarE_firma(this)"  name="serie_e_firma" value="">
+                          <input type="text" class="form-control m-input" id="serie_e_firma" oninput="validarE_firma(this)"  name="serie_e_firma" value="<?=$datos['beneficiarioData']->serie_e_firma?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado4"><i class="fa fa-times red"></i></span></span>
                         </div>
                       </div>
@@ -209,9 +209,9 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                       </label>
                       <div class="col-5">
                         <div class="m-input-icon m-input-icon--right">
-                          <input type="text" class="form-control m-input" id="CLABE" oninput="validarClabe(this)"  name="CLABE" value="">
+                          <input type="text" class="form-control m-input" id="CLABE" oninput="validarClabe(this)"  name="CLABE" value="<?=$datos['beneficiarioData']->CLABE?>">
                           <span class="m-input-icon__icon m-input-icon__icon--right"><span id="resultado6"><i class="fa fa-money-bill-alt red"></i></span></span>
-                          <input id="bank_id" name="bank_id" type="hidden" value="">
+                          <input id="bank_id" name="bank_id" type="hidden" value="<?=$datos['beneficiarioData']->id_banco?>">
                         </div>
                       </div>
 
@@ -219,13 +219,14 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         Banco
                       </label>
                       <div class="col-5">
-                        <input readonly class="form-control m-input" type="text" id="banco" name="banco" placeholder="Ingrese la CLABE para obtener el Banco" value="">
+                        <input readonly class="form-control m-input" type="text" id="banco" name="banco" placeholder="Ingrese la CLABE para obtener el Banco" value="<?=$datos['banco']?>">
                       </div>
                     </div>
 
 
                   </div>
             </div>
+            <input type="hidden" value="<?=$datos['id_beneficiario']?>" name="id_beneficiario">
           </form>
 
           <div class="m-portlet__foot m-portlet__foot--fit">
@@ -233,7 +234,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
               <div class="row">
                 <div class="col-9"></div>
                 <div class="col-3"><br><br><br>
-                    <a id="sol_js_fn_05" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                    <a id="ben_js_fn_06" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                       Guardar
                     </a>
                   &nbsp;&nbsp;
@@ -267,7 +268,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                   placeholder: "Seleccione el parentesco"
               });
 
-              $("#entidad_federativa_nac").select2({
+              $("#id_estado_pais_nac").select2({
                   placeholder: "Seleccione el estado"
               });
 
@@ -281,6 +282,12 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
           }
       };
       jQuery(document).ready(function() {
+          window.onload = validarTel(document.getElementById("lada_telefono"));
+          window.onload = validarEmail(document.getElementById("email"));
+          window.onload = validarCURP(document.getElementById("curp"));
+          window.onload = validarRFC(document.getElementById("rfc"));
+          window.onload = validarE_firma(document.getElementById("serie_e_firma"));
+          window.onload = validarClabe(document.getElementById("CLABE"));
           Select2.init();
       });
       </script>
