@@ -25,7 +25,6 @@ class PdfPld extends Controller
       $lugar_nacimiento = Direcciones::lugaresUsa($beneficiario->id_nac);
     }
 
-    dd($beneficiario);
 
     $fpdf = new customPdf('P', 'cm', 'Letter');
     $fpdf->setConfig('status',42);
