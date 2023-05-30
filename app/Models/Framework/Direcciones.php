@@ -14,6 +14,28 @@ class Direcciones extends Model
     return Direcciones::all();
   }
 
+  static function lugaresMex($id){
+    $data = DB::table('AS_Estado_pais AS edopais')
+              ->join('SPM_ciudades AS cty','edopais.id_ciudad','=','cty.id')
+              ->join('SPM_estados AS edo','edopais.id_estado','=','edo.id')
+              ->join('CAT_Paises AS paises','edopais.id_pais','=','paises.id')
+              ->select('paises.pais', 'edo.estado', 'cty.ciudad')
+              ->where('edopais.id', '=', $id)
+              ->get();
+    return $data[0];
+  }
+
+  static function lugaresUsa($id){
+    $data = DB::table('AS_Estado_pais AS edopais')
+              ->join('CAT_Estados_usa AS edo_city','edopais.id_ciudad','=','edo_city.id')
+              ->join('CAT_Paises AS pais','edopais.id_pais','=','pais.id')
+              ->select('pais.pais','edo_city.estado', 'edo_city.ciudad')
+              ->where('edopais.id', '=', $id)
+              ->get();
+    return $data[0];
+  }
+
+
   static function select_asentamientos($cp){
       $array = array();
       $asentamientos = DB::table('SPM_CP as cp')

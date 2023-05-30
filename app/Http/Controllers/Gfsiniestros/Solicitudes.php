@@ -39,7 +39,7 @@ class Solicitudes extends Controller
         $poliza = ModelSolicitud::polizaData($solicitud->id_poliza);
         $asegurado = ModelSolicitud::asegurado($id_solicitud);
         $fallecido = ModelSolicitud::fallecido($id_solicitud);
-        $tipo_seguro = Catalogo::selectCatalog('Tipo seguro',$asegurado->tipo_seguro);
+        $tipo_seguro = Catalogo::selectCatalog('Tipo seguro',$asegurado->cat_tipo_seguro);
         $select_ocupaciones = Catalogo::SelectOcupaciones($asegurado->id_ocupacion);
         $fallece_en = Catalogo::selectCatalog('Edificio Fallecimiento',$fallecido->cat_edificio_fallecimiento);
         $humanAddress1 = Direcciones::getHumanAddress($asegurado->id_domicilio_cuando_fallecio);

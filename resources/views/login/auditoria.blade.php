@@ -4,7 +4,7 @@ $("#breadcrumb-title").append(' / Análisis de cambios');
 </script>
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__body">
-				<table id="auditoria" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="auditoria" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 								<th>ID</th>

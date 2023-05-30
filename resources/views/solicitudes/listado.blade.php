@@ -12,20 +12,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 							</h3>
 						</div>
 					</div>
-					<div class="m-portlet__head-caption">
-						<div class="col-xl-12 order-1 order-xl-2 m--align-right">
 
-							<a id="sol_js_fn_01" href="javascript:;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-								<span>
-									<i class="fa fa-users left"></i>
-									<span>
-										Nueva solicitud
-									</span>
-								</span>
-							</a>
-
-						</div>
-				</div>
 			</div>
 
 			<div class="m-portlet__body">

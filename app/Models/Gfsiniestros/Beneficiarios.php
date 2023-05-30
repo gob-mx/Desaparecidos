@@ -13,17 +13,59 @@ class Beneficiarios extends Model
   protected $primaryKey = 'id';
   public $timestamps = false;
 
+  static function beneficiarioFullData($id_beneficiario){
+
+    $beneficiarios = DB::table('AS_DatosBeneficiario AS dat_ben')
+              ->join('AS_Beneficiarios AS ben', 'dat_ben.id_beneficiario', '=', 'ben.id')
+              ->join('AS_Direcciones AS dir', 'dat_ben.id_direccion', '=', 'dir.id')
+              ->join('SPM_CP AS cp_dir', 'dir.id_cp', '=', 'cp_dir.id')
+              ->join('SPM_estados AS edo_dir', 'cp_dir.id_estado', '=', 'edo_dir.id')
+              ->join('SPM_ciudades AS ciudad_dir', 'cp_dir.id_ciudad', '=', 'ciudad_dir.id')
+              ->join('SPM_municipios AS mun_dir', 'cp_dir.id_municipio', '=', 'mun_dir.id')
+              ->join('CAT_Paises AS pais_nac', 'dat_ben.id_pais_nacimiento', '=', 'pais_nac.id')
+              ->join('CAT_Paises AS pais_rec', 'dat_ben.id_pais_residencia', '=', 'pais_rec.id')
+              ->join('CAT_Nacionalidad AS nacionalidad', 'dat_ben.id_nacionalidad', '=', 'nacionalidad.id')
+              ->join('CAT_Ocupaciones AS ocupa', 'dat_ben.id_ocupacion', '=', 'ocupa.id')
+              ->join('cm_catalogo AS parentesco', 'dat_ben.cat_parentesco', '=', 'parentesco.id_cat')
+              ->join('CAT_Bancos AS banco', 'dat_ben.id_banco', '=', 'banco.cve')
+              ->join('cm_catalogo AS giro', 'dat_ben.cat_giro_actividad', '=', 'giro.id_cat')
+              ->join('SPM_estados AS entidad_nac', 'dat_ben.id_estado_pais_nac', '=', 'entidad_nac.id')
+              ->select('dir.calle AS d_calle', 'dir.num_ext AS d_num_ext', 'dir.num_int AS d_num_int', 'cp_dir.codigo_postal AS d_cp', 'cp_dir.asentamiento AS d_asenta', 'edo_dir.estado AS d_estado', 'ciudad_dir.ciudad AS d_ciudad', 'mun_dir.municipio AS d_mun', 'pais_nac.pais AS pais_nac', 'pais_rec.pais AS pais_rec', 'nacionalidad.Nacionalidad AS nacion','ocupa.ocupacion AS ocupa', 'parentesco.etiqueta AS parent', 'banco.banco AS banco', 'giro.etiqueta AS giro', 'dat_ben.ap_paterno AS paterno', 'dat_ben.ap_materno AS materno', 'dat_ben.nombres AS nombres', 'dat_ben.fecha_nac AS fecha_nac', 'dat_ben.lada_telefono AS tel', 'dat_ben.email AS mail', 'dat_ben.curp AS curp', 'dat_ben.rfc AS rfc', 'dat_ben.serie_e_firma AS efirma','dat_ben.CLABE AS clabe', 'dat_ben.fecha_alta AS fecha_alta', 'ben.id_solicitud AS id_solicitud', 'entidad_nac.estado AS entidad_nac')
+              ->where('ben.id', '=', $id_beneficiario)
+              ->get();
+    return $beneficiarios[0];
+
+  }
+
+  static function getArrayBeneficiarios($id_solicitud){
+
+    $beneficiarios = DB::table('AS_DatosBeneficiario AS adb')
+              ->join('AS_Beneficiarios AS asb', 'adb.id_beneficiario', '=', 'asb.id')
+              ->select('adb.*')
+              ->where('asb.id_solicitud', '=', $id_solicitud)
+              ->get();
+    return $beneficiarios;
+
+  }
+
   static function datos_beneficiario($request){
+
+    $id_ciudad_lugar_nacimiento = DB::table('AS_Estado_pais')->insertGetId(
+        [
+            'id_estado' => $request->input('id_estado_nac'),
+            'id_ciudad' => $request->input('ciudad_ben_nac'),
+            'id_pais' => $request->input('id_pais_nacimiento')
+        ]
+    );
 
     $beneficiario = DB::table('AS_DatosBeneficiario')
             ->where('id_beneficiario', $request->input('id_beneficiario'))
             ->update([
                 'id_direccion' => $request->input('id_dom_4'),
-                'id_pais_nacimiento' => $request->input('id_pais_nacimiento'),
                 'id_pais_residencia' => $request->input('id_pais_residencia'),
                 'id_nacionalidad' => $request->input('id_nacionalidad'),
                 'id_ocupacion' => $request->input('ocupacion'),
-                'id_estado_pais_nac' => $request->input('id_estado_pais_nac'),
+                'id_estado_pais_nac' => $id_ciudad_lugar_nacimiento,
                 'cat_parentesco' => $request->input('parentesco'),
                 'id_banco' => $request->input('bank_id'),
                 'cat_giro_actividad' => $request->input('giro_actividad'),

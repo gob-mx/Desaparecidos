@@ -55,7 +55,7 @@ $("#breadcrumb-title").append(' / Control de usuarios');
 
 
 			<div class="m-portlet__body">
-				<table id="usuarios" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="usuarios" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 								<th>ID</th>

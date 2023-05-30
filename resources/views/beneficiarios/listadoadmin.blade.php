@@ -12,20 +12,6 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 						 </h3>
 					 </div>
 				 </div>
-				<div class="m-portlet__head-caption">
-						<div class="col-xl-12 order-1 order-xl-2 m--align-right">
-
-							<a id="ben_js_fn_01" data-function="<?=$datos['id_solicitud']?>" href="javascript:;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-								<span>
-									<i class="fa fa-user left"></i>
-									<span>
-										Nuevo beneficiario
-									</span>
-								</span>
-							</a>
-
-						</div>
-				</div>
 			</div>
 
 			<div class="m-portlet__body">

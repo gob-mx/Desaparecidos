@@ -39,7 +39,6 @@ class Beneficiarios extends Controller
   {
         $beneficiarioData = ModelBeneficiarios::getDatosBeneficiario($id_beneficiario);
         $select_nacionalidades = Catalogo::SelectNacionalidades($beneficiarioData->id_nacionalidad);
-        $select_paises1 = Catalogo::SelectPaises($beneficiarioData->id_pais_nacimiento);
         $select_paises2 = Catalogo::SelectPaises($beneficiarioData->id_pais_residencia);
         $estados = Catalogo::SelectEstados($beneficiarioData->id_estado_pais_nac);
         $actividades = Catalogo::selectCatalog('Actividades', $beneficiarioData->cat_giro_actividad);
@@ -49,12 +48,20 @@ class Beneficiarios extends Controller
         $titular = ModelSolicitud::titular($id_solicitud);
         $humanAddress1 = Direcciones::getHumanAddress($beneficiarioData->id_direccion);
         $humanBank = ModelBeneficiarios::getBankName($beneficiarioData->id_banco);
+
+        $estado_pais1 = ModelSolicitud::estado_pais($beneficiarioData->id_estado_pais_nac);
+        $select_paises1 = Catalogo::SelectPaises($estado_pais1['id_pais']);
+        $select_estados1 = Direcciones::get_estados($estado_pais1['id_pais'],$estado_pais1['id_estado']);
+        $select_ciudades1 = Direcciones::get_ciudades($estado_pais1['id_pais'],$estado_pais1['id_estado'],$estado_pais1['id_ciudad']);
+
         $datos = [
             'humanAddress' => $humanAddress1,
             'id_beneficiario' => $id_beneficiario,
             'id_solicitud' => $id_solicitud,
             'nacionalidades' => $select_nacionalidades,
             'paises1' => $select_paises1,
+            'estados1' => $select_estados1,
+            'ciudades1' => $select_ciudades1,
             'paises2' => $select_paises2,
             'banco' => $humanBank,
             'parentesco' => $parentesco,

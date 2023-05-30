@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Gfsiniestros;
 use App\Http\Controllers\Framework\Controller;
 use App\Models\Gfsiniestros\Solicitudes;
+use App\Models\Gfsiniestros\Beneficiarios;
+use App\Models\Framework\Direcciones;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Http\Request;
 use Helpme;
@@ -14,8 +16,23 @@ class PdfReclamacion extends Controller
       //$this->middleware('permiso:Pdf|index', ['only' => ['index']]);
   }
 
-  public function index($id_evaluacion){
-    //$options = ModelTamizaje::obtener_options($id_evaluacion);
+  public function index($id_solicitud){
+    $asegurado = Solicitudes::aseguradoFullData($id_solicitud);
+
+    if($asegurado->pais_fall == 141){
+      $lugar_fallecimiento = Direcciones::lugaresMex($asegurado->fal_id);
+    }elseif($asegurado->pais_fall == 65){
+      $lugar_fallecimiento = Direcciones::lugaresUsa($asegurado->fal_id);
+    }
+
+    if($asegurado->pais_nac == 141){
+      $luga_nacimiento = Direcciones::lugaresMex($asegurado->nac_id);
+    }elseif($asegurado->pais_nac == 65){
+      $luga_nacimiento = Direcciones::lugaresUsa($asegurado->nac_id);
+    }
+
+    $beneficiarios = Beneficiarios::getArrayBeneficiarios($id_solicitud);
+
 
     $fpdf = new customPdf('P', 'cm', 'Letter');
     $fpdf->setConfig('status',42);
@@ -37,7 +54,8 @@ class PdfReclamacion extends Controller
     $fpdf->Output('F', $path);
     $datos = [
         'path' => $path,
-        'breadcrumbs' => '/ PDF / Reclamación'
+        'breadcrumbs' => '/ PDF / Reclamación',
+        'id_solicitud' => $id_solicitud
     ];
     return view('pdf/pdf')->with('datos', $datos);
     ob_flush();

@@ -21,7 +21,7 @@ $("#breadcrumb-title").append(' / Roles y permisos / Permisos');
 		</div>
 	</div>
 	<div class="m-portlet__body">
-		<table id="controllers" class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<table id="controllers" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th>ID</th>

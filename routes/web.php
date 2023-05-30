@@ -15,11 +15,11 @@ Route::group(['prefix' => 'viewer'], function(){
 });
 
 Route::group(['prefix' => 'pdfpld'], function(){
-    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdfpld@index');
+    Route::get('/{id_beneficiario}', 'Gfsiniestros\Pdfpld@index');
 });
 
 Route::group(['prefix' => 'pdfpldext'], function(){
-    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdfpldext@index');
+    Route::get('/{id_beneficiario}', 'Gfsiniestros\Pdfpldext@index');
 });
 
 Route::group(['prefix' => 'pdfreclamacion'], function(){
@@ -27,7 +27,7 @@ Route::group(['prefix' => 'pdfreclamacion'], function(){
 });
 
 Route::group(['prefix' => 'pdftransferencia'], function(){
-    Route::get('/{id_solicitud}', 'Gfsiniestros\Pdftransferencia@index');
+    Route::get('/{id_beneficiario}', 'Gfsiniestros\Pdftransferencia@index');
 });
 
 Route::group(['prefix' => 'upload'], function(){

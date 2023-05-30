@@ -1,7 +1,7 @@
 <!--Section: Team v.1-->
 <script>
 $("#breadcrumb-title").html('<?=env('APP_NAME')?>');
-$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listado\');">GF SNTE 5</a> / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/<?=$datos['id_solicitud']?>\');">Beneficiarios</a> / Datos del Beneficiario');
+$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listadofilter\');">GF SNTE 5</a> / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/<?=$datos['id_solicitud']?>\');">Beneficiarios</a> / Datos del Beneficiario');
 </script>
 
 <div class="m-content">
@@ -50,31 +50,26 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         </div>
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
-                        ¿Pais de nacimiento?
-                      </label>
-                      <div class="col-3">
-                        <select class="form-control m-select2" id="id_pais_nacimiento" name="id_pais_nacimiento">
-                          <?=$datos['paises1']?>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="form-group m-form__group row">
-                      <label for="example-text-input" class="col-2 col-form-label">
-                        ¿Pais de residencia?
-                      </label>
-                      <div class="col-4">
-                        <select class="form-control m-select2" id="id_pais_residencia" name="id_pais_residencia">
-                          <?=$datos['paises2']?>
-                        </select>
-                      </div>
-                      <label for="example-text-input" class="col-2 col-form-label">
                         Nacionalidad
                       </label>
-                      <div class="col-4">
+                      <div class="col-3">
                           <select class="form-control m-select2" id="id_nacionalidad" name="id_nacionalidad">
                             <?=$datos['nacionalidades']?>
                           </select>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label for="example-text-input" class="col-2 col-form-label">
+                        ¿Cual fué su lugar de nacimiento?
+                      </label>
+                      <div class="col-3">
+                          <select data-pais="id_pais_nacimiento" data-estado="id_estado_nac" data-change="ciudad_ben_nac" readonly class="form-control m-input pais" id="id_pais_nacimiento" name="id_pais_nacimiento"><?=$datos['paises1']?></select>
+                      </div>
+                      <div class="col-3">
+                          <select data-pais="id_pais_nacimiento" data-estado="id_estado_nac" data-change="ciudad_ben_nac" readonly class="form-control m-input estado" id="id_estado_nac" name="id_estado_nac"><?=$datos['estados1']?></select>
+                      </div>
+                      <div class="col-4">
+                          <select data-pais="id_pais_nacimiento" data-estado="id_estado_nac" data-change="ciudad_ben_nac" readonly class="form-control m-input" id="ciudad_ben_nac" name="ciudad_ben_nac"><?=$datos['ciudades1']?></select>
                       </div>
                     </div>
 
@@ -119,11 +114,11 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                         <input class="form-control m-input" type="date" id="fecha_nac" name="fecha_nac" placeholder="Fecha de nacimiento" value="<?=$datos['beneficiarioData']->fecha_nac?>">
                       </div>
                       <label for="example-text-input" class="col-2 col-form-label">
-                        Entidad Federativa de Nacimiento
+                        ¿Pais de residencia?
                       </label>
                       <div class="col-3">
-                        <select class="form-control m-select2" id="id_estado_pais_nac" name="id_estado_pais_nac" style="width: 100%;">
-                          <?=$datos['estados']?>
+                        <select class="form-control m-select2" id="id_pais_residencia" name="id_pais_residencia">
+                          <?=$datos['paises2']?>
                         </select>
                       </div>
                     </div>

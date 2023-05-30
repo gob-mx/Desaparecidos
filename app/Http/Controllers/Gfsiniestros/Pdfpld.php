@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Gfsiniestros;
 use App\Http\Controllers\Framework\Controller;
 use App\Models\Gfsiniestros\Solicitudes;
+use App\Models\Gfsiniestros\Beneficiarios;
+use App\Models\Framework\Direcciones;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Http\Request;
 use Helpme;
@@ -14,8 +16,10 @@ class PdfPld extends Controller
       //$this->middleware('permiso:Pdf|index', ['only' => ['index']]);
   }
 
-  public function index($id_solicitud){
-    //$options = ModelTamizaje::obtener_options($id_solicitud);
+  public function index($id_beneficiario){
+
+    $beneficiario = Beneficiarios::beneficiarioFullData($id_beneficiario);
+    dd($beneficiario);
 
     $fpdf = new customPdf('P', 'cm', 'Letter');
     $fpdf->setConfig('status',42);
@@ -37,7 +41,8 @@ class PdfPld extends Controller
     $fpdf->Output('F', $path);
     $datos = [
         'path' => $path,
-        'breadcrumbs' => ' /  PDF / PLD '
+        'breadcrumbs' => ' /  PDF / PLD ',
+        'id_beneficiario' => $id_beneficiario
     ];
     return view('pdf/pdf')->with('datos', $datos);
     ob_flush();

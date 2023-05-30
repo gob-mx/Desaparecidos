@@ -14,7 +14,7 @@ class PdfTransferencia extends Controller
       //$this->middleware('permiso:Pdf|index', ['only' => ['index']]);
   }
 
-  public function index($id_evaluacion){
+  public function index($id_solicitud){
     //$options = ModelTamizaje::obtener_options($id_evaluacion);
 
     $fpdf = new customPdf('P', 'cm', 'Letter');
@@ -37,7 +37,8 @@ class PdfTransferencia extends Controller
     $fpdf->Output('F', $path);
     $datos = [
         'path' => $path,
-        'breadcrumbs' => ' /  PDF / Transferencia '
+        'breadcrumbs' => ' /  PDF / Transferencia ',
+        'id_solicitud' => $id_solicitud
     ];
     return view('pdf/pdf')->with('datos', $datos);
     ob_flush();

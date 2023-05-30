@@ -1,7 +1,7 @@
 <!--Section: Team v.1-->
 <script>
 $("#breadcrumb-title").html('<?=env('APP_NAME')?>');
-$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listado\');">GF SNTE 5</a> / Solicitud / Datos del Asegurado');
+$("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(\'contenedor_principal\',\'solicitudes/listadofilter\');">GF SNTE 5</a> / Solicitud / Datos del Asegurado');
 </script>
 
 <div class="m-content">
@@ -58,7 +58,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
                           <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input pais" id="pais_as" name="pais_as"><?=$datos['paises1']?></select>
                       </div>
                       <div class="col-3">
-                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input estado" id="entidad_as" name="entidad_as"><option><?=$datos['estados1']?></option></select>
+                          <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input estado" id="entidad_as" name="entidad_as"><?=$datos['estados1']?></select>
                       </div>
                       <div class="col-4">
                           <select data-pais="pais_as" data-estado="entidad_as" data-change="ciudad_nac" readonly class="form-control m-input" id="ciudad_nac" name="ciudad_nac"><?=$datos['ciudades1']?></select>

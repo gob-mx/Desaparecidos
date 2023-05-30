@@ -32,7 +32,7 @@ $("#breadcrumb-title").append(' / Control de sesiones');
 
 
 			<div class="m-portlet__body">
-				<table id="loginusr" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="loginusr" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>ID</th>

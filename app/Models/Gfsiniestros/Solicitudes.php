@@ -13,6 +13,34 @@ class Solicitudes extends Model
   protected $primaryKey = 'id';
   public $timestamps = false;
 
+  static function aseguradoFullData($id_solicitud){
+
+    $asegurado = DB::table('AS_Solicitudes AS ass')
+              ->join('AS_Asegurado AS asa', 'ass.id', '=', 'asa.id_solicitud')
+              ->join('AS_Fallecido AS asf', 'ass.id', '=', 'asf.id_solicitud')
+              ->join('cm_catalogo AS cat_edif_fall', 'asf.cat_edificio_fallecimiento', '=', 'cat_edif_fall.id_cat')
+              ->join('AS_Estado_pais AS lugar_fall', 'asf.id_lugar_fallecimiento', '=', 'lugar_fall.id')
+              ->join('AS_Direcciones AS dir_dom', 'asa.id_domicilio_cuando_fallecio', '=', 'dir_dom.id')
+              ->join('AS_Direcciones AS dir_emp', 'asa.id_domicilio_empresa', '=', 'dir_emp.id')
+              ->join('SPM_CP AS cp_dom', 'dir_dom.id_cp', '=', 'cp_dom.id')
+              ->join('SPM_CP AS cp_emp', 'dir_emp.id', '=', 'cp_emp.id')
+              ->join('AS_Estado_pais AS lugar_nac', 'asa.id_ciudad_lugar_nacimiento', '=', 'lugar_nac.id')
+              ->join('SPM_ciudades AS cty_dom', 'cp_dom.id_ciudad', '=', 'cty_dom.id')
+              ->join('SPM_estados AS edo_dom', 'cp_dom.id_estado', '=', 'edo_dom.id')
+              ->join('SPM_municipios AS mun_dom', 'cp_dom.id_municipio', '=', 'mun_dom.id')
+              ->join('SPM_ciudades AS cty_emp', 'cp_emp.id_ciudad', '=', 'cty_emp.id')
+              ->join('SPM_estados AS edo_emp', 'cp_emp.id_estado', '=', 'edo_emp.id')
+              ->join('SPM_municipios AS mun_emp', 'cp_emp.id_municipio', '=', 'mun_emp.id')
+              ->join('CAT_Nacionalidad AS cat_nacionalidad', 'asa.id_nacionalidad', '=', 'cat_nacionalidad.id')
+              ->join('CAT_Ocupaciones AS cat_ocupaciones', 'asa.id_ocupacion', '=', 'cat_ocupaciones.id')
+              ->join('cm_catalogo AS tipo_seguro', 'asa.cat_tipo_seguro', '=', 'tipo_seguro.id_cat')
+              ->select('asa.otras_empresas','asa.antiguedad_en_empresa', 'asa.empresa_trabajo', 'asa.afiliacion_imss_issste', 'asa.curp', 'asa.no_certificado', 'asa.grupo_y_colectivo', 'asa.no_polizas', 'asf.fecha_fallecimiento', 'asf.causa_fallecimiento', 'asf.agencia_servicio_funerario', 'asf.fecha_servicios_funerarios', 'asf.autoridad_tomo_hechos_violentos AS violento', 'cat_edif_fall.etiqueta AS edificio_fallecimiento', 'dir_dom.calle AS dom_calle', 'dir_dom.num_ext AS dom_num_ext', 'dir_dom.num_int AS dom_num_int', 'cp_dom.codigo_postal AS dom_cp', 'cp_dom.asentamiento AS dom_asenta', 'cty_dom.ciudad AS dom_cty', 'edo_dom.estado AS dom_edo', 'mun_dom.municipio AS dom_mun', 'dir_emp.calle AS emp_calle', 'dir_emp.num_ext AS emp_num_ext', 'dir_emp.num_int AS emp_num_int', 'cp_emp.codigo_postal AS emp_cp', 'cp_emp.asentamiento AS emp_asenta', 'cty_emp.ciudad AS emp_cty', 'edo_emp.estado AS emp_edo', 'mun_emp.municipio AS emp_mun', 'lugar_fall.id_pais AS pais_fall', 'lugar_nac.id_pais AS pais_nac', 'cat_nacionalidad.Nacionalidad', 'cat_ocupaciones.ocupacion', 'tipo_seguro.etiqueta AS tipo_seguro', 'lugar_nac.id AS nac_id', 'lugar_fall.id AS fal_id')
+              ->where('ass.id', '=', $id_solicitud)
+              ->get();
+    return $asegurado[0];
+
+  }
+
   static function contarFaltantes($id_solicitud){
     $incompletos = DB::table('AS_DatosBeneficiario as dbf')
               ->select(	'dbf.cat_status_print' )
@@ -182,7 +210,7 @@ class Solicitudes extends Model
                 'id_domicilio_empresa' => $request->input('id_dom_2'),
                 'id_nacionalidad' => $request->input('nacionalidades'),
                 'no_polizas' => $request->input('no_polizas'),
-                'tipo_seguro' => $request->input('tipo_seguro'),
+                'cat_tipo_seguro' => $request->input('tipo_seguro'),
                 'grupo_y_colectivo' => $request->input('grupo_y_colectivo'),
                 'no_certificado' => $request->input('no_certificado'),
                 'curp' => $request->input('curp'),

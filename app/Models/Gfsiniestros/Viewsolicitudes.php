@@ -37,9 +37,10 @@ class Viewsolicitudes extends Model
     $sol = Solicitudes::asegurado($id_solicitud);
     $fal = Solicitudes::fallecido($id_solicitud);
     $inc = Solicitudes::contarFaltantes($id_solicitud);
+    $salida = '<div class="row">';
 
-    $salida = '
-    <a onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/'.$id_solicitud.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+    $salida .= '
+    <div class="col-12"><a onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/'.$id_solicitud.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
       <i class="flaticon-users"></i>
     </a>
     ';
@@ -59,7 +60,7 @@ class Viewsolicitudes extends Model
     $salida .= '
     <a data-function="'.$id_solicitud.'" class="sol_js_fn_06 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
       <i class="flaticon-speech-bubble-1"></i>
-    </a>
+    </a></div><div class="col-12">
     ';
 
     if(($sol->cat_status_print == 102)&&($fal->cat_status_print == 102) && ($inc > 0)){
@@ -77,6 +78,7 @@ class Viewsolicitudes extends Model
 			</a>
       ';
     }
+    $salida .= '</div></div>';
 
     return $salida;
   }
@@ -106,13 +108,13 @@ class Viewsolicitudes extends Model
   static function ou2($id_solicitud){
 
     $sol = Solicitudes::recuperar($id_solicitud);
+    $salida = '<div class="row">';
 
-    $salida = '
-    <a onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/listadmin/'.$id_solicitud.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+    $salida .= '
+    <div class="col-12"><a onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/listadmin/'.$id_solicitud.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
       <i class="flaticon-users"></i>
     </a>
     ';
-
 
     $salida .= '
     <a data-function="'.$id_solicitud.'" class="sol_js_fn_06 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
@@ -136,27 +138,27 @@ class Viewsolicitudes extends Model
 
     if(!empty($sol->acta_nac_fallecido)){
       $salida .= '
-      <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'pdfpld/'.$id_solicitud.'\');" data-original-title="Acta Nacimiento" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
+      <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'viewer/AS_Solicitudes/acta_nac_fallecido/'.$id_solicitud.'\');" data-original-title="Acta Nacimiento" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
         <i class="fa fa-file-pdf"></i>
-      </a>
+      </a></div>
       ';
     }else{
       $salida .= '
       <a href="#" data-original-title="Acta nacimiento :(" data-toggle="m-tooltip" data-placement="top"  class="manusize btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
       	<i class="fa fa-file-pdf"></i>
-      </a>
+      </a></div>
       ';
     }
 
     if(!empty($sol->acta_defuncion)){
       $salida .= '
-      <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'pdftransferencia/'.$id_solicitud.'\');" data-original-title="Acta Defunción" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
+      <div class="col-12"><a href="#" onclick="carga_archivo(\'contenedor_principal\',\'viewer/AS_Solicitudes/acta_defuncion/'.$id_solicitud.'\');" data-original-title="Acta Defunción" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
         <i class="fa fa-file-pdf"></i>
       </a>
       ';
     }else{
       $salida .= '
-      <a href="#" data-original-title="Acta Defunción :(" data-toggle="m-tooltip" data-placement="top"  class="manusize btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+      <div class="col-12"><a href="#" data-original-title="Acta Defunción :(" data-toggle="m-tooltip" data-placement="top"  class="manusize btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
       	<i class="fa fa-file-pdf"></i>
       </a>
       ';
@@ -164,17 +166,19 @@ class Viewsolicitudes extends Model
 
     if(!empty($sol->fto_reclamacion)){
       $salida .= '
-      <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'pdftransferencia/'.$id_solicitud.'\');" data-original-title="Formato Reclamación" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
+      <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'viewer/AS_Solicitudes/fto_reclamacion/'.$id_solicitud.'\');" data-original-title="Formato Reclamación" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
         <i class="fa fa-file-pdf"></i>
-      </a>
+      </a></div>
       ';
     }else{
       $salida .= '
       <a href="#" data-original-title="Formato Reclamación :(" data-toggle="m-tooltip" data-placement="top"  class="manusize btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
       	<i class="fa fa-file-pdf"></i>
-      </a>
+      </a></div>
       ';
     }
+
+    $salida .= '</div>';
 
     return $salida;
   }
