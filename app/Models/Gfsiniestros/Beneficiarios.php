@@ -22,15 +22,14 @@ class Beneficiarios extends Model
               ->join('SPM_estados AS edo_dir', 'cp_dir.id_estado', '=', 'edo_dir.id')
               ->join('SPM_ciudades AS ciudad_dir', 'cp_dir.id_ciudad', '=', 'ciudad_dir.id')
               ->join('SPM_municipios AS mun_dir', 'cp_dir.id_municipio', '=', 'mun_dir.id')
-              ->join('CAT_Paises AS pais_nac', 'dat_ben.id_pais_nacimiento', '=', 'pais_nac.id')
+              ->join('AS_Estado_pais AS nacimiento', 'dat_ben.id_estado_pais_nac', '=', 'nacimiento.id')
               ->join('CAT_Paises AS pais_rec', 'dat_ben.id_pais_residencia', '=', 'pais_rec.id')
               ->join('CAT_Nacionalidad AS nacionalidad', 'dat_ben.id_nacionalidad', '=', 'nacionalidad.id')
               ->join('CAT_Ocupaciones AS ocupa', 'dat_ben.id_ocupacion', '=', 'ocupa.id')
               ->join('cm_catalogo AS parentesco', 'dat_ben.cat_parentesco', '=', 'parentesco.id_cat')
               ->join('CAT_Bancos AS banco', 'dat_ben.id_banco', '=', 'banco.cve')
               ->join('cm_catalogo AS giro', 'dat_ben.cat_giro_actividad', '=', 'giro.id_cat')
-              ->join('SPM_estados AS entidad_nac', 'dat_ben.id_estado_pais_nac', '=', 'entidad_nac.id')
-              ->select('dir.calle AS d_calle', 'dir.num_ext AS d_num_ext', 'dir.num_int AS d_num_int', 'cp_dir.codigo_postal AS d_cp', 'cp_dir.asentamiento AS d_asenta', 'edo_dir.estado AS d_estado', 'ciudad_dir.ciudad AS d_ciudad', 'mun_dir.municipio AS d_mun', 'pais_nac.pais AS pais_nac', 'pais_rec.pais AS pais_rec', 'nacionalidad.Nacionalidad AS nacion','ocupa.ocupacion AS ocupa', 'parentesco.etiqueta AS parent', 'banco.banco AS banco', 'giro.etiqueta AS giro', 'dat_ben.ap_paterno AS paterno', 'dat_ben.ap_materno AS materno', 'dat_ben.nombres AS nombres', 'dat_ben.fecha_nac AS fecha_nac', 'dat_ben.lada_telefono AS tel', 'dat_ben.email AS mail', 'dat_ben.curp AS curp', 'dat_ben.rfc AS rfc', 'dat_ben.serie_e_firma AS efirma','dat_ben.CLABE AS clabe', 'dat_ben.fecha_alta AS fecha_alta', 'ben.id_solicitud AS id_solicitud', 'entidad_nac.estado AS entidad_nac')
+              ->select('dir.calle AS d_calle', 'dir.num_ext AS d_num_ext', 'dir.num_int AS d_num_int', 'cp_dir.codigo_postal AS d_cp', 'cp_dir.asentamiento AS d_asenta', 'edo_dir.estado AS d_estado', 'ciudad_dir.ciudad AS d_ciudad', 'mun_dir.municipio AS d_mun', 'nacimiento.id AS id_nac', 'pais_rec.pais AS pais_rec', 'nacionalidad.Nacionalidad AS nacion','ocupa.ocupacion AS ocupa', 'parentesco.etiqueta AS parent', 'banco.banco AS banco', 'giro.etiqueta AS giro', 'dat_ben.ap_paterno AS paterno', 'dat_ben.ap_materno AS materno', 'dat_ben.nombres AS nombres', 'dat_ben.fecha_nac AS fecha_nac', 'dat_ben.lada_telefono AS tel', 'dat_ben.email AS mail', 'dat_ben.curp AS curp', 'dat_ben.rfc AS rfc', 'dat_ben.serie_e_firma AS efirma','dat_ben.CLABE AS clabe', 'dat_ben.fecha_alta AS fecha_alta', 'ben.id_solicitud AS id_solicitud','nacimiento.id_pais AS pais_nac','nacimiento.id AS id_nac')
               ->where('ben.id', '=', $id_beneficiario)
               ->get();
     return $beneficiarios[0];

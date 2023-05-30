@@ -19,6 +19,12 @@ class PdfPld extends Controller
   public function index($id_beneficiario){
 
     $beneficiario = Beneficiarios::beneficiarioFullData($id_beneficiario);
+    if($beneficiario->pais_nac == 141){
+      $lugar_nacimiento = Direcciones::lugaresMex($beneficiario->id_nac);
+    }elseif($beneficiario->pais_nac == 65){
+      $lugar_nacimiento = Direcciones::lugaresUsa($beneficiario->id_nac);
+    }
+
     dd($beneficiario);
 
     $fpdf = new customPdf('P', 'cm', 'Letter');
