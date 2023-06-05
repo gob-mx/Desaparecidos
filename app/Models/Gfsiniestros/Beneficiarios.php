@@ -15,7 +15,7 @@ class Beneficiarios extends Model
 
   static function beneficiarioFullData($id_beneficiario){
 
-    $beneficiarios = DB::table('AS_DatosBeneficiario AS dat_ben')
+    $beneficiario = DB::table('AS_DatosBeneficiario AS dat_ben')
               ->join('AS_Beneficiarios AS ben', 'dat_ben.id_beneficiario', '=', 'ben.id')
               ->join('AS_Direcciones AS dir', 'dat_ben.id_direccion', '=', 'dir.id')
               ->join('SPM_CP AS cp_dir', 'dir.id_cp', '=', 'cp_dir.id')
@@ -27,12 +27,12 @@ class Beneficiarios extends Model
               ->join('CAT_Nacionalidad AS nacionalidad', 'dat_ben.id_nacionalidad', '=', 'nacionalidad.id')
               ->join('CAT_Ocupaciones AS ocupa', 'dat_ben.id_ocupacion', '=', 'ocupa.id')
               ->join('cm_catalogo AS parentesco', 'dat_ben.cat_parentesco', '=', 'parentesco.id_cat')
-              ->join('CAT_Bancos AS banco', 'dat_ben.id_banco', '=', 'banco.cve')
+              ->leftJoin('CAT_Bancos AS banco', 'dat_ben.id_banco', '=', 'banco.cve')
               ->join('cm_catalogo AS giro', 'dat_ben.cat_giro_actividad', '=', 'giro.id_cat')
-              ->select('dir.calle AS d_calle', 'dir.num_ext AS d_num_ext', 'dir.num_int AS d_num_int', 'cp_dir.codigo_postal AS d_cp', 'cp_dir.asentamiento AS d_asenta', 'edo_dir.estado AS d_estado', 'ciudad_dir.ciudad AS d_ciudad', 'mun_dir.municipio AS d_mun', 'nacimiento.id AS id_nac', 'pais_rec.pais AS pais_rec', 'nacionalidad.Nacionalidad AS nacion','ocupa.ocupacion AS ocupa', 'parentesco.etiqueta AS parent', 'banco.banco AS banco', 'giro.etiqueta AS giro', 'dat_ben.ap_paterno AS paterno', 'dat_ben.ap_materno AS materno', 'dat_ben.nombres AS nombres', 'dat_ben.fecha_nac AS fecha_nac', 'dat_ben.lada_telefono AS tel', 'dat_ben.email AS mail', 'dat_ben.curp AS curp', 'dat_ben.rfc AS rfc', 'dat_ben.serie_e_firma AS efirma','dat_ben.CLABE AS clabe', 'dat_ben.fecha_alta AS fecha_alta', 'ben.id_solicitud AS id_solicitud','nacimiento.id_pais AS pais_nac','nacimiento.id AS id_nac')
+              ->select('dir.calle AS d_calle', 'dir.num_ext AS d_num_ext', 'dir.num_int AS d_num_int', 'cp_dir.codigo_postal AS d_cp', 'cp_dir.asentamiento AS d_asenta', 'edo_dir.estado AS d_estado', 'ciudad_dir.ciudad AS d_ciudad', 'mun_dir.municipio AS d_mun', 'nacimiento.id AS id_nac', 'pais_rec.pais AS pais_rec', 'nacionalidad.Nacionalidad AS nacion','ocupa.ocupacion AS ocupa', 'parentesco.etiqueta AS parent', 'giro.etiqueta AS giro', 'dat_ben.ap_paterno AS paterno', 'dat_ben.ap_materno AS materno', 'dat_ben.nombres AS nombres', 'dat_ben.fecha_nac AS fecha_nac', 'dat_ben.lada_telefono AS tel', 'dat_ben.email AS mail', 'dat_ben.curp AS curp', 'dat_ben.rfc AS rfc', 'dat_ben.serie_e_firma AS efirma', 'dat_ben.fecha_alta AS fecha_alta', 'ben.id_solicitud AS id_solicitud','nacimiento.id_pais AS pais_nac','nacimiento.id AS id_nac','dat_ben.CLABE AS clabe', 'banco.banco AS banco')
               ->where('ben.id', '=', $id_beneficiario)
               ->get();
-    return $beneficiarios[0];
+      return $beneficiario[0];
 
   }
 
@@ -47,16 +47,42 @@ class Beneficiarios extends Model
 
   }
 
+  static function getLugar($id, $tabla){
+      $lugar = DB::table('AS_Estado_pais as ep')
+              ->select('ep.id')
+              ->where('ep.id_relacionado', '=', $id)
+              ->where('ep.tabla_relacionada', '=', $tabla)
+              ->first();
+      if(isset($lugar->id)){
+        return $lugar->id;
+      }else{
+        return false;
+      }
+  }
+
   static function datos_beneficiario($request){
 
-    $id_ciudad_lugar_nacimiento = DB::table('AS_Estado_pais')->insertGetId(
-        [
-            'id_estado' => $request->input('id_estado_nac'),
-            'id_ciudad' => $request->input('ciudad_ben_nac'),
-            'id_pais' => $request->input('id_pais_nacimiento')
-        ]
-    );
-
+    $existe_lugar_nac = self::getLugar($request->input('id_beneficiario'), 'AS_DatosBeneficiario');
+    if($existe_lugar_nac == false){
+      $id_ciudad_lugar_nacimiento = DB::table('AS_Estado_pais')->insertGetId(
+          [
+              'id_estado' => $request->input('id_estado_nac'),
+              'id_ciudad' => $request->input('ciudad_ben_nac'),
+              'id_pais' => $request->input('id_pais_nacimiento'),
+              'id_relacionado' => $request->input('id_beneficiario'),
+              'tabla_relacionada' => 'AS_DatosBeneficiario'
+          ]
+      );
+    }else{
+          DB::table('AS_Estado_pais')
+          ->where('id', $existe_lugar_nac)
+          ->update([
+              'id_estado' => $request->input('id_estado_nac'),
+              'id_ciudad' => $request->input('ciudad_ben_nac'),
+              'id_pais' => $request->input('id_pais_nacimiento')
+          ]);
+      $id_ciudad_lugar_nacimiento = $existe_lugar_nac;
+    }
     $beneficiario = DB::table('AS_DatosBeneficiario')
             ->where('id_beneficiario', $request->input('id_beneficiario'))
             ->update([

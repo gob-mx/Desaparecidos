@@ -16,7 +16,24 @@ class Solicitudes extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Wizard|index', ['only' => ['index']]);
+      $this->middleware('permiso:Solicitudes|index', ['only' => ['index']]);
+      $this->middleware('permiso:Solicitudes|datos_asegurado', ['only' => ['datos_asegurado']]);
+      $this->middleware('permiso:Solicitudes|listado_solicitudes', ['only' => ['listado_solicitudes']]);
+      $this->middleware('permiso:Solicitudes|listado_solicitudes_filter', ['only' => ['listado_solicitudes_filter']]);
+      $this->middleware('permiso:Solicitudes|modal_add_solicitud', ['only' => ['modal_add_solicitud']]);
+      $this->middleware('permiso:Solicitudes|modal_crm', ['only' => ['modal_crm']]);
+      $this->middleware('permiso:Solicitudes|add_mensaje', ['only' => ['add_mensaje']]);
+      $this->middleware('permiso:Solicitudes|modal_edit_solicitud', ['only' => ['modal_edit_solicitud']]);
+      $this->middleware('permiso:Solicitudes|buscar', ['only' => ['buscar']]);
+      $this->middleware('permiso:Solicitudes|insertar', ['only' => ['insertar']]);
+      $this->middleware('permiso:Solicitudes|listado', ['only' => ['listado']]);
+      $this->middleware('permiso:Solicitudes|listadofilter', ['only' => ['listadofilter']]);
+      $this->middleware('permiso:Solicitudes|upload', ['only' => ['upload']]);
+      $this->middleware('permiso:Solicitudes|update_ine', ['only' => ['update_ine']]);
+      $this->middleware('permiso:Solicitudes|update_act_nac', ['only' => ['update_act_nac']]);
+      $this->middleware('permiso:Solicitudes|update_act_def', ['only' => ['update_act_def']]);
+      $this->middleware('permiso:Solicitudes|update_fto_rec', ['only' => ['update_fto_rec']]);
+      $this->middleware('permiso:Solicitudes|form_data', ['only' => ['form_data']]);
   }
 
   public function update_ine($id_solicitud,$file){ return ModelSolicitud::update_document_sol($id_solicitud,$file,'ine_fallecido');}
@@ -76,7 +93,8 @@ class Solicitudes extends Controller
             'certificado' => $poliza->certificado,
             'asegurado' => $asegurado,
             'fallecido' => $fallecido,
-            'estado_pais1' => $estado_pais1
+            'estado_pais1' => $estado_pais1,
+            'telefono' => $asegurado->telefono
         ];
         return view('solicitudes/form_data')->with('datos', $datos);
   }
@@ -160,13 +178,31 @@ class Solicitudes extends Controller
   public function buscar(Request $request)
   {
     $res = Polizas::buscar($request);
-    print json_encode($res);
+    $rep = ModelSolicitud::repetido($res['id_poliza']);
+    if($rep){
+      $datos = [
+          'success' => false,
+          'mensaje' => 'Ya existe una solicitud en trámite para este Titular'
+      ];
+      print json_encode($datos);
+    }else{
+      print json_encode($res);
+    }
   }
 
   public function insertar(Request $request)
   {
-    $res = ModelSolicitud::insertar($request);
-    print json_encode($res);
+    $rep = ModelSolicitud::repetido($request->input('id_poliza'));
+    if($rep){
+      $datos = [
+          'success' => false,
+          'mensaje' => 'Ya existe una solicitud en trámite para este Titular'
+      ];
+      print json_encode($datos);
+    }else{
+      $res = ModelSolicitud::insertar($request);
+      print json_encode($res);
+    }
   }
 
 }

@@ -13,7 +13,7 @@ class PdfPld extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Pdf|index', ['only' => ['index']]);
+      $this->middleware('permiso:PdfPld|index', ['only' => ['index']]);
   }
 
   public function index($id_beneficiario){
@@ -31,14 +31,99 @@ class PdfPld extends Controller
     $fpdf->SetTitle(utf8_decode("PLD"));
     $fpdf->SetAuthor('ASSEGURO');
     $fpdf->setSourceFile("../resources/templates/pld.pdf");
-    $fpdf->AddFont('Metropolis','','Metropolis-Bold.php');
-    $fpdf->SetFont('Metropolis','',8);
+    $fpdf->AddFont('Metropolis','','metropolis.php');
+    $fpdf->SetFont('Metropolis','',10);
     $fpdf->SetFillColor(235,227,239);
     $fpdf->SetTextColor(0,0,0);
 
     $fpdf->AddPage();
     $tplId1 = $fpdf->importPage(1);
     $fpdf->useTemplate($tplId1, .4, .4, 21);
+
+    $fpdf->SetXY(5,5.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->paterno)),0,'L',false);
+    $fpdf->SetXY(15,5.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->materno)),0,'L',false);
+    $fpdf->SetXY(4,6.4);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->nombres)),0,'L',false);
+    $fpdf->SetXY(5.5,7);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->fecha_nac)),0,'L',false);
+    $fpdf->SetXY(15.1,7);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($lugar_nacimiento->pais)),0,'L',false);
+    $fpdf->SetXY(6.8,7.6);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($lugar_nacimiento->estado)),0,'L',false);
+    $fpdf->SetXY(15.1,7.6);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->nacion)),0,'L',false);
+    $fpdf->SetXY(9,8.2);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->ocupa)),0,'L',false);
+    $fpdf->SetXY(5.5,8.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->tel)),0,'L',false);
+    $fpdf->SetXY(13.3,8.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->mail)),0,'L',false);
+
+
+    $pos = 2.80;
+    for($i=0; $i<18; $i++){
+      $pos += .485;
+      $fpdf->SetXY($pos,9.4);
+      $fpdf->MultiCell(.5,.3,utf8_decode(strip_tags(substr($beneficiario->curp, $i, 1))),0,'C',false);
+    }
+
+    $pos = 13.31;
+    for($i=0; $i<15; $i++){
+        if(substr($beneficiario->rfc, $i, 1) !== '-'){
+          $pos += .508;
+          $fpdf->SetXY($pos,9.4);
+          $fpdf->MultiCell(.5,.3,utf8_decode(strip_tags(substr($beneficiario->rfc, $i, 1))),0,'C',false);
+        }
+    }
+
+
+    if($beneficiario->efirma){
+      $fpdf->SetXY(12.6,9.95);
+      $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->efirma)),0,'L',false);
+    }
+
+    $fpdf->SetXY(3.35,11);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_calle)),0,'L',false);
+
+    $fpdf->SetXY(13,11);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_num_ext)),0,'L',false);
+
+    if($beneficiario->d_num_int){
+      $fpdf->SetXY(18,11);
+      $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_num_int)),0,'L',false);
+    }
+
+    $fpdf->SetXY(3.35,11.6);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_asenta)),0,'L',false);
+
+    $fpdf->SetXY(17,11.6);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_cp)),0,'L',false);
+
+    $fpdf->SetXY(5.5,12.2);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_mun)),0,'L',false);
+
+    $fpdf->SetXY(15,12.2);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_ciudad)),0,'L',false);
+
+    $fpdf->SetXY(5.5,12.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_estado)),0,'L',false);
+
+    $fpdf->SetXY(14,12.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags('Estados Unidos Mexicanos')),0,'L',false);
+
+    $fpdf->SetXY(2.2,22.5);
+    $fpdf->MultiCell(7,.3,date("d-m-Y H:i:s"),0,'L',false);
+
+    $fpdf->SetXY(6.6,22.5);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->nombres.' '.$beneficiario->paterno.' '.$beneficiario->materno)),0,'C',false);
+
+
+
+
+
+
 
     ob_start();
     $token = Helpme::token();

@@ -17,15 +17,15 @@
                     <div class="row">
                       <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                         <label for="recipient-name" class="form-control-label">Nombres:</label>
-                        <input name="nombre" type="text" class="form-control" id="nombre">
+                        <input onchange="disabled_add()" name="nombre" type="text" class="form-control" id="nombre">
                       </div>
                       <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                         <label for="recipient-name" class="form-control-label">Paterno:</label>
-                        <input name="paterno" type="text" class="form-control" id="paterno">
+                        <input onchange="disabled_add()" name="paterno" type="text" class="form-control" id="paterno">
                       </div>
                       <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                         <label for="recipient-name" class="form-control-label">Materno:</label>
-                        <input name="materno" type="text" class="form-control" id="materno">
+                        <input onchange="disabled_add()" name="materno" type="text" class="form-control" id="materno">
                       </div>
                     </div>
 
@@ -42,7 +42,7 @@
                       </div>
                       <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                         <label for="recipient-name" class="form-control-label">RFC:</label>
-                        <input name="rfc" type="text" class="form-control" id="rfc">
+                        <input onchange="disabled_add()" name="rfc" type="text" class="form-control" id="rfc">
                       </div>
                       <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                         <label for="recipient-name" class="form-control-label"># Beneficiarios:</label>
@@ -79,7 +79,7 @@
               <button type="button" class="btn btn-primary" id="sol_js_fn_02">
                 Buscar
               </button>
-              <button type="button" class="btn btn-primary" id="sol_js_fn_03">
+              <button type="button" disabled class="btn btn-primary" id="sol_js_fn_03">
                 Agregar
               </button>
 						</div>

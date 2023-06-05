@@ -823,3 +823,7 @@ z-index:50;
 .manusize {
     font-size: 1.9rem !important;
 }
+
+.m-body .m-content {
+    padding: 0px;
+}

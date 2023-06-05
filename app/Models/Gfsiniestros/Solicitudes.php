@@ -17,6 +17,7 @@ class Solicitudes extends Model
 
     $asegurado = DB::table('AS_Solicitudes AS ass')
               ->join('AS_Asegurado AS asa', 'ass.id', '=', 'asa.id_solicitud')
+              ->join('AS_Polizas AS asp', 'ass.id_poliza', '=', 'asp.id')
               ->join('AS_Fallecido AS asf', 'ass.id', '=', 'asf.id_solicitud')
               ->join('cm_catalogo AS cat_edif_fall', 'asf.cat_edificio_fallecimiento', '=', 'cat_edif_fall.id_cat')
               ->join('AS_Estado_pais AS lugar_fall', 'asf.id_lugar_fallecimiento', '=', 'lugar_fall.id')
@@ -34,7 +35,7 @@ class Solicitudes extends Model
               ->join('CAT_Nacionalidad AS cat_nacionalidad', 'asa.id_nacionalidad', '=', 'cat_nacionalidad.id')
               ->join('CAT_Ocupaciones AS cat_ocupaciones', 'asa.id_ocupacion', '=', 'cat_ocupaciones.id')
               ->join('cm_catalogo AS tipo_seguro', 'asa.cat_tipo_seguro', '=', 'tipo_seguro.id_cat')
-              ->select('asa.otras_empresas','asa.antiguedad_en_empresa', 'asa.empresa_trabajo', 'asa.afiliacion_imss_issste', 'asa.curp', 'asa.no_certificado', 'asa.grupo_y_colectivo', 'asa.no_polizas', 'asf.fecha_fallecimiento', 'asf.causa_fallecimiento', 'asf.agencia_servicio_funerario', 'asf.fecha_servicios_funerarios', 'asf.autoridad_tomo_hechos_violentos AS violento', 'cat_edif_fall.etiqueta AS edificio_fallecimiento', 'dir_dom.calle AS dom_calle', 'dir_dom.num_ext AS dom_num_ext', 'dir_dom.num_int AS dom_num_int', 'cp_dom.codigo_postal AS dom_cp', 'cp_dom.asentamiento AS dom_asenta', 'cty_dom.ciudad AS dom_cty', 'edo_dom.estado AS dom_edo', 'mun_dom.municipio AS dom_mun', 'dir_emp.calle AS emp_calle', 'dir_emp.num_ext AS emp_num_ext', 'dir_emp.num_int AS emp_num_int', 'cp_emp.codigo_postal AS emp_cp', 'cp_emp.asentamiento AS emp_asenta', 'cty_emp.ciudad AS emp_cty', 'edo_emp.estado AS emp_edo', 'mun_emp.municipio AS emp_mun', 'lugar_fall.id_pais AS pais_fall', 'lugar_nac.id_pais AS pais_nac', 'cat_nacionalidad.Nacionalidad', 'cat_ocupaciones.ocupacion', 'tipo_seguro.etiqueta AS tipo_seguro', 'lugar_nac.id AS nac_id', 'lugar_fall.id AS fal_id')
+              ->select('asp.FechaNac', 'asp.RFC', 'asa.telefono', 'asp.Paterno', 'asp.Materno', 'asp.Nombre', 'asa.otras_empresas','asa.antiguedad_en_empresa', 'asa.empresa_trabajo', 'asa.afiliacion_imss_issste', 'asa.curp', 'asa.no_certificado', 'asa.grupo_y_colectivo', 'asa.no_polizas', 'asf.fecha_fallecimiento', 'asf.causa_fallecimiento', 'asf.agencia_servicio_funerario', 'asf.fecha_servicios_funerarios', 'asf.autoridad_tomo_hechos_violentos AS violento', 'cat_edif_fall.etiqueta AS edificio_fallecimiento', 'dir_dom.calle AS dom_calle', 'dir_dom.num_ext AS dom_num_ext', 'dir_dom.num_int AS dom_num_int', 'cp_dom.codigo_postal AS dom_cp', 'cp_dom.asentamiento AS dom_asenta', 'cty_dom.ciudad AS dom_cty', 'edo_dom.estado AS dom_edo', 'mun_dom.municipio AS dom_mun', 'dir_emp.calle AS emp_calle', 'dir_emp.num_ext AS emp_num_ext', 'dir_emp.num_int AS emp_num_int', 'cp_emp.codigo_postal AS emp_cp', 'cp_emp.asentamiento AS emp_asenta', 'cty_emp.ciudad AS emp_cty', 'edo_emp.estado AS emp_edo', 'mun_emp.municipio AS emp_mun', 'lugar_fall.id_pais AS pais_fall', 'lugar_nac.id_pais AS pais_nac', 'cat_nacionalidad.Nacionalidad', 'cat_ocupaciones.ocupacion', 'tipo_seguro.etiqueta AS tipo_seguro', 'lugar_nac.id AS nac_id', 'lugar_fall.id AS fal_id')
               ->where('ass.id', '=', $id_solicitud)
               ->get();
     return $asegurado[0];
@@ -148,14 +149,6 @@ class Solicitudes extends Model
     return Solicitudes::find($id_solicitud);
   }
 
-  static function polizaData($id_poliza){
-    $poliza = DB::table('AS_Polizas as asp')
-              ->select('asp.*' )
-              ->where('asp.id', '=', $id_poliza)
-              ->get();
-    return  $poliza[0];
-  }
-
   static function solicitudGet($id_solicitud){
     $solicitud = DB::table('AS_Solicitudes as ass')
               ->join('AS_Polizas as asp','asp.id','=','ass.id_poliza')
@@ -193,15 +186,42 @@ class Solicitudes extends Model
 
   }
 
+  static function getLugar($id, $tabla){
+      $lugar = DB::table('AS_Estado_pais as ep')
+              ->select('ep.id')
+              ->where('ep.id_relacionado', '=', $id)
+              ->where('ep.tabla_relacionada', '=', $tabla)
+              ->first();
+      if(isset($lugar->id)){
+        return $lugar->id;
+      }else{
+        return false;
+      }
+  }
+
   static function datos_asegurado($request){
 
-    $id_ciudad_lugar_nacimiento = DB::table('AS_Estado_pais')->insertGetId(
-        [
-            'id_estado' => $request->input('entidad_as'),
-            'id_ciudad' => $request->input('ciudad_nac'),
-            'id_pais' => $request->input('pais_as')
-        ]
-    );
+    $existe_lugar_nac = self::getLugar($request->input('id_solicitud'), 'AS_Asegurado');
+    if($existe_lugar_nac == false){
+      $id_ciudad_lugar_nacimiento = DB::table('AS_Estado_pais')->insertGetId(
+          [
+              'id_estado' => $request->input('entidad_as'),
+              'id_ciudad' => $request->input('ciudad_nac'),
+              'id_pais' => $request->input('pais_as'),
+              'id_relacionado' => $request->input('id_solicitud'),
+              'tabla_relacionada' => 'AS_Asegurado'
+          ]
+      );
+    }else{
+          DB::table('AS_Estado_pais')
+          ->where('id', $existe_lugar_nac)
+          ->update([
+              'id_estado' => $request->input('entidad_as'),
+              'id_ciudad' => $request->input('ciudad_nac'),
+              'id_pais' => $request->input('pais_as')
+          ]);
+      $id_ciudad_lugar_nacimiento = $existe_lugar_nac;
+    }
     $asegurado = DB::table('AS_Asegurado')
             ->where('id_solicitud', $request->input('id_solicitud'))
             ->update([
@@ -213,6 +233,7 @@ class Solicitudes extends Model
                 'cat_tipo_seguro' => $request->input('tipo_seguro'),
                 'grupo_y_colectivo' => $request->input('grupo_y_colectivo'),
                 'no_certificado' => $request->input('no_certificado'),
+                'telefono' => $request->input('telefono'),
                 'curp' => $request->input('curp'),
                 'cat_status_print' => 102,
                 'afiliacion_imss_issste' => $request->input('afiliacion_imss_issste'),
@@ -221,13 +242,27 @@ class Solicitudes extends Model
                 'antiguedad_en_empresa' => $request->input('antiguedad_en_empresa'),
                 'otras_empresas' => $request->input('otras_empresas')
             ]);
+    $existe_lugar_fal = self::getLugar($request->input('id_solicitud'), 'AS_Fallecido');
+    if($existe_lugar_fal == false){
     $id_lugar_fallecimiento = DB::table('AS_Estado_pais')->insertGetId(
-        [
-            'id_estado' => $request->input('entidad_fall'),
-            'id_ciudad' => $request->input('id_lugar'),
-            'id_pais' => $request->input('pais_fall')
-        ]
-    );
+          [
+              'id_estado' => $request->input('entidad_fall'),
+              'id_ciudad' => $request->input('id_lugar'),
+              'id_pais' => $request->input('pais_fall'),
+              'id_relacionado' => $request->input('id_solicitud'),
+              'tabla_relacionada' => 'AS_Fallecido'
+          ]
+      );
+    }else{
+          DB::table('AS_Estado_pais')
+          ->where('id', $existe_lugar_fal)
+          ->update([
+              'id_estado' => $request->input('entidad_fall'),
+              'id_ciudad' => $request->input('id_lugar'),
+              'id_pais' => $request->input('pais_fall')
+          ]);
+      $id_lugar_fallecimiento = $existe_lugar_fal;
+    }
     $fallecido = DB::table('AS_Fallecido')
             ->where('id_solicitud', $request->input('id_solicitud'))
             ->update([
@@ -248,6 +283,14 @@ class Solicitudes extends Model
       ];
       return $datos;
 
+  }
+
+  static function polizaData($id_poliza){
+    $poliza = DB::table('AS_Polizas as asp')
+              ->select('asp.*' )
+              ->where('asp.id', '=', $id_poliza)
+              ->get();
+    return  $poliza[0];
   }
 
   static function insertar($request){
@@ -277,16 +320,20 @@ class Solicitudes extends Model
               'fecha_alta' => date("Y-m-d H:i:s")
           ]
       );
+      $poliza = self::polizaData($request->input('id_poliza'));
       $iddb = DB::table('AS_DatosBeneficiario')->insertGetId(
           [
               'id_beneficiario' => $idb,
               'cat_parentesco' => 88,
               'cat_status_print' => 101,
+              'ap_paterno' => $poliza->Paterno,
+              'ap_materno' => $poliza->Materno,
+              'nombres' => $poliza->Nombre,
               'fecha_alta' => date("Y-m-d H:i:s")
           ]
       );
 
-    }else{
+    }else{ // si el beneficiario no es el titular
       for($i = 1; $i <= $benefit; $i++){
 
         $idb = DB::table('AS_Beneficiarios')->insertGetId(
@@ -333,6 +380,18 @@ class Solicitudes extends Model
         'titular' => $request->input('titular')
     ];
     return $datos;
+  }
+
+  static function repetido($id){
+      $solicitud = DB::table('AS_Solicitudes as ass')
+                ->select('ass.*')
+                ->where('ass.id_poliza', '=', $id)
+                ->get();
+      if(count($solicitud) >= 1){
+        return true;
+      }else{
+        return false;
+      }
   }
 
 }

@@ -186,10 +186,12 @@ $("body").on("click", "#ben_js_fn_06", function() {
 	if( emailValida($('#email').val()) == false )	msj_error+='&bull;&nbsp;Ingrese un correo válido.<br />';
 	if( curpValida($('#curp').val())==false )	msj_error+='&bull;&nbsp;Ingrese un CURP válido.<br />';
 	if( rfcValido($('#rfc').val()) == false )	msj_error+='&bull;&nbsp;Ingrese un RFC válido.<br />';
-	if( efirmaValida($('#serie_e_firma').val()) == false )	msj_error+='&bull;&nbsp;Ingrese una e-firma válida.<br />';
-	if( clabeValida($('#CLABE').val()) == false )	msj_error+='&bull;&nbsp;Ingrese una CLABE Interbancaria válida.<br />';
-	if( $('#bank_id').val() == "" )	msj_error+='&bull;&nbsp;Ingrese un Banco válido.<br />';
-	if( $('#banco').val() == "" )	msj_error+='&bull;&nbsp;Ingrese un Banco válido.<br />';
+	//if( efirmaValida($('#serie_e_firma').val()) == false )	msj_error+='&bull;&nbsp;Ingrese una e-firma válida.<br />';
+  if($('#forma_pago').val() == 66){
+    if( clabeValida($('#CLABE').val()) == false )	msj_error+='&bull;&nbsp;Ingrese una CLABE Interbancaria válida.<br />';
+  	if( $('#bank_id').val() == "" )	msj_error+='&bull;&nbsp;Ingrese un Banco válido.<br />';
+  	if( $('#banco').val() == "" )	msj_error+='&bull;&nbsp;Ingrese un Banco válido.<br />';
+  }
 
 	if( !msj_error == "" ){
 		alerta('Faltan datos', msj_error);

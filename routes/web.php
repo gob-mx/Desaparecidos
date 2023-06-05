@@ -36,12 +36,12 @@ Route::group(['prefix' => 'upload'], function(){
 });
 
 Route::group(['prefix' => 'beneficiarios'], function(){
+    Route::get('/', 'Gfsiniestros\Beneficiarios@index');
     Route::post('/datos_beneficiario', 'Gfsiniestros\Beneficiarios@datos_beneficiario');
     Route::get('/modal_add_beneficiario/{id_solicitud}', 'Gfsiniestros\Beneficiarios@modal_add_beneficiario');
     Route::post('/addBeneficiario', 'Gfsiniestros\Beneficiarios@addBeneficiario');
     Route::get('/modal_edit_beneficiario/{id_beneficiario}', 'Gfsiniestros\Beneficiarios@modal_edit_beneficiario');
     Route::post('/editBeneficiario', 'Gfsiniestros\Beneficiarios@editBeneficiario');
-    Route::get('/', 'Gfsiniestros\Beneficiarios@index');
     Route::post('/listado_beneficiarios/{id_solicitud}', 'Gfsiniestros\Beneficiarios@listado_beneficiarios');
     Route::post('/listado_beneficiarios_admin/{id_solicitud}', 'Gfsiniestros\Beneficiarios@listado_beneficiarios_admin');
     Route::get('/list/{id_solicitud}', 'Gfsiniestros\Beneficiarios@list');
@@ -62,8 +62,8 @@ Route::group(['prefix' => 'beneficiarios'], function(){
 });
 
 Route::group(['prefix' => 'solicitudes'], function(){
-    Route::post('/datos_asegurado', 'Gfsiniestros\Solicitudes@datos_asegurado');
     Route::get('/', 'Gfsiniestros\Solicitudes@index');
+    Route::post('/datos_asegurado', 'Gfsiniestros\Solicitudes@datos_asegurado');
     Route::post('/listado_solicitudes', 'Gfsiniestros\Solicitudes@listado_solicitudes');
     Route::post('/listado_solicitudes_filter', 'Gfsiniestros\Solicitudes@listado_solicitudes_filter');
     Route::get('/modal_add_solicitud', 'Gfsiniestros\Solicitudes@modal_add_solicitud');
@@ -74,7 +74,6 @@ Route::group(['prefix' => 'solicitudes'], function(){
     Route::post('/insertar', 'Gfsiniestros\Solicitudes@insertar');
     Route::get('/listado', 'Gfsiniestros\Solicitudes@listado');
     Route::get('/listadofilter', 'Gfsiniestros\Solicitudes@listadofilter');
-    Route::post('/nuevo_registro', 'Gfsiniestros\Solicitudes@nuevo_registro');
     Route::get('/upload/{id_solicitud}', 'Gfsiniestros\Solicitudes@upload');
     Route::post('/update_ine/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_ine');
     Route::post('/update_act_nac/{id_solicitud}/{file}', 'Gfsiniestros\Solicitudes@update_act_nac');

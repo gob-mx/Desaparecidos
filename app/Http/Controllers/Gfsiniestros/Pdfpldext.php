@@ -13,7 +13,7 @@ class PdfPldExt extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Pdf|index', ['only' => ['index']]);
+    $this->middleware('permiso:PdfPldExt|index', ['only' => ['index']]);
   }
 
   public function index($id_beneficiario){
@@ -30,14 +30,74 @@ class PdfPldExt extends Controller
     $fpdf->SetTitle(utf8_decode("PLD-EXTRANJEROS"));
     $fpdf->SetAuthor('ASSEGURO');
     $fpdf->setSourceFile("../resources/templates/pldext.pdf");
-    $fpdf->AddFont('Metropolis','','Metropolis-Bold.php');
-    $fpdf->SetFont('Metropolis','',8);
+    $fpdf->AddFont('Metropolis','','metropolis.php');
+    $fpdf->SetFont('Metropolis','',10);
     $fpdf->SetFillColor(235,227,239);
     $fpdf->SetTextColor(0,0,0);
 
     $fpdf->AddPage();
     $tplId1 = $fpdf->importPage(1);
     $fpdf->useTemplate($tplId1, .4, .4, 21);
+
+    $fpdf->SetXY(5,5.5);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->paterno.' '.$beneficiario->materno)),0,'L',false);
+    $fpdf->SetXY(4,6.1);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->nombres)),0,'L',false);
+    $fpdf->SetXY(5.5,6.7);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->fecha_nac)),0,'L',false);
+    $fpdf->SetXY(15.1,6.7);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($lugar_nacimiento->pais)),0,'L',false);
+    $fpdf->SetXY(6.8,7.3);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($lugar_nacimiento->estado)),0,'L',false);
+    $fpdf->SetXY(15.1,7.3);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->nacion)),0,'L',false);
+    $fpdf->SetXY(9,7.9);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->ocupa)),0,'L',false);
+    $fpdf->SetXY(5.5,8.5);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->tel)),0,'L',false);
+    $fpdf->SetXY(13.3,8.5);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->mail)),0,'L',false);
+    $fpdf->SetXY(2,9.1);
+    $fpdf->MultiCell(10,.3,utf8_decode(strip_tags($beneficiario->curp)),0,'C',false);
+    $fpdf->SetXY(14,9.1);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->rfc)),0,'C',false);
+    $fpdf->SetXY(3.35,10.2);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_calle)),0,'L',false);
+    $fpdf->SetXY(13,10.2);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_num_ext)),0,'L',false);
+
+    if($beneficiario->d_num_int){
+      $fpdf->SetXY(18,10.2);
+      $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_num_int)),0,'L',false);
+    }
+
+    $fpdf->SetXY(3.35,10.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_asenta)),0,'L',false);
+    $fpdf->SetXY(15,10.8);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_cp)),0,'L',false);
+    $fpdf->SetXY(5.5,11.4);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_mun)),0,'L',false);
+    $fpdf->SetXY(15,11.4);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_ciudad)),0,'L',false);
+    $fpdf->SetXY(5.5,12);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags($beneficiario->d_estado)),0,'L',false);
+    $fpdf->SetXY(13,12);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags('Estados Unidos Mexicanos')),0,'L',false);
+
+
+    $fpdf->SetXY(4,13);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags('Direccion en el extranjero')),0,'L',false);
+    $fpdf->SetXY(6.5,13.6);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags('Estado ciudad o poblacion')),0,'L',false);
+    $fpdf->SetXY(14.6,13.6);
+    $fpdf->MultiCell(7,.3,utf8_decode(strip_tags('Estados Unidos de América')),0,'L',false);
+
+
+    $fpdf->SetXY(1.6,22.5);
+    $fpdf->MultiCell(4,.3,date("d-m-Y H:i:s"),0,'C',false);
+    $fpdf->SetXY(6.6,22.5);
+    $fpdf->MultiCell(6,.3,utf8_decode(strip_tags($beneficiario->nombres.' '.$beneficiario->paterno.' '.$beneficiario->materno)),0,'C',false);
+
 
     ob_start();
     $token = Helpme::token();

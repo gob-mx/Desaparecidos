@@ -65,7 +65,7 @@ class Viewsolicitudes extends Model
 
     if(($sol->cat_status_print == 102)&&($fal->cat_status_print == 102) && ($inc > 0)){
       $salida .= '
-      <a href="#" data-original-title="Hace falta completar datos para '.$inc.' beneficiario(s)" data-toggle="m-tooltip" data-placement="top"  class="btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air manusize">
+      <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'beneficiarios/list/'.$id_solicitud.'\');" data-original-title="Hace falta completar datos para '.$inc.' beneficiario(s)" data-toggle="m-tooltip" data-placement="top"  class="btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air manusize">
 				<i class="fa fa-hourglass-half"></i>
 			</a>
       ';

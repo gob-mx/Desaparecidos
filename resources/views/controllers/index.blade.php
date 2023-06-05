@@ -16,7 +16,6 @@ $("#breadcrumb-title").append(' / Roles y permisos / Permisos');
 							</span>
 						</span>
 					</a>
-					<div class="m-separator m-separator--dashed d-xl-none"></div>
 				</div>
 		</div>
 	</div>

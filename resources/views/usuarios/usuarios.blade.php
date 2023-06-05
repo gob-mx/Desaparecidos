@@ -45,9 +45,6 @@ $("#breadcrumb-title").append(' / Control de usuarios');
 							<?php
 							}
 							?>
-
-
-							<div class="m-separator m-separator--dashed d-xl-none"></div>
 						</div>
 				</div>
 			</div>

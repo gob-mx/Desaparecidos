@@ -57,12 +57,12 @@ class Viewbeneficiarios extends Model
     ';
 
     $salida .= '
-    <a data-function="'.$id_beneficiario.'" data-name="'.$name.'"  class="ben_js_fn_03 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+    <a data-function="'.$id_beneficiario.'" data-name="'.$name.'"  onclick="SweetAlert2Benefit.init()" class="ben_js_fn_03 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
       <i class="flaticon-delete-1"></i>
     </a></div><div class="col-12">
     ';
 
-    if($ben->cat_status_print == 'no quiero imprimir esto'){
+    if($ben->cat_status_print == 'no quiero imprimir'){
       $salida .= '
       <a href="#" onclick="carga_archivo(\'contenedor_principal\',\'pdfpldext/'.$id_beneficiario.'\');" data-original-title="PDL para Extranjeros" data-toggle="m-tooltip" data-placement="top" class="manusize btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--outline-2x m-btn--pill m-btn--air">
 				<i class="fa fa-print"></i>

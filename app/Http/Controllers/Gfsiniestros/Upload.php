@@ -9,7 +9,8 @@ class Upload extends Controller
 
     public function __construct()
     {
-        //$this->middleware('permiso:Usuarios|upload_avatar', ['only' => ['update_avatar','exit_status','get_extension','smart_rename']]);
+        $this->middleware('permiso:Upload|index', ['only' => ['index']]);
+        $this->middleware('permiso:Upload|dropzone', ['only' => ['dropzone']]);
     }
 
     public function index(){

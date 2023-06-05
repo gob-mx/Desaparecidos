@@ -84,6 +84,8 @@ $("body").on("click", "#sol_js_fn_02", function() {
 				$('#id_poliza').val(resp_success['id_poliza']);
 				if(resp_success['success']){
 					$('#sol_js_fn_03').prop('disabled', false);
+				}else{
+					alerta('Noticia',resp_success['mensaje']);
 				}
 			},
 		error: function(respuesta){ alerta('Alerta!','Error de conectividad de red SOL-02');}
@@ -121,6 +123,8 @@ $("body").on("click", "#sol_js_fn_03", function() {
 					$('#solicitudes').DataTable().ajax.reload();
 					alerta('Noticia','Se creó la nueva solicitud satisfactoriamente con el identificador ' + resp_success['id']);
 					$('#myModal').modal('hide');
+				}else{
+					alerta('Noticia',resp_success['mensaje']);
 				}
 			},
 		error: function(respuesta){ alerta('Alerta!','Error de conectividad de red SOL-03');}
@@ -175,6 +179,7 @@ $("body").on("click", "#sol_js_fn_05", function() {
 	if( $('#id_domicilio_empresa').val() == "" )	msj_error+='&bull;&nbsp;Seleccione el domiciloio de la empresa.<br />';
 	if( $('#id_dom_2').val() == "" )	msj_error+='&bull;&nbsp;Seleccione el domiciloio de la empresa.<br />';
 	if( $('#otras_empresas').val() == "" )	msj_error+='&bull;&nbsp;Seleccione en que otras empresas trabajaba.<br />';
+	if( telValida($('#telefono').val()) == false )	msj_error+='&bull;&nbsp;Ingrese su numero a 10 digitos válido.<br />';
 	if( $('#pais_fall').val() == "" || $('#entidad_fall').val() == "" || $('#id_lugar').val() == "")	msj_error+='&bull;&nbsp;Ingrese la ciudad donde falleció.<br />';
 	if( $('#cat_edificio_fallecimiento').val() == "" )	msj_error+='&bull;&nbsp;Seleccione el Lugar de Fallecimiento.<br />';
 	if( $('#fecha_fallecimiento').val() == "" )	msj_error+='&bull;&nbsp;Ingrese la fecha de fallecimiento.<br />';
@@ -293,3 +298,8 @@ $("body").on("click", "#sol_js_fn_07", function() {
 		});
 
 });
+
+
+function disabled_add(){
+	$('#sol_js_fn_03').prop('disabled', true);
+}

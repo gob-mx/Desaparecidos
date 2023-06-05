@@ -25,7 +25,6 @@ $("#breadcrumb-title").append(' / Control de sesiones');
 							<?php
 							}
 							?>
-							<div class="m-separator m-separator--dashed d-xl-none"></div>
 						</div>
 				</div>
 			</div>

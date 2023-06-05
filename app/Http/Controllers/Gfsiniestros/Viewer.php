@@ -11,7 +11,7 @@ class Viewer extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Wizard|index', ['only' => ['index']]);
+      $this->middleware('permiso:Viewer|index', ['only' => ['index']]);
   }
 
   public function index($db,$doc,$id){

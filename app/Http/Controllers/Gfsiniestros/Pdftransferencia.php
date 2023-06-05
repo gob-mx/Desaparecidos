@@ -13,20 +13,22 @@ class PdfTransferencia extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Pdf|index', ['only' => ['index']]);
+      $this->middleware('permiso:PdfTransferencia|index', ['only' => ['index']]);
   }
 
   public function index($id_beneficiario){
 
     $beneficiario = Beneficiarios::beneficiarioFullData($id_beneficiario);
 
+
     $fpdf = new customPdf('P', 'cm', 'Letter');
-    $fpdf->setConfig('status',42);
+    $fpdf->setConfig('beneficiario',$beneficiario);
     $fpdf->SetTitle(utf8_decode("Formato para transferencia electrónica de fondos"));
     $fpdf->SetAuthor('ASSEGURO');
     $fpdf->setSourceFile("../resources/templates/transferencia.pdf");
-    $fpdf->AddFont('Metropolis','','Metropolis-Bold.php');
-    $fpdf->SetFont('Metropolis','',8);
+    $fpdf->AddFont('Metropolis','','metropolis.php');
+    $fpdf->SetFont('Metropolis','',10);
+    $fpdf->SetFontSize(12);
     $fpdf->SetFillColor(235,227,239);
     $fpdf->SetTextColor(0,0,0);
 
@@ -34,6 +36,37 @@ class PdfTransferencia extends Controller
     $tplId1 = $fpdf->importPage(1);
     $fpdf->useTemplate($tplId1, .4, .4, 21);
 
+    if(($beneficiario->clabe == null)||($beneficiario->banco == null)){
+      $fpdf->SetXY(3,4);
+      $fpdf->SetTextColor(255,0,0);
+      $fpdf->SetFontSize(20);
+      $fpdf->SetFillColor(255,255,255);
+      $fpdf->MultiCell(16,2,'LA FORMA DE PAGO CAMBIO POR LO QUE ES NECESARIO MODIFICAR EL FORMULARIO DEL BENEFICIARIO PARA AGREGAR LOS CAMPOS BANCO Y CLABE',0,'C',true);
+    }else{
+
+        $fpdf->SetXY(14,2);
+        $fpdf->MultiCell(5,.3,date("d-m-Y H:i:s"),0,'C',false);
+        $fpdf->SetXY(2.8,10.5);
+        $fpdf->MultiCell(16,.3,utf8_decode(strip_tags($beneficiario->nombres.' '.$beneficiario->paterno.' '.$beneficiario->materno)),0,'C',false);
+        $fpdf->SetXY(2.8,12.5);
+        $fpdf->MultiCell(8,.3,utf8_decode(strip_tags($beneficiario->rfc)),0,'C',false);
+        $fpdf->SetXY(11,12.5);
+        $fpdf->MultiCell(8,.3,utf8_decode(strip_tags($beneficiario->tel)),0,'C',false);
+        $fpdf->SetXY(2.8,14.4);
+        $fpdf->MultiCell(8,.3,utf8_decode(strip_tags($beneficiario->mail)),0,'C',false);
+        $fpdf->SetXY(11,14.4);
+        $fpdf->MultiCell(8,.3,utf8_decode(strip_tags($beneficiario->banco)),0,'C',false);
+
+        $pos = 4.040;
+        for($i=0; $i<18; $i++){
+          $pos += .7;
+          $fpdf->SetXY($pos,16.5);
+          $fpdf->MultiCell(.5,.3,utf8_decode(strip_tags(substr($beneficiario->clabe, $i, 1))),0,'C',false);
+        }
+
+        $fpdf->SetXY(2.8,20);
+        $fpdf->MultiCell(16,.3,utf8_decode(strip_tags($beneficiario->nombres.' '.$beneficiario->paterno.' '.$beneficiario->materno)),0,'C',false);
+    }
     ob_start();
     $token = Helpme::token();
     $path = 'tmp/'.$token.'.pdf';
@@ -51,21 +84,13 @@ class PdfTransferencia extends Controller
 class customPdf extends Fpdi
 {
 
-    var $status;
-
-    //$fpdf->setConfig('status',$status);
+    var $beneficiario;
     function setConfig($var,$val)
     {
         $this->{$var} = $val;
     }
 
-    public function Header(){
-      if($this->status !== 42){
-        $this->SetTextColor(230,230,230);
-        $this->SetFontSize(80);
-        $this->RotatedText(3,20,'B O R R A D O R',45);
-      }
-    }
+    public function Header(){}
     public function Footer(){}
 
       var $angle=0;

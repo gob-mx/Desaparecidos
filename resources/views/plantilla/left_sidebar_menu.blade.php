@@ -22,7 +22,9 @@
 
       <?php
          if(
+           (Helpme::tiene_permiso('Solicitudes|listadofilter')) OR
            (Helpme::tiene_permiso('Solicitudes|listado'))
+
          )
          {
       ?>
@@ -57,7 +59,7 @@
 
             <?php } ?>
 
-            <?php  if(Helpme::tiene_permiso('Solicitudes|listado')){ ?>
+            <?php  if(Helpme::tiene_permiso('Solicitudes|listadofilter')){ ?>
 
               <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','solicitudes/listadofilter');" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Mis&nbsp;Solicitudes</span></a>

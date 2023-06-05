@@ -12,6 +12,9 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 						 </h3>
 					 </div>
 				 </div>
+				 <?php
+				 if($datos['solicitud']->esTitular == 0){
+				 ?>
 				<div class="m-portlet__head-caption">
 						<div class="col-xl-12 order-1 order-xl-2 m--align-right">
 
@@ -26,6 +29,9 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 
 						</div>
 				</div>
+				<?php
+				}
+				?>
 			</div>
 
 			<div class="m-portlet__body">
@@ -43,6 +49,7 @@ $("#breadcrumb-title").append(' / <a href="javascript:;" onclick="carga_archivo(
 		</div>
 <script>
     $(document).ready(function() {
+			  SweetAlert2Benefit.init();
         $('#beneficiarios').dataTable( {
             responsive: true,
             "fnDrawCallback": function( oSettings ) {

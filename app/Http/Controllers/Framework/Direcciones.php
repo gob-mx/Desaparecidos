@@ -8,7 +8,12 @@ class Direcciones extends Controller
 {
   public function __construct()
   {
-      //$this->middleware('permiso:Catalogo|editar_catalogo', ['only' => ['data_catalogo','editar_catalogo']]);
+      $this->middleware('permiso:Direcciones|modal_dir', ['only' => ['modal_dir']]);
+      $this->middleware('permiso:Direcciones|cp_search', ['only' => ['cp_search']]);
+      $this->middleware('permiso:Direcciones|get_all', ['only' => ['get_all']]);
+      $this->middleware('permiso:Direcciones|insert', ['only' => ['insert']]);
+      $this->middleware('permiso:Direcciones|get_ciudades', ['only' => ['get_ciudades']]);
+      $this->middleware('permiso:Direcciones|get_estados', ['only' => ['get_estados']]);
   }
 
   public function index(){

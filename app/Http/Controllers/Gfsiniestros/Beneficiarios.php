@@ -17,7 +17,28 @@ class Beneficiarios extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Wizard|index', ['only' => ['index']]);
+      $this->middleware('permiso:Beneficiarios|index', ['only' => ['index']]);
+      $this->middleware('permiso:Beneficiarios|datos_beneficiario', ['only' => ['datos_beneficiario']]);
+      $this->middleware('permiso:Beneficiarios|modal_add_beneficiario', ['only' => ['modal_add_beneficiario']]);
+      $this->middleware('permiso:Beneficiarios|addBeneficiario', ['only' => ['addBeneficiario']]);
+      $this->middleware('permiso:Beneficiarios|modal_edit_beneficiario', ['only' => ['modal_edit_beneficiario']]);
+      $this->middleware('permiso:Beneficiarios|editBeneficiario', ['only' => ['editBeneficiario']]);
+      $this->middleware('permiso:Beneficiarios|listado_beneficiarios', ['only' => ['listado_beneficiarios']]);
+      $this->middleware('permiso:Beneficiarios|listado_beneficiarios_admin', ['only' => ['listado_beneficiarios_admin']]);
+      $this->middleware('permiso:Beneficiarios|list', ['only' => ['list']]);
+      $this->middleware('permiso:Beneficiarios|listadmin', ['only' => ['listadmin']]);
+      $this->middleware('permiso:Beneficiarios|update_poliza_designacion', ['only' => ['update_poliza_designacion']]);
+      $this->middleware('permiso:Beneficiarios|update_comprobante_domicilio', ['only' => ['update_comprobante_domicilio']]);
+      $this->middleware('permiso:Beneficiarios|update_comprobante_domicilio_extranjero', ['only' => ['update_comprobante_domicilio_extranjero']]);
+      $this->middleware('permiso:Beneficiarios|update_ine', ['only' => ['update_ine']]);
+      $this->middleware('permiso:Beneficiarios|update_fto_pld', ['only' => ['update_fto_pld']]);
+      $this->middleware('permiso:Beneficiarios|update_fto_transferencia', ['only' => ['update_fto_transferencia']]);
+      $this->middleware('permiso:Beneficiarios|update_estado_cuenta', ['only' => ['update_estado_cuenta']]);
+      $this->middleware('permiso:Beneficiarios|update_cedula_fiscal', ['only' => ['update_cedula_fiscal']]);
+      $this->middleware('permiso:Beneficiarios|update_curp', ['only' => ['update_curp']]);
+      $this->middleware('permiso:Beneficiarios|update_comprobante_fiel', ['only' => ['update_comprobante_fiel']]);
+      $this->middleware('permiso:Beneficiarios|form_data', ['only' => ['form_data']]);
+      $this->middleware('permiso:Beneficiarios|delete', ['only' => ['delete']]);
   }
 
   public function update_poliza_designacion($id_beneficiario,$file){ return ModelBeneficiarios::update_document_ben($id_beneficiario,$file,'poliza_designacion');}
@@ -54,6 +75,8 @@ class Beneficiarios extends Controller
         $select_estados1 = Direcciones::get_estados($estado_pais1['id_pais'],$estado_pais1['id_estado']);
         $select_ciudades1 = Direcciones::get_ciudades($estado_pais1['id_pais'],$estado_pais1['id_estado'],$estado_pais1['id_ciudad']);
 
+        $solicitud = ModelSolicitud::recuperar($id_solicitud);
+
         $datos = [
             'humanAddress' => $humanAddress1,
             'id_beneficiario' => $id_beneficiario,
@@ -70,7 +93,8 @@ class Beneficiarios extends Controller
             'beneficiario' => $beneficiario,
             'titular' => $titular,
             'actividades' => $actividades,
-            'beneficiarioData' => $beneficiarioData
+            'beneficiarioData' => $beneficiarioData,
+            'forma_pago' => $solicitud->cat_forma_pago
         ];
         return view('beneficiarios/form_data')->with('datos', $datos);
   }
@@ -145,9 +169,11 @@ class Beneficiarios extends Controller
   public function list($id_solicitud)
   {
       $titular = ModelSolicitud::titular($id_solicitud);
+      $solicitud = ModelSolicitud::recuperar($id_solicitud);
       $datos = [
           'id_solicitud' => $id_solicitud,
-          'titular' => $titular
+          'titular' => $titular,
+          'solicitud' => $solicitud
       ];
       return view('beneficiarios/listado')->with('datos', $datos);
   }
