@@ -57,7 +57,7 @@ class Viewbeneficiarios extends Model
     ';
 
     $salida .= '
-    <a data-function="'.$id_beneficiario.'" data-name="'.$name.'"  onclick="SweetAlert2Benefit.init()" class="ben_js_fn_03 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+    <a data-function="'.$id_beneficiario.'" data-name="'.$name.'"  onmouseover="SweetAlert2Benefit.init()" class="ben_js_fn_03 btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
       <i class="flaticon-delete-1"></i>
     </a></div><div class="col-12">
     ';
