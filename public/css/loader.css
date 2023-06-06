@@ -15,11 +15,11 @@ body {
   height: 162px;
   position: absolute;
   left:50%; top:50%;
-  background: url(../img/asforms.svg) no-repeat center 0;
+  background: url(../img/fgj_a.svg) no-repeat center 0;
   margin:-50px 0 0 -50px;
 }
 #initloader:before {
-  content: " G F S I N I E S T R O S ";
+  content: " D E S A P A R E C I D O S ";
   display: inline-block;
 
   color: #FFF;
@@ -29,7 +29,7 @@ body {
   position: relative;
   font-size: 2em;
   top: 168px;
-  width: 300px;
+  width: 333px;
   left: -88px;;
   text-align: center;
 }

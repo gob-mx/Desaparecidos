@@ -530,22 +530,22 @@ padding-top: 5px;
 }
 /*BARRA*/
 .m-aside-left.m-aside-left--skin-dark {
-    background: linear-gradient(#0066b0, #00a0e3, #0066b0);
+    background: #003765;
 }
 /*LOGO*/
 .m-brand.m-brand--skin-dark {
-    background: #0066b0;
+    background: #003765;
 }
 /*BOTONERA*/
 .m-aside-menu .m-menu__nav .m-menu__subnav {
-    background: linear-gradient(#0066b0, #00a0e3);
+    background: #003765;
 }
 .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__heading .m-menu__link-text, .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__link .m-menu__link-text {
     color: #FFFFFF;
 }
 /*ENCABEZADO DE LISTA*/
 .m-aside-menu .m-menu__nav>.m-menu__item>.m-menu__link {
-    background-color: #0066b0;
+    background-color: #003765;
 }
 .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-text {
     color: #FFFFFF;
@@ -826,4 +826,8 @@ z-index:50;
 
 .m-body .m-content {
     padding: 0px;
+}
+
+.m-footer{
+  background: #666666;
 }

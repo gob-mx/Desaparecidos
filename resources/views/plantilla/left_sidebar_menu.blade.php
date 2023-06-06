@@ -22,8 +22,8 @@
 
       <?php
          if(
-           (Helpme::tiene_permiso('Solicitudes|listadofilter')) OR
-           (Helpme::tiene_permiso('Solicitudes|listado'))
+           (Helpme::tiene_permiso('Usuarios|index')) OR
+           (Helpme::tiene_permiso('Controllers|index'))
 
          )
          {
@@ -51,91 +51,15 @@
 
 
 
-            <?php  if(Helpme::tiene_permiso('Solicitudes|listado')){ ?>
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
 
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','solicitudes/listado');" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">GF SNTE 5</span></a>
-              </li>
-
-            <?php } ?>
-
-            <?php  if(Helpme::tiene_permiso('Solicitudes|listadofilter')){ ?>
-
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','solicitudes/listadofilter');" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Mis&nbsp;Solicitudes</span></a>
-              </li>
-
-            <?php } ?>
-
-            <?php  if(Helpme::tiene_permiso('Unknown|formX')){ ?>
-
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="#" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Recupera</span></a>
-              </li>
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="#" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Vida maestra</span></a>
-              </li>
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="#" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">GF Familiar</span></a>
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','upload/excel');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Upload</span></a>
               </li>
 
             <?php } ?>
 
 
-
-          </ul>
-        </div>
-      </li>
-      <?php } ?>
-
-
-
-
-
-
-
-
-      <?php
-         if(
-           (Helpme::tiene_permiso('Wizard|formx'))
-         )
-         {
-      ?>
-      <li class="m-menu__item  m-menu__item--active" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-        <a  href="javascript:;" class="m-menu__link m-menu__toggle">
-          <i class="m-menu__link-icon flaticon-network"></i>
-          <span class="m-menu__link-text">
-            Administración
-          </span>
-          <i class="m-menu__ver-arrow la la-angle-right"></i>
-        </a>
-        <div class="m-menu__submenu ">
-          <span class="m-menu__arrow"></span>
-          <ul class="m-menu__subnav">
-
-            <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
-              <span class="m-menu__link">
-                <span class="m-menu__link-text">
-                  Administración
-                </span>
-              </span>
-            </li>
-
-            <?php  if(Helpme::tiene_permiso('Wizard|form')){ ?>
-
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','wizard/form');" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-folder-1"></i><span class="m-menu__link-text">Verificar Excel</span></a>
-              </li>
-
-            <?php } ?>
-
-            <?php  if(Helpme::tiene_permiso('Wizard|form')){ ?>
-
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','wizard/form');" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-folder-1"></i><span class="m-menu__link-text">Procesar Excel</span></a>
-              </li>
-
-            <?php } ?>
 
           </ul>
         </div>
