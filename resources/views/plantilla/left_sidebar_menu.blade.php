@@ -53,8 +53,56 @@
 
             <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
 
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','upload/excel');" class="m-menu__link m-menu__toggle">
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','desaparecidos/upload');" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Upload</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','filecontrol/generate');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Generar Tablas</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','filecontrol');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Control de Archivos</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','cbp');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">DATABASE CBP</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','cnb');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">DATABASE CNB</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','fgj');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">DATABASE FGJ</span></a>
+              </li>
+
+            <?php } ?>
+
+            <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
+
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','unificada');" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Base Unificada</span></a>
               </li>
 
             <?php } ?>

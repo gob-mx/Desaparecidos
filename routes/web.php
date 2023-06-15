@@ -10,6 +10,50 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'filecontrol'], function(){
+    Route::get('/', 'Gedefi\Filecontrol@index');
+    Route::post('/obtenerArchivos', 'Gedefi\Filecontrol@obtenerArchivos');
+    Route::get('/generate', 'Gedefi\Filecontrol@generate');
+    Route::get('/menu_ven', 'Gedefi\Filecontrol@menu_ven');
+
+    Route::get('/generar_unificada', 'Gedefi\Filecontrol@generar_unificada');
+    Route::get('/generar_cbp_cnb', 'Gedefi\Filecontrol@generar_cbp_cnb');
+    Route::get('/generar_cbp_fgj', 'Gedefi\Filecontrol@generar_cbp_fgj');
+    Route::get('/generar_cnb_fgj', 'Gedefi\Filecontrol@generar_cnb_fgj');
+});
+
+Route::group(['prefix' => 'unificada'], function(){
+    Route::get('/', 'Gedefi\Unificada@index');
+    Route::post('/obtenerBase', 'Gedefi\Unificada@obtenerBase');
+});
+
+Route::group(['prefix' => 'cbp'], function(){
+    Route::get('/', 'Gedefi\Cbp@index');
+    Route::post('/obtenerBase', 'Gedefi\Cbp@obtenerBase');
+});
+
+Route::group(['prefix' => 'cnb'], function(){
+    Route::get('/', 'Gedefi\Cnb@index');
+    Route::post('/obtenerBase', 'Gedefi\Cnb@obtenerBase');
+});
+
+Route::group(['prefix' => 'fgj'], function(){
+    Route::get('/', 'Gedefi\Fgj@index');
+    Route::post('/obtenerBase', 'Gedefi\Fgj@obtenerBase');
+});
+
+Route::group(['prefix' => 'desaparecidos'], function(){
+    Route::get('/', 'Gedefi\Desaparecidos@index');
+    Route::get('/upload', 'Gedefi\Desaparecidos@upload');
+    Route::post('/upload_cbp/{file}', 'Gedefi\Desaparecidos@upload_cbp');
+    Route::post('/upload_cnb/{file}', 'Gedefi\Desaparecidos@upload_cnb');
+    Route::post('/upload_fgj/{file}', 'Gedefi\Desaparecidos@upload_fgj');
+});
+
+Route::group(['prefix' => 'upload'], function(){
+    Route::get('/', 'Gedefi\Upload@index');
+    Route::post('/dropzone/{folder}', 'Gedefi\Upload@dropzone');
+});
 
 Route::group(['prefix' => 'direcciones'], function(){
     Route::get('/modal_dir/{iden}/{id}/{hidden}', 'Framework\Direcciones@modal_dir');

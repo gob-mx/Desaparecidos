@@ -1,4 +1,4 @@
-var SessionTimeout = function () {
+/*var SessionTimeout = function () {
 
     var handlesessionTimeout = function () {
         $.sessionTimeout();
@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 
 function keepAliveDirect(){
 	$.ajax({url: 'login/keepAliveReset'});
-}
+}*/
 
 
 $("body").on("click", "#m_portlet_tools_2", function() {

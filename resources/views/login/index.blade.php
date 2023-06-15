@@ -28,7 +28,7 @@
 					<div class="m-stack m-stack--hor m-stack--desktop">
 						<div class="m-stack__item m-stack__item--fluid">
 	            <div class="m-login__wrapper">
-								<div style="text-align: center;" ><img src="<?=env('APP_URL')?>assets/demo/default/media/img/logo/logo_login.png"></div>
+								<div style="text-align: center;" ><img width="230px" src="<?=env('APP_URL')?>assets/demo/default/media/img/logo/logo_login.jpg"></div>
 	              <!--<div class="m-login__logo"><?=env('APP_NAME')?></div>-->
 
 	              <!--Formulario de inicio de sesion-->
