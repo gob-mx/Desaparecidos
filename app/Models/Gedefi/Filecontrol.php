@@ -25,88 +25,204 @@ class Filecontrol extends Model
     $database = new Filecontrol();
     $dataTable = new DT(
       $database->join('cm_catalogo as cat1','cat1.id_cat','=','GE_FileControl.cat_status_file')->join('cm_catalogo as cat2','cat2.id_cat','=','GE_FileControl.cat_type_source'),
-      ['id', 'cat2.etiqueta', 'cat1.etiqueta', 'filetype', 'registros', 'GE_FileControl.user_alta', 'GE_FileControl.user_mod', 'GE_FileControl.fecha_alta', 'GE_FileControl.fecha_mod']
+      ['id', 'cat2.etiqueta', 'cat1.etiqueta', 'filetype', 'registros', 'GE_FileControl.user_alta', 'GE_FileControl.fecha_alta']
     );
+    $dataTable->setFormatRowFunction(function ($database) {
+      return [
+        $database->id ,
+        $database->cat2Etiqueta ,
+        $database->cat1Etiqueta,
+        $database->filetype ,
+        $database->registros ,
+        $database->gEFileControlUserAlta ,
+        $database->gEFileControlFechaAlta ,
+        self::out($database->id,$database->cat2Etiqueta)
+      ];
+    });
+
     return $dataTable->make();
+  }
+  static function out($id, $type_source){
+
+    $salida = '
+    <a onclick="carga_archivo(\'contenedor_principal\',\'filecontrol/reprocesar/'.strtolower($type_source).'/'.$id.'\');" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air">
+      <i class="flaticon-cogwheel"></i>
+    </a>
+    ';
+
+    return $salida;
   }
 
   static function generar_unificada(){
-    DB::select('DROP TABLE IF EXISTS GE_UNIFICADA');
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_UNIFICADA;');
+    DB::select('SET foreign_key_checks = 1;');
     DB::select("
-      CREATE TABLE GE_UNIFICADA
-      SELECT nombre, apaterno, amaterno, 'FGJ' as origen
-      FROM GE_FGJ
-      UNION
-      SELECT NOMBRE, PATERNO, MATERNO, 'CBP' as origen
-      FROM GE_CBP
-      UNION
-      SELECT Nombre, PrimerApellido, SegundoApellido, 'CNB' as origen
-      FROM GE_CNB
+    INSERT INTO GE_UNIFICADA ( nom, apaterno, amaterno ) SELECT DISTINCT
+    nom,
+    apaterno,
+    amaterno
+    FROM
+    	(
+    	SELECT
+    		nombre AS nom,
+    		apaterno,
+    		amaterno
+    	FROM
+    		GE_FGJ AS fgj UNION
+    	SELECT
+    		NOMBRE AS nom,
+    		PATERNO AS apaterno,
+    		MATERNO AS amaterno
+    	FROM
+    		GE_CBP AS cbp UNION
+    	SELECT
+    		Nombre AS nom,
+    		PrimerApellido AS apaterno,
+    		SegundoApellido AS amaterno
+    	FROM
+    	GE_CNB AS cnb
+    	) AS temp;
     ");
-    DB::select('
-    ALTER TABLE GE_UNIFICADA
-    ADD COLUMN `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`)
-    ');
   }
 
   static function generar_cbp_cnb(){
-    DB::select('DROP TABLE IF EXISTS GE_CBP_CNB');
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_CBP_CNB;');
+    DB::select('SET foreign_key_checks = 1;');
     DB::select("
-    CREATE TABLE GE_CBP_CNB SELECT
-    cnb.id as id_cnb, cbp.id as id_cbp, cnb.Nombre as nom, cnb.PrimerApellido as apaterno, cnb.SegundoApellido as amaterno
+    INSERT INTO GE_CBP_CNB (nom, apaterno, amaterno)
+    SELECT DISTINCT
+    	cbp.NOMBRE as nom,
+    	cbp.PATERNO as apaterno,
+    	cbp.MATERNO as amaterno
     FROM
-      GE_CNB as cnb
-      INNER JOIN GE_CBP as cbp
-      ON 	cbp.MATERNO = cnb.SegundoApellido
-      AND cbp.PATERNO = cnb.PrimerApellido
-      AND cbp.NOMBRE  = cnb.Nombre
+    	GE_CBP as cbp
+    	INNER JOIN GE_CNB as cnb ON cbp.NOMBRE = cnb.Nombre
+    	AND cbp.PATERNO = cnb.PrimerApellido
+    	AND cbp.MATERNO = cnb.SegundoApellido;
     ");
-    DB::select('
-    ALTER TABLE GE_CBP_CNB
-    ADD COLUMN `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`)
-    ');
   }
 
   static function generar_cbp_fgj(){
-    DB::select('DROP TABLE IF EXISTS GE_CBP_FGJ');
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_CBP_FGJ;');
+    DB::select('SET foreign_key_checks = 1;');
     set_time_limit(0);
     DB::select("
-    CREATE TABLE GE_CBP_FGJ SELECT
-    fgj.id as id_fgj, cbp.id as id_cbp, fgj.nombre as nom, fgj.apaterno, fgj.amaterno
+    INSERT INTO GE_CBP_FGJ (nom, apaterno, amaterno)
+    SELECT DISTINCT
+    	cbp.NOMBRE as nom,
+    	cbp.PATERNO as apaterno,
+    	cbp.MATERNO as amaterno
     FROM
-    	GE_FGJ as fgj
-    	INNER JOIN GE_CBP as cbp
-    	ON 	cbp.MATERNO = fgj.amaterno
+    	GE_CBP as cbp
+    	INNER JOIN GE_FGJ as fgj ON cbp.NOMBRE = fgj.nombre
     	AND cbp.PATERNO = fgj.apaterno
-    	AND cbp.NOMBRE  = fgj.nombre
+    	AND cbp.MATERNO = fgj.amaterno
     ");
-    DB::select('
-    ALTER TABLE GE_CBP_FGJ
-    ADD COLUMN `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`)
-    ');
   }
 
   static function generar_cnb_fgj(){
-    DB::select('DROP TABLE IF EXISTS GE_CNB_FGJ');
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_CNB_FGJ;');
+    DB::select('SET foreign_key_checks = 1;');
     set_time_limit(0);
     DB::select("
-    CREATE TABLE GE_CNB_FGJ SELECT
-    fgj.id as id_fgj, cnb.id as id_cnb, fgj.nombre as nom, fgj.apaterno, fgj.amaterno
+    INSERT INTO GE_CNB_FGJ (nom, apaterno, amaterno)
+    SELECT DISTINCT
+    	cnb.Nombre AS nom,
+    	cnb.PrimerApellido AS apaterno,
+    	cnb.SegundoApellido AS amaterno
     FROM
-    	GE_FGJ as fgj
-    	INNER JOIN GE_CNB as cnb
-    	ON 	cnb.SegundoApellido = fgj.amaterno
+    	GE_CNB AS cnb
+    	INNER JOIN GE_FGJ AS fgj ON cnb.Nombre = fgj.nombre
     	AND cnb.PrimerApellido = fgj.apaterno
-    	AND cnb.Nombre  = fgj.nombre
+    	AND cnb.SegundoApellido = fgj.amaterno
     ");
-    DB::select('
-    ALTER TABLE GE_CNB_FGJ
-    ADD COLUMN `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`)
-    ');
+  }
+  static function generar_duplicados_unificada(){
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_UNIFICADA_DUP;');
+    DB::select('SET foreign_key_checks = 1;');
+    set_time_limit(0);
+    DB::select("
+    INSERT INTO GE_UNIFICADA_DUP (nom, apaterno, amaterno, repeticiones, ids_origen)
+    SELECT nom, apaterno, amaterno, COUNT(*) AS repeticiones, GROUP_CONCAT(id, '|' ,origen) AS `ids_origen`
+      FROM (
+          SELECT 'CBP' as origen, id, NOMBRE as nom, PATERNO as apaterno, MATERNO as amaterno
+          FROM GE_CBP
+          UNION ALL
+          SELECT 'CNB' as origen, id, Nombre as nom, PrimerApellido as apaterno, SegundoApellido as amaterno
+          FROM GE_CNB
+          UNION ALL
+          SELECT 'FGJ' as origen, id, nombre as nom, apaterno, amaterno
+          FROM GE_FGJ
+      ) AS combined_tables
+      GROUP BY nom, apaterno, amaterno
+      HAVING COUNT(*) > 1
+      order by repeticiones desc
+    ");
+  }
+  static function generar_duplicados_cbp_cnb(){
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_CBP_CNB_DUP;');
+    DB::select('SET foreign_key_checks = 1;');
+    set_time_limit(0);
+    DB::select("
+    INSERT INTO GE_CBP_CNB_DUP (nom, apaterno, amaterno, repeticiones, ids_origen)
+    SELECT nom, apaterno, amaterno, COUNT(*) AS repeticiones, GROUP_CONCAT(id, '|' ,origen) AS `ids_origen`
+    FROM (
+        SELECT 'CBP' as origen, id, NOMBRE as nom, PATERNO as apaterno, MATERNO as amaterno
+        FROM GE_CBP
+        UNION ALL
+        SELECT 'CNB' as origen, id, Nombre as nom, PrimerApellido as apaterno, SegundoApellido as amaterno
+        FROM GE_CNB
+    ) AS combined_tables
+    GROUP BY nom, apaterno, amaterno
+    HAVING COUNT(*) > 1
+    order by repeticiones desc
+    ");
+  }
+  static function generar_duplicados_cbp_fgj(){
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_CBP_FGJ_DUP;');
+    DB::select('SET foreign_key_checks = 1;');
+    set_time_limit(0);
+    DB::select("
+    INSERT INTO GE_CBP_FGJ_DUP (nom, apaterno, amaterno, repeticiones, ids_origen)
+    SELECT nom, apaterno, amaterno, COUNT(*) AS repeticiones, GROUP_CONCAT(id, '|' ,origen) AS `ids_origen`
+    FROM (
+        SELECT 'CBP' as origen, id, NOMBRE as nom, PATERNO as apaterno, MATERNO as amaterno
+        FROM GE_CBP
+        UNION ALL
+        SELECT 'FGJ' as origen, id, nombre as nom, apaterno, amaterno
+        FROM GE_FGJ
+    ) AS combined_tables
+    GROUP BY nom, apaterno, amaterno
+    HAVING COUNT(*) > 1
+    order by repeticiones desc
+    ");
+  }
+  static function generar_duplicados_cnb_fgj(){
+    DB::select('SET foreign_key_checks = 0');
+    DB::select('TRUNCATE TABLE GE_CNB_FGJ_DUP;');
+    DB::select('SET foreign_key_checks = 1;');
+    set_time_limit(0);
+    DB::select("
+    INSERT INTO GE_CNB_FGJ_DUP (nom, apaterno, amaterno, repeticiones, ids_origen)
+    SELECT nom, apaterno, amaterno, COUNT(*) AS repeticiones, GROUP_CONCAT(id, '|' ,origen) AS `ids_origen`
+    FROM (
+        SELECT 'CNB' as origen, id, Nombre as nom, PrimerApellido as apaterno, SegundoApellido as amaterno
+        FROM GE_CNB
+        UNION ALL
+        SELECT 'FGJ' as origen, id, nombre as nom, apaterno, amaterno
+        FROM GE_FGJ
+    ) AS combined_tables
+    GROUP BY nom, apaterno, amaterno
+    HAVING COUNT(*) > 1
+    order by repeticiones desc
+    ");
   }
 
 }

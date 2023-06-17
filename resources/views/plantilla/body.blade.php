@@ -3,13 +3,10 @@
   	   <div id="initloader"></div>
   </div>
 
-  <div class="m-page-loader m-page-loader--base m-page-loader--non-block" style="margin-left: -80px; margin-top: -20px;">
+  <div class="m-page-loader m-page-loader--base m-page-loader--non-block">
   	<div class="m-blockui">
   		<span>
-  			Cargando ...
-  		</span>
-  		<span>
-  			<div class="m-loader m-loader--brand"></div>
+  			<img src="img/fgj_a.svg" width="30%">
   		</span>
   	</div>
   </div>

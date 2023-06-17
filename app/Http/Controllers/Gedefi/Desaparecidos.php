@@ -24,6 +24,11 @@ class Desaparecidos extends Controller
   public function upload_cnb($file){ return ModelDesaparecidos::upload_excel($file,'cnb');}
   public function upload_fgj($file){ return ModelDesaparecidos::upload_excel($file,'fgj');}
 
+  public function reprocesar($doc){
+    $datos = ModelDesaparecidos::reprocesar($doc);
+    return view('desaparecidos/generate')->with($datos);
+  }
+
   public function index(){exit();}
 
   public function upload()

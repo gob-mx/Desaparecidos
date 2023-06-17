@@ -1,24 +1,23 @@
-function accion_cbp(){
-	$(document).ready(function() {
-		$('#controllers').dataTable();
-		$('#controllers tbody').on('click', 'tr', function () {
-			var id = $('td', this).eq(0).text();
+$("body").on("click", ".modal_dup", function() {
+		id = $(this).attr('data-iden');
+		doc = $(this).attr('data-base');
 			$.ajax({
 				headers: {
 							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				},
-				url: 'controllers/data_controller/' + id,
+				url: 'filecontrol/getUnlocated/' + id + '/' + doc,
 				dataType: 'html',
 				success: function(resp_success){
 					var modal =  resp_success;
 					$(modal).modal().on('shown.bs.modal',function(){
-						//console.log(modal);
+						const scroll_content = document.querySelector('#container_scroll');
+            const ps = new PerfectScrollbar(scroll_content);
+						scroll_content.style.height = '300px';
+						scroll_content.scrollTop = 100000;
 					}).on('hidden.bs.modal',function(){
 						$(this).remove();
 					});
 				},
-				error: function(respuesta){ alerta('Alerta!','Error de conectividad de red CNTR-01');}
+				error: function(respuesta){ alerta('Alerta!','Error de conectividad de red DES-01');}
 			});
-		} );
-	} );
-}
+});

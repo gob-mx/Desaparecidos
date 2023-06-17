@@ -14,6 +14,20 @@ class Desaparecidos extends Model
   protected $primaryKey = 'id';
   public $timestamps = false;
 
+  static function reprocesar($doc, $id=false){
+      $file = ($id)?self::getActualFile($doc, $id):self::getActualFile($doc);
+      $inputFileName = '../storage/excel/'.$doc.'/'.$file->file;
+      $datos = self::cargar_csv($file->file,$doc,$file->hash_file, $inputFileName);
+      self::setStatusFile($doc, 19);
+      self::setStatusFileId($file->id, 21);
+      return $datos;
+  }
+
+  static function getActualFile($doc, $id = false){
+    switch($doc){case 'cbp': $source = 16; break; case 'cnb': $source = 17; break; case 'fgj': $source = 18; break; }
+    return ($id)?Desaparecidos::find($id):Desaparecidos::where('cat_type_source', $source)->where('cat_status_file', 21)->first();
+  }
+
   static function upload_excel($file,$doc){
       $inputFileName = '../storage/excel/'.$doc.'/'.$file;
       $hash_file = hash_file('md5', $inputFileName);
@@ -22,10 +36,27 @@ class Desaparecidos extends Model
         unlink($inputFileName);
         self::devolver_almacenado($existe);
       }else{
-        self::cargar_csv($file,$doc,$hash_file, $inputFileName);
+        $datos = self::cargar_csv($file,$doc,$hash_file, $inputFileName);
+        self::setStatusFile($doc, 19);
+        $datos['id'] = self::insert($datos, 21);
+        print json_encode($datos);
       }
   }
 
+  static function setStatusFileId($id, $status){
+    return Desaparecidos::where('id', $id)
+        ->update([
+            'cat_status_file' => $status
+        ]);
+  }
+
+  static function setStatusFile($doc, $status){
+    switch($doc){case 'cbp': $source = 16; break; case 'cnb': $source = 17; break; case 'fgj': $source = 18; break; }
+    return Desaparecidos::where('cat_type_source', $source)
+        ->update([
+            'cat_status_file' => $status
+        ]);
+  }
   static function devolver_almacenado($existe){
     $datos = [
         'id' => $existe->id,
@@ -40,6 +71,22 @@ class Desaparecidos extends Model
     print json_encode($datos);
   }
   static function cargar_csv($file,$doc,$hash_file, $inputFileName){
+
+    $hash_file2 = hash_file('md5', $inputFileName);
+
+    if($hash_file2 != $hash_file){
+      $datos = [
+          'file' => $file,
+          'doc' => $doc,
+          'hash_file' => $hash_file,
+          'hash_file2' => $hash_file2,
+          'inputFileName' => $inputFileName,
+            'mensaje' => 'el Hash del archivo no es el mismo que está almacenado',
+          'resp' => false
+      ];
+      print json_encode($datos);
+      exit();
+    }
 
     $fp = fopen($inputFileName, 'r');
     $lines = count(file($inputFileName));
@@ -99,9 +146,10 @@ class Desaparecidos extends Model
               $datos['id'] = self::insert($datos, 20);
               print json_encode($datos);
               exit();
-
             }else{
-              DB::table('GE_CBP')->truncate();
+              DB::select('SET foreign_key_checks = 0');
+              DB::select('TRUNCATE TABLE GE_CBP;');
+              DB::select('SET foreign_key_checks = 1;');
             }
           break;
           case "cnb":
@@ -141,7 +189,9 @@ class Desaparecidos extends Model
               exit();
 
             }else{
-              DB::table('GE_CNB')->truncate();
+              DB::select('SET foreign_key_checks = 0');
+              DB::select('TRUNCATE TABLE GE_CNB;');
+              DB::select('SET foreign_key_checks = 1;');
             }
           break;
           case "fgj":
@@ -190,12 +240,14 @@ class Desaparecidos extends Model
                   'mensaje' => 'El formato del archivo no es compatible con la base de datos',
                   'resp' => false
               ];
-              $datos['id'] = self::insert($datos, 19);
+              $datos['id'] = self::insert($datos, 20);
               print json_encode($datos);
               exit();
 
             }else{
-              DB::table('GE_FGJ')->truncate();
+              DB::select('SET foreign_key_checks = 0');
+              DB::select('TRUNCATE TABLE GE_FGJ;');
+              DB::select('SET foreign_key_checks = 1;');
             }
           break;
         }
@@ -213,9 +265,7 @@ class Desaparecidos extends Model
         'registros' => $count-1,
         'resp' => true
     ];
-    $datos['id'] = self::insert($datos, 21);
-    print json_encode($datos, 21);
-
+    return $datos;
   }
 
   static function insert($datos, $stat){
@@ -393,7 +443,7 @@ class Desaparecidos extends Model
         'registros' => $filas,
         'resp' => true
     ];
-    $datos['id'] = self::insert($datos);
+    $datos['id'] = self::insert($datos, 21);
     print json_encode($datos);
   }
 }

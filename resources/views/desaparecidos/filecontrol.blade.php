@@ -14,9 +14,8 @@ $("#breadcrumb-title").append(' / Roles y permisos / Permisos');
           <th>filetype</th>
           <th>registros</th>
           <th>user_alta</th>
-          <th>user_mod</th>
           <th>fecha_alta</th>
-          <th>fecha_mod</th>
+					<th>Reprocesar</th>
 				</tr>
 			</thead>
 		</table>
@@ -29,6 +28,21 @@ $("#breadcrumb-title").append(' / Roles y permisos / Permisos');
 <script>
 $(document).ready(function() {
     $('#filecontrol').dataTable( {
+			"dom": 'Blfrtip',
+			"buttons": [
+					{
+					'extend': 'csv',
+					'filename': 'Filecontrol'
+					},
+				{
+					'extend': 'excel',
+					'filename': 'Filecontrol'
+					},
+				{
+					'extend': 'pdf',
+					'filename': 'Filecontrol'
+					}
+			],
       "fnDrawCallback": function( oSettings ) {
         /**/
       },

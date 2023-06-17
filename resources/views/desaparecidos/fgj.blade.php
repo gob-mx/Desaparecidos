@@ -1,5 +1,5 @@
 <script>
-$("#breadcrumb-title").html('<img onclick="carga_archivo(\'contenedor_principal\',\'filecontrol/menu_ven\');" style="cursor:pointer; position:absolute; top:-20px; left:0px" src="img/ven-fgj.svg" width="50px"/>');
+$("#breadcrumb-title").html('<img onclick="carga_archivo(\'contenedor_principal\',\'filecontrol/menu_ven\');" style="cursor:pointer; position:absolute; top:-20px; left:0px" src="img/iconito.svg" width="50px"/>');
 $("#breadcrumb-title").append('<?=env('APP_NAME')?>');
 $("#breadcrumb-title").append(' / FGJ');
 </script>
@@ -58,6 +58,21 @@ $("#breadcrumb-title").append(' / FGJ');
 <script>
 $(document).ready(function() {
     $('#fgj').dataTable( {
+			"dom": 'Blfrtip',
+			"buttons": [
+					{
+					'extend': 'csv',
+					'filename': 'fgj'
+					},
+				{
+					'extend': 'excel',
+					'filename': 'fgj'
+					},
+				{
+					'extend': 'pdf',
+					'filename': 'fgj'
+					}
+			],
       "fnDrawCallback": function( oSettings ) {
         /**/
       },

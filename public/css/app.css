@@ -831,3 +831,19 @@ z-index:50;
 .m-footer{
   background: #666666;
 }
+
+.m-blockui {
+    background: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
+
+.dt-buttons{
+  padding-right: 20px;
+}
+
+.dataTables_length{
+  display: inline;
+}

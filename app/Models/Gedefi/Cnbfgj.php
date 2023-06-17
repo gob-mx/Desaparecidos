@@ -7,25 +7,25 @@ use LiveControl\EloquentDataTable\ExpressionWithName;
 use Helpme;
 use DB;
 
-class Unificada extends Model
+class Cnbfgj extends Model
 {
-  protected $table = 'GE_UNIFICADA';
+  protected $table = 'GE_CNB_FGJ';
   protected $primaryKey = 'id';
   public $timestamps = false;
 
   static function getAll(){
-    return Unificada::all();
+    return Cnbfgj::all();
   }
 
   static function recuperar($id){
-    return Unificada::find($id);
+    return Cnbfgj::find($id);
   }
 
   static function obtenerBase(){
-    $database = new Unificada();
+    $database = new Cnbfgj();
     $dataTable = new DT(
       $database,
-      ['id', 'nom', 'apaterno', 'amaterno']
+      ['id', 'nom', 'apaterno',  'amaterno']
     );
     return $dataTable->make();
   }

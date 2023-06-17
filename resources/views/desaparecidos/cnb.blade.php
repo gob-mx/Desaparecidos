@@ -1,5 +1,5 @@
 <script>
-$("#breadcrumb-title").html('<img onclick="carga_archivo(\'contenedor_principal\',\'filecontrol/menu_ven\');" style="cursor:pointer; position:absolute; top:-20px; left:0px" src="img/ven-cnb.svg" width="50px"/>');
+$("#breadcrumb-title").html('<img onclick="carga_archivo(\'contenedor_principal\',\'filecontrol/menu_ven\');" style="cursor:pointer; position:absolute; top:-20px; left:0px" src="img/iconito.svg" width="50px"/>');
 $("#breadcrumb-title").append('<?=env('APP_NAME')?>');
 $("#breadcrumb-title").append(' / CNB');
 </script>
@@ -43,6 +43,21 @@ $("#breadcrumb-title").append(' / CNB');
 <script>
 $(document).ready(function() {
     $('#cnb').dataTable( {
+			"dom": 'Blfrtip',
+			"buttons": [
+					{
+					'extend': 'csv',
+					'filename': 'cnb'
+					},
+				{
+					'extend': 'excel',
+					'filename': 'cnb'
+					},
+				{
+					'extend': 'pdf',
+					'filename': 'cnb'
+					}
+			],
       "fnDrawCallback": function( oSettings ) {
         /**/
       },
