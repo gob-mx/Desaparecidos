@@ -2,9 +2,6 @@
 namespace App\Http\Controllers\Gedefi;
 use App\Http\Controllers\Framework\Controller;
 use Illuminate\Http\Request;
-use App\Models\Framework\Catalogo;
-use App\Models\Framework\Direcciones;
-use App\Models\Gedefi\Desaparecidos as ModelDesaparecidos;
 use App\Models\Gedefi\Cbpfgjdup as ModelCbpfgjdup;
 
 use Helpme;
@@ -14,12 +11,13 @@ class Cbpfgjdup extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Cbpfgjdup|index', ['only' => ['index']]);
+    $this->middleware('permiso:Cbpfgjdup|index', ['only' => ['index']]);
+    $this->middleware('permiso:Cbpfgjdup|obtenerBase', ['only' => ['obtenerBase']]);
   }
 
 
   public function index(){
-    return view('desaparecidos/cbpfgjdup');
+    return view('filecontrol/cbpfgjdup');
   }
 
   public function obtenerBase(){

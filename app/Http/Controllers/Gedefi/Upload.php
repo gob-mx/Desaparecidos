@@ -9,8 +9,8 @@ class Upload extends Controller
 
     public function __construct()
     {
-        //$this->middleware('permiso:Upload|index', ['only' => ['index']]);
-        //$this->middleware('permiso:Upload|dropzone', ['only' => ['dropzone']]);
+        $this->middleware('permiso:Upload|index', ['only' => ['index']]);
+        $this->middleware('permiso:Upload|dropzone', ['only' => ['dropzone']]);
     }
 
     public function index(){

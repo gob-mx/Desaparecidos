@@ -53,7 +53,7 @@
 
             <?php  if(Helpme::tiene_permiso('Controllers|index')){ ?>
 
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','desaparecidos/upload');" class="m-menu__link m-menu__toggle">
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" onclick="carga_archivo('contenedor_principal','filecontrol/upload');" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-profile-1"></i><span class="m-menu__link-text">Upload</span></a>
               </li>
 

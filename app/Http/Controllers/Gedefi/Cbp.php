@@ -2,9 +2,6 @@
 namespace App\Http\Controllers\Gedefi;
 use App\Http\Controllers\Framework\Controller;
 use Illuminate\Http\Request;
-use App\Models\Framework\Catalogo;
-use App\Models\Framework\Direcciones;
-use App\Models\Gedefi\Desaparecidos as ModelDesaparecidos;
 use App\Models\Gedefi\Cbp as ModelCbp;
 
 use Helpme;
@@ -14,12 +11,13 @@ class Cbp extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Cbp|index', ['only' => ['index']]);
+      $this->middleware('permiso:Cbp|index', ['only' => ['index']]);
+      $this->middleware('permiso:Cbp|obtenerBase', ['only' => ['obtenerBase']]);
   }
 
 
   public function index(){
-    return view('desaparecidos/cbp');
+    return view('filecontrol/cbp');
   }
 
   public function obtenerBase(){

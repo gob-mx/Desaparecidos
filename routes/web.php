@@ -58,8 +58,12 @@ Route::group(['prefix' => 'filecontrol'], function(){
     Route::get('/generar_duplicados_cbp_cnb', 'Gedefi\Filecontrol@generar_duplicados_cbp_cnb');
     Route::get('/generar_duplicados_cbp_fgj', 'Gedefi\Filecontrol@generar_duplicados_cbp_fgj');
     Route::get('/generar_duplicados_cnb_fgj', 'Gedefi\Filecontrol@generar_duplicados_cnb_fgj');
-    Route::get('/reprocesar/{doc}/{id}', 'Gedefi\Filecontrol@reprocesar');
     Route::get('/getUnlocated/{id}/{doc}', 'Gedefi\Filecontrol@getUnlocated');
+    Route::get('/upload', 'Gedefi\Filecontrol@upload');
+    Route::post('/upload_cbp/{file}', 'Gedefi\Filecontrol@upload_cbp');
+    Route::post('/upload_cnb/{file}', 'Gedefi\Filecontrol@upload_cnb');
+    Route::post('/upload_fgj/{file}', 'Gedefi\Filecontrol@upload_fgj');
+    Route::get('/reprocesar/{doc}/{id?}', 'Gedefi\Filecontrol@reprocesar');
 });
 
 Route::group(['prefix' => 'unificada'], function(){
@@ -80,15 +84,6 @@ Route::group(['prefix' => 'cnb'], function(){
 Route::group(['prefix' => 'fgj'], function(){
     Route::get('/', 'Gedefi\Fgj@index');
     Route::post('/obtenerBase', 'Gedefi\Fgj@obtenerBase');
-});
-
-Route::group(['prefix' => 'desaparecidos'], function(){
-    Route::get('/', 'Gedefi\Desaparecidos@index');
-    Route::get('/upload', 'Gedefi\Desaparecidos@upload');
-    Route::post('/upload_cbp/{file}', 'Gedefi\Desaparecidos@upload_cbp');
-    Route::post('/upload_cnb/{file}', 'Gedefi\Desaparecidos@upload_cnb');
-    Route::post('/upload_fgj/{file}', 'Gedefi\Desaparecidos@upload_fgj');
-    Route::get('/reprocesar/{doc}', 'Gedefi\Desaparecidos@reprocesar');
 });
 
 Route::group(['prefix' => 'upload'], function(){

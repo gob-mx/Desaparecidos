@@ -2,9 +2,6 @@
 namespace App\Http\Controllers\Gedefi;
 use App\Http\Controllers\Framework\Controller;
 use Illuminate\Http\Request;
-use App\Models\Framework\Catalogo;
-use App\Models\Framework\Direcciones;
-use App\Models\Gedefi\Desaparecidos as ModelDesaparecidos;
 use App\Models\Gedefi\Fgj as ModelFgj;
 
 use Helpme;
@@ -14,12 +11,13 @@ class Fgj extends Controller
 
   public function __construct()
   {
-      //$this->middleware('permiso:Fgj|index', ['only' => ['index']]);
+    $this->middleware('permiso:Fgj|index', ['only' => ['index']]);
+    $this->middleware('permiso:Fgj|obtenerBase', ['only' => ['obtenerBase']]);
   }
 
 
   public function index(){
-    return view('desaparecidos/fgj');
+    return view('filecontrol/fgj');
   }
 
   public function obtenerBase(){
