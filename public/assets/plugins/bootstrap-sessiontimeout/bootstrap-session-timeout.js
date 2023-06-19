@@ -25,9 +25,9 @@
             logoutUrl: 'login/salir',
 			      loginHome: 'login',
 			      sesionVerify:'login/verifica_session',
-            warnAfter: 600000, //tiempo en que se envia la solicitud al server verifica_session en milisegundos
-            redirAfter: 610000, // tiempo de la barra en la cuenta regresiva warnAfter (menos) redirAfter
-            keepAliveInterval: 10000,
+            warnAfter: 10000, //tiempo en que se envia la solicitud al server verifica_session en milisegundos
+            redirAfter: 20000, // tiempo de la barra en la cuenta regresiva warnAfter (menos) redirAfter
+            keepAliveInterval: 5000,
             keepAlive: false,
             ignoreUserActivity: true,
             onStart: false,
